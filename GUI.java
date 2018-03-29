@@ -26,7 +26,7 @@ public class GUI extends JFrame
     //create combo box
     JComboBox dropdown = new JComboBox(options);
 
-        public static void main(String[] args)
+    public static void main(String[] args)
     {
         new GUI();
     }
