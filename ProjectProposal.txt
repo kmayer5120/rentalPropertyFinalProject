@@ -7,7 +7,10 @@
   
 **Description of the project**
 
-We will be working with a local real estate investor company in order to develop a server-based property management system. This company works with home, apartment complex, and AirBnB rentals. This company would like to be able to store all tenant and rental information within a database that can be easily modified using a GUI (graphical user interface). This program should also provide a method for billing and late payment handling.
+We will be working with a local real estate investor company in order to develop a server-based property management system. This
+company works with home, apartment complex, and AirBnB rentals. This company would like to be able to store all tenant and rental
+information within a database that can be easily modified using a GUI (graphical user interface). This program should also provide
+a method for billing and late payment handling.
 
 **Business Objectives (under your assumptions) and Requirements**
   - To be able to assign tenants to rental properties
