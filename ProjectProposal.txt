@@ -1,18 +1,23 @@
-Project Name
+**Project Name**
 
-Names of the Project Team Members
+**Names of the Project Team Members**
   Austin Smith
   Daniel Garcia
   Kyle Mayer
   
-Description of the project
+**Description of the project**
 
-Business Objectives (under your assumptions) and Requirements
+**Business Objectives (under your assumptions) and Requirements**
+  - To be able to assign tenants to rental properties
+  - To be able to add, remove and edit both tenants and rental properties
+  - To be able to query tenant and rental property data
+  - For billing statements to be generated monthly for tenants (button to click to indicate PAID)
+  - Late payment notices to be generated after X days of non-payment
 
-Analysis and Approaches
+**Analysis and Approaches**
 
-Technical Design, front end, back end, and interfaces (UML diagram)
+**Technical Design, front end, back end, and interfaces (UML diagram)**
 
-Testing Methodologies and Test Suite
+**Testing Methodologies and Test Suite**
 
-Your strategies to success
+**Your strategies to success**
