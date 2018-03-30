@@ -42,8 +42,7 @@ regarding user experience (UX).
 **Testing Methodologies and Test Suite**
   - Design edge cases, and manually test them
     - Sample test ideas include: multiple tenants with the same name or special characters, calculating rent for dates that
-    extend
-    between December and January, and tenants renting multiple locations
+    extend between December and January, and tenants renting multiple locations
   - Attempt to incorporate a Java testing tool or framework such as: JTest, JUnit, Selenium, etc.
 
 **Your strategies to success**
