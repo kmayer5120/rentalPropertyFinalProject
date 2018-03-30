@@ -1,4 +1,5 @@
 **Project Name**
+TBD
 
 **Names of the Project Team Members**
   Austin Smith
@@ -21,8 +22,32 @@ a method for billing and late payment handling.
 
 **Analysis and Approaches**
 
+We will determine the data we will need on each component of this project. For example, we will want each tenant to have an
+array list of people living with them, an age, a first and last name, phone number, and email address (for billing purposes).
+After we have decided on the information we will be storing in the database, we will then move onto sketching and creating the
+database (prior to any coding for the GUI or class makeup or methods).
+
+After the SQL database is created, we will begin work on creating classes for Tenants, Persons, Rental Properties, Apartment
+Complex, Apartment, Single Home Rental, and AirBnB. Knowing the information we want in the database will help us implement DRY
+coding via polymorphism and subclasses.
+
+Once our classes are created, we can then sketch out the methods that interact with these classes, populate them with data, and
+modify their entries in the database. When the classes and methods for our project are created, we will tackle the GUI, and
+displaying of the data (billing statements). We can ask friends or family to interact with our GUI in order to get feedback
+regarding user experience (UX).
+
+
 **Technical Design, front end, back end, and interfaces (UML diagram)**
 
 **Testing Methodologies and Test Suite**
+  - Design edge cases, and manually test them
+    - Sample test ideas include: multiple tenants with the same name or special characters, calculating rent for dates that
+    extend
+    between December and January, and tenants renting multiple locations
+  - Attempt to incorporate a Java testing tool or framework such as: JTest, JUnit, Selenium, etc.
 
 **Your strategies to success**
+  - Regular conferencing both in person and online to determine whether client objectives are being met, and how to meet them
+  - Structuring and sketching components before coding (utilizing UML).
+  - Consistent commenting on code to ensure that team mates understand the way that each method is operating, and its importance to the final result.
+  - Implementing version control (git and GitHub) so that it will be simple to jump back to a prior version.
