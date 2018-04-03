@@ -34,7 +34,7 @@ class Person
     //--------Setters and getters for private variables
     public void setFirstName(String firstName)
     {
-        this.firstName = firstname;
+        this.firstName = firstName;
     }
 
     public void setLastName(String lastName)
@@ -42,7 +42,7 @@ class Person
         this.lastName = lastName;
     }
 
-    public void setAge(age)
+    public void setAge(int age)
     {
         this.age = age;
     }
@@ -57,7 +57,7 @@ class Person
         return this.lastName;
     }
 
-    public String getAge()
+    public int getAge()
     {
         return this.age;
     }
