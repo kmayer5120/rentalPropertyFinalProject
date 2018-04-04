@@ -39,6 +39,10 @@ regarding user experience (UX).
 
 **Technical Design, front end, back end, and interfaces (UML diagram)**
 
+For our project, we will implement a traditional client/server relationship in which the client will make requests, and the serve will
+respond to these requests. The server will be responsible for storing our database, as well as handling SQL queries (a query may return
+current rent due for example, without necessarily requiring a method). The client will run the GUI, and manage the Java code.
+
 **Testing Methodologies and Test Suite**
   - Design edge cases, and manually test them
     - Sample test ideas include: multiple tenants with the same name or special characters, calculating rent for dates that
