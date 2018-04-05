@@ -1,1 +1,4 @@
-
+- Rental Classes & Interface
+- Networking (Client/Server setup)
+- GUI
+- SQL Database
