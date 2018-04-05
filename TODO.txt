@@ -1,3 +1,6 @@
+**If you are actively working on something, put your name next to it so we don't accidentally work on the same thing
+at the same time lol**
+
 - Rental Classes & Interface
 - Networking (Client/Server setup)
 - GUI
