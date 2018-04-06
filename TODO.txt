@@ -5,3 +5,7 @@ at the same time lol**
 - Networking (Client/Server setup)
 - GUI
 - SQL Database
+    - Figure out which tables are needed and which columns for each table
+    - Figure out which queries are needed to populate Objects/GUI
+      and write methods to send queries to DB.
+
