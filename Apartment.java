@@ -1,18 +1,15 @@
-
-
 public class Apartment {
 
   private float rentCost;
   private int dueDate;
   private float lateFee;
-  private String ammenities;
 
+  //Initial constructor
   public Apartment()
   {
       this.rentCost = 0;
       this.dueDate = 0;
       this.lateFee = 0;
-      this.ammenities = "";
   }
 
   public Apartment(float rentCost, int dueDate, float lateFee, String ammenities)
@@ -24,6 +21,7 @@ public class Apartment {
       this.setAmmenities(ammenities);
   }
 
+  //Variable set methods
   public void setRentCost (float rentCost) {
     this.rentCost = rentCost;
   }
@@ -36,10 +34,7 @@ public class Apartment {
     this.lateFee = lateFee;
   }
 
-  public void setAmmenities (String ammenities) {
-    this.ammenities = ammenities;
-  }
-
+  //Variable get methods
   public float getRentCost() {
     return this.rentCost;
   }
@@ -50,10 +45,6 @@ public class Apartment {
 
   public float getLateFee() {
     return this.lateFee;
-  }
-
-  public String getAmmenities() {
-    return this.ammenities;
   }
 
 }
