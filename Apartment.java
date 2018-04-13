@@ -1,4 +1,4 @@
-public class Apartment {
+public class Apartment extends RentalProperty {
 
   private float rentCost;
   private int dueDate;
@@ -18,7 +18,6 @@ public class Apartment {
       this.setRentCost(rentCost);
       this.setDueDate(dueDate);
       this.setLateFee(lateFee);
-      this.setAmmenities(ammenities);
   }
 
   //Variable set methods

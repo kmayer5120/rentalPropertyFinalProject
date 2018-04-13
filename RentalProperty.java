@@ -1,12 +1,11 @@
-
-
-public class RentalProperty {
+public abstract class RentalProperty implements Payable {
 
   private String rentalID;
   private String propertyDescription;
   private int rentalType;
   private boolean isAvailable;
 
+  //Initial constructor
   public RentalProperty()
   {
       this.rentalID = "";
@@ -25,6 +24,7 @@ public class RentalProperty {
       this.setIsAvailable(isAvailable);
   }
 
+  //Variable set methods
   public void setRentalID (String rentalID) {
     this.rentalID = rentalID;
   }
@@ -41,6 +41,7 @@ public class RentalProperty {
     this.isAvailable = isAvailable;
   }
 
+  //Variable get methods
   public String getRentalID() {
     return this.rentalID;
   }

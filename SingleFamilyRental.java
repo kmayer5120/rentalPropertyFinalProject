@@ -1,4 +1,4 @@
-public class SingleFamilyRental {
+public class SingleFamilyRental extends RentalProperty {
 
   private float rentCost;
   private int dueDate;
