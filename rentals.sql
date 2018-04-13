@@ -19,6 +19,9 @@ CREATE TABLE Properties
     propertyDescription varchar(255) NOT NULL,
     available varchar (5) NOT NULL,
     rentalFee float(2)
+    moveInDate date,
+    leaseTerm INT NOT NULL,
+    PRIMARY KEY (propertyID)
 );
 
 CREATE TABLE RentedProperties
@@ -26,5 +29,16 @@ CREATE TABLE RentedProperties
     propertyID INT NOT NULL,
     tenantID INT NOT NULL,
     FOREIGN KEY (propertyID) REFERENCES Properties (propertyID),
+    FOREIGN KEY (tenantID) REFERENCES Tenants (tenantID)
+);
+
+CREATE TABLE People
+(
+    personID INT NOT NULL,
+    tenantID INT NOT NULL,
+    firstName varchar(50) NOT NULL, 
+    lastName varchar(50) NOT NULL,
+    age INT NOT NULL,
+    PRIMARY KEY (personID),
     FOREIGN KEY (tenantID) REFERENCES Tenants (tenantID)
 );
