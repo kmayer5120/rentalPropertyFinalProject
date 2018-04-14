@@ -1,4 +1,5 @@
-public class Apartment extends RentalProperty {
+public class Apartment extends RentalProperty
+{
 
   private float rentCost;
   private int dueDate;
