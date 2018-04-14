@@ -1,0 +1,9 @@
+Dear, (String firstName) (lastName)
+
+Subject: Initial Rental Statement
+
+Your rent will be due on (int date). The amount due is $(float rentDue)
+
+Thank you,
+
+(String companyName)
