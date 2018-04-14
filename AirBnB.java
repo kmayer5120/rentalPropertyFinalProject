@@ -21,28 +21,34 @@ public class AirBnB extends RentalProperty {
   }
 
   //Variable set methods
-  public void setRentCost (float rentCost) {
+  public void setRentCost (float rentCost)
+  {
     this.rentCost = rentCost;
   }
 
-  public void setDueDate (int dueDate) {
+  public void setDueDate (int dueDate)
+  {
     this.dueDate = dueDate;
   }
 
-  public void setLateFee (float lateFee) {
+  public void setLateFee (float lateFee)
+  {
     this.lateFee = lateFee;
   }
 
   //Variable get methods
-  public float getRentCost() {
+  public float getRentCost()
+  {
     return this.rentCost;
   }
 
-  public int getDueDate() {
+  public int getDueDate()
+  {
     return this.dueDate;
   }
 
-  public float getLateFee() {
+  public float getLateFee()
+  {
     return this.lateFee;
   }
 

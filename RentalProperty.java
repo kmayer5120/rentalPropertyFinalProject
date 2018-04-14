@@ -32,42 +32,51 @@ public abstract class RentalProperty implements Payable {
   }
 
   //Variable set methods
-  public void setRentalID (String rentalID) {
+  public void setRentalID (String rentalID)
+  {
     this.rentalID = rentalID;
   }
 
-  public void setPropertyDescription (String propertyDescription) {
+  public void setPropertyDescription (String propertyDescription)
+  {
     this.propertyDescription = propertyDescription;
   }
 
-  public void setRentalType (int rentalType) {
+  public void setRentalType (int rentalType)
+  {
     this.rentalType = rentalType;
   }
 
-  public void setIsAvailable (boolean isAvailable) {
+  public void setIsAvailable (boolean isAvailable)
+  {
     this.isAvailable = isAvailable;
   }
 
-  public void setDates(int moveInDate) {
+  public void setDates(int moveInDate)
+  {
     this.moveInDate = moveInDate;
     this.lateDate = moveInDate + 7;
     this.secondLateDate = moveInDate + 14;
   }
 
   //Variable get methods
-  public String getRentalID() {
+  public String getRentalID()
+  {
     return this.rentalID;
   }
 
-  public String getPropertyDescription() {
+  public String getPropertyDescription()
+  {
     return this.propertyDescription;
   }
 
-  public int getRentalType() {
+  public int getRentalType()
+  {
     return this.rentalType;
   }
 
-  public boolean getIsAvailable() {
+  public boolean getIsAvailable()
+  {
     return this.isAvailable;
   }
 
