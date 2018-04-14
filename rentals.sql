@@ -1,4 +1,3 @@
-
 CREATE TABLE Tenants
 (
     tenantID INT NOT NULL,
@@ -14,7 +13,15 @@ CREATE TABLE Properties
     propertyID varchar(50) NOT NULL,
     propertyAddress varchar(255) NOT NULL,
     propertyDescription varchar(255) NOT NULL,
-    available varchar (5) NOT NULL,
+    isAvailable char(1) NOT NULL,
+    /* 
+     * isLate, isEvicted, and isPaid are basically type boolean.
+     * Their field can take one char. T or F.
+     */
+    isLate char(1), NOT NULL,
+    isEvicted char(1), NOT NULL,
+    isPaid char(1), NOT NULL,
+    leaseTerm INT NOT NULL,
     rentalFee float(2)
     moveInDate date,
     leaseTerm INT NOT NULL,
