@@ -1,3 +1,7 @@
+DROP TABLE Tenants;
+DROP TABLE Properties;
+DROP TABLE RentedProperties;
+
 CREATE TABLE Tenants
 (
     tenantID INT NOT NULL,
