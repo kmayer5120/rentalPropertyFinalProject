@@ -1,4 +1,5 @@
-public abstract class RentalProperty implements Payable {
+public abstract class RentalProperty implements Payable
+{
 
   private String rentalID;
   private String propertyDescription;

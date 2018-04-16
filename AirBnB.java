@@ -1,4 +1,5 @@
-public class AirBnB extends RentalProperty {
+public class AirBnB extends RentalProperty
+{
 
   private float rentCost;
   private int dueDate;

@@ -1,0 +1,66 @@
+** Note **
+
+All code is written in Java, so any references to packages and data types are
+made in this context.
+
+** The Server **
+
+The server computer of this program holds a SQL database. As a result, the
+server is responsible for returning queries to be displayed.
+
+The server instantiates a ServerSocket called *server* (possibly within a
+while loop to allow multiple clients, TBD) that waits for a corresponding
+client Socket called *connection* utilizing the ServerSocket accept() method.
+
+Once a connection is established, output and input streams are intitialized
+utilizing ObjectOutputStream and ObjectInputStream, respectively. The output
+stream is then flushed to ensure that all bytes of data have been transmitted.
+
+The server will then take an ObjectInputStream, and perform a series of
+operations on the data (dependent on the queries defined by the client). To
+return the data, the server will run the writeObject() method on the
+ObjectOutputStream taking a String of data as an argument. The ObjectOutputStream
+once again implements the flush() method to ensure that all data has been
+transmitted.
+
+The server will loop through these operations until it receives an end statement
+from the user, in which case the close() method will be used on the Socket,
+the ObjectOutputStream, and the ObjectInputStream.
+
+** The Client **
+
+The client computer of this program holds the GUI, and the Java classes for
+Tenant, Person, RentalProperty, Apartment, AirBnB, and SingleFamilyRental.
+
+Note: Many components of the client will be similar to that of the server, so
+there may be some redundancy.
+
+The client class constructor takes an argument for an IP address. If no IP
+address is provided, then the client will assume that the server is hosted on
+the same computer, and use '127.0.0.1' as the IP address.
+
+Once the client is constructed, it will attempt to connect with the server using
+Socket, using InetAddress.getByName(IP address) as an argument.
+
+Like the server, the client will then establish output and input streams using
+ObjectOutputStream and ObjectInputStream respectively. Once again, the flush()
+method is called on the ObjectOutputStream to ensure all data has been
+transmitted.
+
+The client will present server responses to the GUI using the readObject() method
+on the ObjectInputStream. The client will send data by invoking the writeObject()
+method on the ObjectInputStream taking a String query as an argument.
+
+Finally, once the user triggers an end statement the ObjectOutputStream,
+ObjectInputStream and Socket will all invoke the close() method in order to
+terminate the connection.
+
+** The GUI **
+
+** The Database **
+
+** Classes **
+
+** Installation **
+
+** Diagrams **
