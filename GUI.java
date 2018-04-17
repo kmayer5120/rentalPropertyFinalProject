@@ -1,10 +1,7 @@
 import javax.swing.JFrame;
-import javax.swing.SpringLayout;
 import javax.swing.JLabel;
 import javax.swing.JButton;
 import javax.swing.JTextField;
-import javax.swing.BoxLayout;
-import java.awt.CardLayout;
 import javax.swing.JTextArea;
 import java.awt.Font;
 import java.awt.Component;
