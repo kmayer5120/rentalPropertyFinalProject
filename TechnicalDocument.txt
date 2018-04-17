@@ -59,7 +59,7 @@ terminate the connection.
 
 ** The Database **
 
-//SQL Lite
+//SQL Lite 
 
 ** Classes **
 
