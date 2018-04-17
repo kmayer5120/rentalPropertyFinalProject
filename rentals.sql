@@ -1,15 +1,13 @@
-DROP TABLE Tenants;
+DROP TABLE Tenants; 
 DROP TABLE Properties;
 DROP TABLE RentedProperties;
 
 CREATE TABLE Tenants
 (
-    tenantID INT NOT NULL,
-    firstName varchar(50) NOT NULL,
+    tenantID INT NOT NULL GENERATED ALWAYS AS IDENTITY, 
+    firstName varchar(50) NOT NULL, 
     lastName varchar(50) NOT NULL,
-    emailAddress varchar(255) NOT NULL,
-    billingAddress varchar(255) NOT NULL,
-    PRIMARY KEY(tenantID)
+    PRIMARY KEY (tenantID)
 );
 
 CREATE TABLE Properties
@@ -18,17 +16,12 @@ CREATE TABLE Properties
     propertyAddress varchar(255) NOT NULL,
     propertyDescription varchar(255) NOT NULL,
     isAvailable char(1) NOT NULL,
-    /* 
-     * isLate, isEvicted, and isPaid are basically type boolean.
-     * Their field can take one char. T or F.
-     */
     isLate char(1), NOT NULL,
     isEvicted char(1), NOT NULL,
     isPaid char(1), NOT NULL,
     leaseTerm INT NOT NULL,
     rentalFee float(2)
     moveInDate date,
-    leaseTerm INT NOT NULL,
     PRIMARY KEY (propertyID)
 );
 
@@ -50,3 +43,17 @@ CREATE TABLE People
     PRIMARY KEY (personID),
     FOREIGN KEY (tenantID) REFERENCES Tenants (tenantID)
 );
+
+INSERT INTO Tenants(firstName, lastName)
+VALUES
+    ('Kyle', 'Mayer');
+
+INSERT INTO Properties(propertyID, propertyAddress, propertyDescription, isAvailable, 
+            isLate, isEvicted, isPaid, leaseTerm, rentalFee, moveInDate)
+        VALUES('SABQ123', '123 Street St.', 'Has chairs', 'T', 'F'. 'F', 'T'
+                3, 3.14, 2018-12-20);
+
+INSERT INTO People(personID, tenantID, firstName, lastName, age)
+        VALUES(1, 1, 'Daniel', 'Garcia', 26);
+
+
