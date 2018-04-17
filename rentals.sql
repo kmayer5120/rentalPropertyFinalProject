@@ -20,7 +20,7 @@ CREATE TABLE Properties
     isEvicted char(1), NOT NULL,
     isPaid char(1), NOT NULL,
     leaseTerm INT NOT NULL,
-    rentalFee float(2)
+    rentalFee float(2),
     moveInDate date,
     PRIMARY KEY (propertyID)
 );
