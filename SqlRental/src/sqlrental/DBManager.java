@@ -78,12 +78,48 @@ public class DBManager
 
                               stmt = c.createStatement();
                               
-                              String sql = "CREATE TABLE COMPANY " +
-                                                  "(ID INT PRIMARY KEY     NOT NULL," +
-                                                  " NAME           TEXT    NOT NULL, " + 
-                                                  " AGE            INT     NOT NULL, " + 
-                                                  " ADDRESS        CHAR(50), " + 
-                                                  " SALARY         REAL)"; 
+                              String sql = 
+                                        " CREATE TABLE Tenants\n" +
+                                        "(\n" +
+                                        "    tenantID INT NOT NULL GENERATED ALWAYS AS IDENTITY, \n" +
+                                        "    firstName varchar(50) NOT NULL, \n" +
+                                        "    lastName varchar(50) NOT NULL,\n" +
+                                        "    PRIMARY KEY (tenantID)\n" +
+                                        ");\n" +
+                                        "\n" +
+                                        "CREATE TABLE Properties\n" +
+                                        "(\n" +
+                                        "    propertyID varchar(50) NOT NULL,\n" +
+                                        "    propertyAddress varchar(255) NOT NULL,\n" +
+                                        "    propertyDescription varchar(255) NOT NULL,\n" +
+                                        "    isAvailable char(1) NOT NULL,\n" +
+                                        "    isLate char(1), NOT NULL,\n" +
+                                        "    isEvicted char(1), NOT NULL,\n" +
+                                        "    isPaid char(1), NOT NULL,\n" +
+                                        "    leaseTerm INT NOT NULL,\n" +
+                                        "    rentalFee float(2),\n" +
+                                        "    moveInDate date,\n" +
+                                        "    PRIMARY KEY (propertyID)\n" +
+                                        ");\n" +
+                                        "\n" +
+                                        "CREATE TABLE RentedProperties\n" +
+                                        "(\n" +
+                                        "    propertyID INT NOT NULL,\n" +
+                                        "    tenantID INT NOT NULL,\n" +
+                                        "    FOREIGN KEY (propertyID) REFERENCES Properties (propertyID),\n" +
+                                        "    FOREIGN KEY (tenantID) REFERENCES Tenants (tenantID)\n" +
+                                        ");\n" +
+                                        "\n" +
+                                        "CREATE TABLE People\n" +
+                                        "(\n" +
+                                        "    personID INT NOT NULL,\n" +
+                                        "    tenantID INT NOT NULL,\n" +
+                                        "    firstName varchar(50) NOT NULL, \n" +
+                                        "    lastName varchar(50) NOT NULL,\n" +
+                                        "    age INT NOT NULL,\n" +
+                                        "    PRIMARY KEY (personID),\n" +
+                                        "    FOREIGN KEY (tenantID) REFERENCES Tenants (tenantID)\n" +
+                                        ");";
                               stmt.executeUpdate(sql);
                               stmt.close();
                               c.close();
