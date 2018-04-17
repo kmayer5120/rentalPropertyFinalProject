@@ -13,12 +13,6 @@ at the same time lol**
 - SQL Database
     - Figure out which queries are needed to populate Objects/GUI
       and write methods to send queries to DB.
-   - Add fields to:                                     (Kyle)
-        - Properties 
-            - isAvailable 3,6,12
-            - isLate varchar(1) 
-            - isEvicted varchar(1)
-            - isPaid varchar(1)
    - Fix driver error with compilation. (Kyle)
     - Populate Database
    

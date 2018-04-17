@@ -59,6 +59,8 @@ terminate the connection.
 
 ** The Database **
 
+//SQL Lite
+
 ** Classes **
 
 ** Installation **
