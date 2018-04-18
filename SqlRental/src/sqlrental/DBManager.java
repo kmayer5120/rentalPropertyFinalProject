@@ -18,19 +18,19 @@ import java.util.HashMap;
 public class DBManager
 {
           Connection c = null;
- 
-    
+
+
           public DBManager()
           {
-        
-        
+
+
           }
-    
+
           public DBManager(String dbName)
           {
                     //connect to DB upon object creation
                     Connection c = null;
-      
+
                     try {
                        Class.forName("org.sqlite.JDBC");
                        c = DriverManager.getConnection("jdbc:sqlite:test.db");
@@ -42,17 +42,17 @@ public class DBManager
                               System.exit(0);
                     }
                     System.out.println("Opened database successfully");
-                    
+
           }
 
           public String createDB(String dbName)
           {
                     String cmd = "";
-                     
+
                     String url = "jdbc:sqlite:" + dbName;
- 
+
                     try (Connection conn = DriverManager.getConnection(url)) {
-                              if (conn != null) 
+                              if (conn != null)
                               {
                                         DatabaseMetaData meta = conn.getMetaData();
                                         System.out.println("A new database has been created.");
@@ -60,7 +60,7 @@ public class DBManager
                     } catch (SQLException e) {
                               System.out.println(e.getMessage());
                     }
-                    
+
                     return cmd;
           }
 
@@ -69,7 +69,7 @@ public class DBManager
                     String cmd = "";
                     Connection c = null;
                     Statement stmt = null;
-      
+
                     try {
                               Class.forName("org.sqlite.JDBC");
                               //change db name
@@ -77,8 +77,8 @@ public class DBManager
                               System.out.println("Opened database successfully");
 
                               stmt = c.createStatement();
-                              
-                              String sql = 
+
+                              String sql =
                                         " CREATE TABLE Tenants\n" +
                                         "(\n" +
                                         "    tenantID INT NOT NULL GENERATED ALWAYS AS IDENTITY, \n" +
@@ -129,9 +129,9 @@ public class DBManager
                     } catch (ClassNotFoundException e) {
                               System.err.println( e.getClass().getName() + ": " + e.getMessage() );
                               System.exit(0);
-                    }                   
-                    
-                    return cmd;   
+                    }
+
+                    return cmd;
           }
 
           public String insert(String tblName, HashMap<String,String> fields)
@@ -143,6 +143,61 @@ public class DBManager
             public String select(String tblName, HashMap<String,String> fields)
             {
                     String cmd = "";
+                    Connection c = null;
+                    Statement stmt = null;
+
+                    try
+                    {
+                      Class.forName("org.sqlite.JDBC");
+                      c = DriverManager.getConnection("jdbc:sqlite:rentals.db");
+                      c.setAutoCommit(false);
+                      System.out.println("Opened database successfully");
+
+                      stmt = c.createStatement();
+                      /*Replace * with a variable too? */
+                      ResultSet rs = stmt.executeQuery("SELECT * FROM " + tblName + ";");
+                      //Modified from https://www.tutorialspoint.com/sqlite/sqlite_java.htm
+                      if (tblName.equals("Tenants"))
+                      {
+                        int id = rs.getInt("tenantID");
+                        String firstName = rs.getString("firstName");
+                        String lastName = rs.getString("lastName");
+                      }
+                      else if (tblName.equals("Properties"))
+                      {
+                        int id = rs.getInt("propertyID");
+                        String address = rs.getString("propertyAddress");
+                        String propertyDescription = rs.getString("propertyDescription");
+                        int isAvailable = rs.getInt("isAvailable");
+                        int isLate = rs.getInt("isLate");
+                        int isEvicted = rs.getInt("isEvicted");
+                        int isPaid = rs.getInt("isPaid");
+                        int leaseTerm = rs.getInt("leaseTerm");
+                        float rentalFee = rs.getFloat("rentalFee");
+                        //Not sure which type for date, will come back to this
+                        //date moveInDate = rs.getDate("moveInDate");
+                      }
+                      else if (tblName.equals("RentedProperties"))
+                      {
+                        int propertyID = rs.getInt("propertyID");
+                        int tenantID = rs.getInt("tenantID");
+                      }
+                      else //Table is People
+                      {
+                        int personID = rs.getInt("personID");
+                        int tenantID = rs.getInt("tenantID");
+                        String firstName = rs.getString("firstName");
+                        String lastName = rs.getString("lastName");
+                        int age = rs.getInt("age");
+                      }
+                    }
+                    catch (Exception e)
+                    {
+                      System.err.println(e.getClass().getName() + ": "
+                                        + e.getMessage());
+                      System.exit(0);
+                    }
+                    System.out.println("Select successful.");
                     return cmd;
-            }  
+            }
 }
