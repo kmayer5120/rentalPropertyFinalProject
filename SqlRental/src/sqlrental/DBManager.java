@@ -149,7 +149,7 @@ public class DBManager
 
                       stmt = c.createStatement();
                       String sql = "";
-                      /*String sql = "INSERT INTO COMPANY (ID,NAME,AGE,ADDRESS)"( etc
+                      /*String sql = "INSERT INTO COMPANY (ID,NAME,AGE,ADDRESS)" etc
                       Basically String sql is a query, probably want to use
                       StringBuilder to create the sql statement*/
                       stmt.executeUpdate(sql);
@@ -231,5 +231,40 @@ public class DBManager
                     }
                     System.out.println("Select successful.");
                     return cmd;
+            }
+
+            public String update(String tblName, HashMap<String,String> fields)
+            {
+                      String cmd = "";
+                      Connection c = null;
+                      Statement stmt = null;
+
+                      try
+                      {
+                        Class.forName("org.sqlite.JDBC");
+                        c = DriverManager.getConnection("jdbc:sqlite:rentals.db");
+                        c.setAutoCommit(false);
+                        System.out.println("Opened database successfully.");
+
+                        stmt = c.createStatement();
+                        String sql = "";
+                        /*Once again, probably want to use StringBuilder to create
+                        sql query*/
+                        stmt.executeUpdate(sql);
+                        c.commit();
+
+                        /*Left out result set stuff, seemed redundant copy and
+                        paste from select method if necessary*/
+                        stmt.close();
+                        c.close();
+                      }
+                      catch (Exception e)
+                      {
+                        System.err.println(e.getClass().getName() + ": "
+                                          + e.getMessage());
+                        System.exit(0);
+                      }
+                      System.out.println("Update successful.");
+                      return cmd;
             }
 }
