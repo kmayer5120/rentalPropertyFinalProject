@@ -35,11 +35,11 @@ public class DBManager
                  Class.forName("org.sqlite.JDBC");
                  c = DriverManager.getConnection("jdbc:sqlite:rentals.db");
               } catch ( SQLException e ) {
-                 System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+                 System.err.println( e.getClass().getName() + ": " + e.getMessage());
                  System.exit(0);
               } catch (ClassNotFoundException e) {
-                        System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-                        System.exit(0);
+                System.err.println( e.getClass().getName() + ": " + e.getMessage());
+                System.exit(0);
               }
               System.out.println("Opened database successfully");
 
@@ -47,21 +47,22 @@ public class DBManager
 
     public String createDB(String dbName)
     {
-              String cmd = "";
+        String cmd = "";
 
-              String url = "jdbc:sqlite:" + dbName;
+        String url = "jdbc:sqlite:" + dbName;
 
-              try (Connection conn = DriverManager.getConnection(url)) {
-                        if (conn != null)
-                        {
-                                  DatabaseMetaData meta = conn.getMetaData();
-                                  System.out.println("A new database has been created.");
-                        }
-              } catch (SQLException e) {
-                        System.out.println(e.getMessage());
-              }
+        try (Connection conn = DriverManager.getConnection(url)) 
+        {
+            if (conn != null)
+            {
+                DatabaseMetaData meta = conn.getMetaData();
+                System.out.println("A new database has been created.");
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
 
-              return cmd;
+        return cmd;
     }
 
     public String createTable()
@@ -69,107 +70,107 @@ public class DBManager
         //original method signature. We may not need to pass strings if
         //these tables are just going to be created with hardcoding
         //public String createTable(String tblName, HashMap<String,String> fields)
+        String cmd = "";
+        Connection c = null;
+        Statement stmt = null;
+
+        try 
+        {
+            Class.forName("org.sqlite.JDBC");
+            //change db name
+            c = DriverManager.getConnection("jdbc:sqlite:rentals.db");
+            System.out.println("Opened database successfully");
+
+            stmt = c.createStatement();
+
+            String sql =
+            " CREATE TABLE Tenants\n" +
+            "(\n" +
+            "    tenantID INT NOT NULL GENERATED ALWAYS AS IDENTITY, \n" +
+            "    firstName varchar(50) NOT NULL, \n" +
+            "    lastName varchar(50) NOT NULL,\n" +
+            "    PRIMARY KEY (tenantID)\n" +
+            ");\n" +
+            "\n" +
+            "CREATE TABLE Properties\n" +
+            "(\n" +
+            "    propertyID varchar(50) NOT NULL,\n" +
+            "    propertyAddress varchar(255) NOT NULL,\n" +
+            "    propertyDescription varchar(255) NOT NULL,\n" +
+            "    isAvailable char(1) NOT NULL,\n" +
+            "    isLate char(1), NOT NULL,\n" +
+            "    isEvicted char(1), NOT NULL,\n" +
+            "    isPaid char(1), NOT NULL,\n" +
+            "    leaseTerm INT NOT NULL,\n" +
+            "    rentalFee float(2),\n" +
+            "    moveInDate date,\n" +
+            "    PRIMARY KEY (propertyID)\n" +
+            ");\n" +
+            "\n" +
+            "CREATE TABLE RentedProperties\n" +
+            "(\n" +
+            "    propertyID INT NOT NULL,\n" +
+            "    tenantID INT NOT NULL,\n" +
+            "    FOREIGN KEY (propertyID) REFERENCES Properties (propertyID),\n" +
+            "    FOREIGN KEY (tenantID) REFERENCES Tenants (tenantID)\n" +
+            ");\n" +
+            "\n" +
+            "CREATE TABLE People\n" +
+            "(\n" +
+            "    personID INT NOT NULL,\n" +
+            "    tenantID INT NOT NULL,\n" +
+            "    firstName varchar(50) NOT NULL, \n" +
+            "    lastName varchar(50) NOT NULL,\n" +
+            "    age INT NOT NULL,\n" +
+            "    PRIMARY KEY (personID),\n" +
+            "    FOREIGN KEY (tenantID) REFERENCES Tenants (tenantID)\n" +
+            ");";
+            stmt.executeUpdate(sql);
+            stmt.close();
+            c.close();
+        } catch ( SQLException e ) {
+            System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+            System.exit(0);
+        } catch (ClassNotFoundException e) {
+            System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+            System.exit(0);
+        }
+        return cmd;
+    }
+
+    public String insert(String tblName, HashMap<String,String> fields)
+    {
       String cmd = "";
       Connection c = null;
       Statement stmt = null;
 
-      try {
-          Class.forName("org.sqlite.JDBC");
-          //change db name
-          c = DriverManager.getConnection("jdbc:sqlite:rentals.db");
-          System.out.println("Opened database successfully");
+      try
+      {
+        Class.forName("org.sqlite.JDBC");
+        c = DriverManager.getConnection("jdbc:sqlite:rentals.db");
+        c.setAutoCommit(false);
+        System.out.println("Opened database successfully.");
 
-          stmt = c.createStatement();
+        stmt = c.createStatement();
+        String sql = "";
+        /*String sql = "INSERT INTO COMPANY (ID,NAME,AGE,ADDRESS)" etc
+        Basically String sql is a query, probably want to use
+        StringBuilder to create the sql statement*/
+        stmt.executeUpdate(sql);
 
-          String sql =
-              " CREATE TABLE Tenants\n" +
-              "(\n" +
-              "    tenantID INT NOT NULL GENERATED ALWAYS AS IDENTITY, \n" +
-              "    firstName varchar(50) NOT NULL, \n" +
-              "    lastName varchar(50) NOT NULL,\n" +
-              "    PRIMARY KEY (tenantID)\n" +
-              ");\n" +
-              "\n" +
-              "CREATE TABLE Properties\n" +
-              "(\n" +
-              "    propertyID varchar(50) NOT NULL,\n" +
-              "    propertyAddress varchar(255) NOT NULL,\n" +
-              "    propertyDescription varchar(255) NOT NULL,\n" +
-              "    isAvailable char(1) NOT NULL,\n" +
-              "    isLate char(1), NOT NULL,\n" +
-              "    isEvicted char(1), NOT NULL,\n" +
-              "    isPaid char(1), NOT NULL,\n" +
-              "    leaseTerm INT NOT NULL,\n" +
-              "    rentalFee float(2),\n" +
-              "    moveInDate date,\n" +
-              "    PRIMARY KEY (propertyID)\n" +
-              ");\n" +
-              "\n" +
-              "CREATE TABLE RentedProperties\n" +
-              "(\n" +
-              "    propertyID INT NOT NULL,\n" +
-              "    tenantID INT NOT NULL,\n" +
-              "    FOREIGN KEY (propertyID) REFERENCES Properties (propertyID),\n" +
-              "    FOREIGN KEY (tenantID) REFERENCES Tenants (tenantID)\n" +
-              ");\n" +
-              "\n" +
-              "CREATE TABLE People\n" +
-              "(\n" +
-              "    personID INT NOT NULL,\n" +
-              "    tenantID INT NOT NULL,\n" +
-              "    firstName varchar(50) NOT NULL, \n" +
-              "    lastName varchar(50) NOT NULL,\n" +
-              "    age INT NOT NULL,\n" +
-              "    PRIMARY KEY (personID),\n" +
-              "    FOREIGN KEY (tenantID) REFERENCES Tenants (tenantID)\n" +
-              ");";
-              stmt.executeUpdate(sql);
-              stmt.close();
-              c.close();
-          } catch ( SQLException e ) {
-                    System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-                    System.exit(0);
-          } catch (ClassNotFoundException e) {
-                    System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-                    System.exit(0);
-          }
-
+        stmt.close();
+        c.commit();
+        c.close();
+      }
+      catch (Exception e)
+      {
+        System.err.println(e.getClass().getName() + ": "
+                          + e.getMessage());
+        System.exit(0);
+      }
+      System.out.println("Records created successfully.");
       return cmd;
     }
-
-        public String insert(String tblName, HashMap<String,String> fields)
-        {
-          String cmd = "";
-          Connection c = null;
-          Statement stmt = null;
-
-          try
-          {
-            Class.forName("org.sqlite.JDBC");
-            c = DriverManager.getConnection("jdbc:sqlite:rentals.db");
-            c.setAutoCommit(false);
-            System.out.println("Opened database successfully.");
-
-            stmt = c.createStatement();
-            String sql = "";
-            /*String sql = "INSERT INTO COMPANY (ID,NAME,AGE,ADDRESS)" etc
-            Basically String sql is a query, probably want to use
-            StringBuilder to create the sql statement*/
-            stmt.executeUpdate(sql);
-
-            stmt.close();
-            c.commit();
-            c.close();
-          }
-          catch (Exception e)
-          {
-            System.err.println(e.getClass().getName() + ": "
-                              + e.getMessage());
-            System.exit(0);
-          }
-          System.out.println("Records created successfully.");
-          return cmd;
-        }
 
     public String select(String tblName, HashMap<String,String> fields)
     {
@@ -179,58 +180,58 @@ public class DBManager
 
         try
         {
-          Class.forName("org.sqlite.JDBC");
-          c = DriverManager.getConnection("jdbc:sqlite:rentals.db");
-          c.setAutoCommit(false);
-          System.out.println("Opened database successfully");
+            Class.forName("org.sqlite.JDBC");
+            c = DriverManager.getConnection("jdbc:sqlite:rentals.db");
+            c.setAutoCommit(false);
+            System.out.println("Opened database successfully");
 
-          stmt = c.createStatement();
-          /*Replace * with a variable too? */
-          ResultSet rs = stmt.executeQuery("SELECT * FROM " + tblName + ";");
-          //Modified from https://www.tutorialspoint.com/sqlite/sqlite_java.htm
-          if (tblName.equals("Tenants"))
-          {
-            int id = rs.getInt("tenantID");
-            String firstName = rs.getString("firstName");
-            String lastName = rs.getString("lastName");
-          }
-          else if (tblName.equals("Properties"))
-          {
-            int id = rs.getInt("propertyID");
-            String address = rs.getString("propertyAddress");
-            String propertyDescription = rs.getString("propertyDescription");
-            int isAvailable = rs.getInt("isAvailable");
-            int isLate = rs.getInt("isLate");
-            int isEvicted = rs.getInt("isEvicted");
-            int isPaid = rs.getInt("isPaid");
-            int leaseTerm = rs.getInt("leaseTerm");
-            float rentalFee = rs.getFloat("rentalFee");
-            //Not sure which type for date, will come back to this
-            //date moveInDate = rs.getDate("moveInDate");
-          }
-          else if (tblName.equals("RentedProperties"))
-          {
-            int propertyID = rs.getInt("propertyID");
-            int tenantID = rs.getInt("tenantID");
-          }
-          else if (tblName.equals("People"))
-          {
-            int personID = rs.getInt("personID");
-            int tenantID = rs.getInt("tenantID");
-            String firstName = rs.getString("firstName");
-            String lastName = rs.getString("lastName");
-            int age = rs.getInt("age");
-          }
-          else
-          {
-            System.out.println("Table not found.");
-          }
+            stmt = c.createStatement();
+            /*Replace * with a variable too? */
+            ResultSet rs = stmt.executeQuery("SELECT * FROM " + tblName + ";");
+            //Modified from https://www.tutorialspoint.com/sqlite/sqlite_java.htm
+            if (tblName.equals("Tenants"))
+            {
+                int id = rs.getInt("tenantID");
+                String firstName = rs.getString("firstName");
+                String lastName = rs.getString("lastName");
+            }
+            else if (tblName.equals("Properties"))
+            {
+                int id = rs.getInt("propertyID");
+                String address = rs.getString("propertyAddress");
+                String propertyDescription = rs.getString("propertyDescription");
+                int isAvailable = rs.getInt("isAvailable");
+                int isLate = rs.getInt("isLate");
+                int isEvicted = rs.getInt("isEvicted");
+                int isPaid = rs.getInt("isPaid");
+                int leaseTerm = rs.getInt("leaseTerm");
+                float rentalFee = rs.getFloat("rentalFee");
+                //Not sure which type for date, will come back to this
+                //date moveInDate = rs.getDate("moveInDate");
+            }
+            else if (tblName.equals("RentedProperties"))
+            {
+              int propertyID = rs.getInt("propertyID");
+              int tenantID = rs.getInt("tenantID");
+            }
+            else if (tblName.equals("People"))
+            {
+              int personID = rs.getInt("personID");
+              int tenantID = rs.getInt("tenantID");
+              String firstName = rs.getString("firstName");
+              String lastName = rs.getString("lastName");
+              int age = rs.getInt("age");
+            }
+            else
+            {
+              System.out.println("Table not found.");
+            }
         }
         catch (Exception e)
         {
-          System.err.println(e.getClass().getName() + ": "
+            System.err.println(e.getClass().getName() + ": "
                             + e.getMessage());
-          System.exit(0);
+            System.exit(0);
         }
         System.out.println("Select successful.");
         return cmd;
@@ -244,28 +245,28 @@ public class DBManager
 
         try
         {
-          Class.forName("org.sqlite.JDBC");
-          c = DriverManager.getConnection("jdbc:sqlite:rentals.db");
-          c.setAutoCommit(false);
-          System.out.println("Opened database successfully.");
+            Class.forName("org.sqlite.JDBC");
+            c = DriverManager.getConnection("jdbc:sqlite:rentals.db");
+            c.setAutoCommit(false);
+            System.out.println("Opened database successfully.");
 
-          stmt = c.createStatement();
-          String sql = "";
-          /*Once again, probably want to use StringBuilder to create
-          sql query*/
-          stmt.executeUpdate(sql);
-          c.commit();
+            stmt = c.createStatement();
+            String sql = "";
+            /*Once again, probably want to use StringBuilder to create
+            sql query*/
+            stmt.executeUpdate(sql);
+            c.commit();
 
-          /*Left out result set stuff, seemed redundant copy and
-          paste from select method if necessary*/
-          stmt.close();
-          c.close();
+            /*Left out result set stuff, seemed redundant copy and
+            paste from select method if necessary*/
+            stmt.close();
+            c.close();
         }
         catch (Exception e)
         {
-          System.err.println(e.getClass().getName() + ": "
-                            + e.getMessage());
-          System.exit(0);
+            System.err.println(e.getClass().getName() + ": "
+                              + e.getMessage());
+            System.exit(0);
         }
         System.out.println("Update successful.");
         return cmd;
