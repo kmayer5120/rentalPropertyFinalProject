@@ -26,7 +26,7 @@ public class SqlRental
           {
                     //Create db test
                     DBManager db = new DBManager();
-                    System.out.println(db.createDB("/rentalPropertyFinalProject/rentals.db"));
+                    System.out.println(db.createDB("rentals.db"));
 
                      //Create Table test
                     //DBManager db = new DBManager("/home/danielg/test.db");
