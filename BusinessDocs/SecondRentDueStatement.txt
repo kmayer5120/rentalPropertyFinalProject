@@ -1,0 +1,11 @@
+Dear, (String firstName) (lastName)
+
+Subject: Notification of late payment
+
+Your rent was due on (int date). The amount due was $(float rentDue).
+Because the payment is late, a late fee of $(float lateFee) has been added,
+making the total amount due (float latePaymentDue). This is due by (int lateDate).
+
+Thank you,
+
+(String companyName)
