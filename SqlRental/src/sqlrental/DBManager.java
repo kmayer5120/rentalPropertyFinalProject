@@ -182,13 +182,17 @@ public class DBManager
                         int propertyID = rs.getInt("propertyID");
                         int tenantID = rs.getInt("tenantID");
                       }
-                      else //Table is People
+                      else if (tblName.equals("People"))
                       {
                         int personID = rs.getInt("personID");
                         int tenantID = rs.getInt("tenantID");
                         String firstName = rs.getString("firstName");
                         String lastName = rs.getString("lastName");
                         int age = rs.getInt("age");
+                      }
+                      else
+                      {
+                        System.out.println("Table not found.");
                       }
                     }
                     catch (Exception e)
