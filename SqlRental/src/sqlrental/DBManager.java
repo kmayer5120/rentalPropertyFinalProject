@@ -149,8 +149,9 @@ public class DBManager
 
                       stmt = c.createStatement();
                       String sql = "";
-                      //String sql = "INSERT INTO COMPANY (ID,NAME,AGE,ADDRESS)"( etc
-                      //Basically String sql is a query
+                      /*String sql = "INSERT INTO COMPANY (ID,NAME,AGE,ADDRESS)"( etc
+                      Basically String sql is a query, probably want to use
+                      StringBuilder to create the sql statement*/
                       stmt.executeUpdate(sql);
 
                       stmt.close();
