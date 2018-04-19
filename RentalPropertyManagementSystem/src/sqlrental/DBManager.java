@@ -28,20 +28,21 @@ public class DBManager
 
     public DBManager(String dbName)
     {
-              //connect to DB upon object creation
-              Connection c = null;
+	//connect to DB upon object creation
+	Connection c = null;
 
-              try {
-                 Class.forName("org.sqlite.JDBC");
-                 c = DriverManager.getConnection("jdbc:sqlite:rentals.db");
-              } catch ( SQLException e ) {
-                 System.err.println( e.getClass().getName() + ": " + e.getMessage());
-                 System.exit(0);
-              } catch (ClassNotFoundException e) {
-                System.err.println( e.getClass().getName() + ": " + e.getMessage());
-                System.exit(0);
-              }
-              System.out.println("Opened database successfully");
+	try 
+	{
+	    Class.forName("org.sqlite.JDBC");
+	    c = DriverManager.getConnection("jdbc:sqlite:rentals.db");
+        } catch ( SQLException e ) {
+            System.err.println( e.getClass().getName() + ": " + e.getMessage());
+	    System.exit(0);
+        } catch (ClassNotFoundException e) {
+	    System.err.println( e.getClass().getName() + ": " + e.getMessage());
+	    System.exit(0);
+        }
+      System.out.println("Opened database successfully");
 
     }
 
@@ -84,46 +85,46 @@ public class DBManager
             stmt = c.createStatement();
 
             String sql =
-            " CREATE TABLE Tenants\n" +
-            "(\n" +
-            "    tenantID INT NOT NULL GENERATED ALWAYS AS IDENTITY, \n" +
-            "    firstName varchar(50) NOT NULL, \n" +
-            "    lastName varchar(50) NOT NULL,\n" +
-            "    PRIMARY KEY (tenantID)\n" +
-            ");\n" +
-            "\n" +
-            "CREATE TABLE Properties\n" +
-            "(\n" +
-            "    propertyID varchar(50) NOT NULL,\n" +
-            "    propertyAddress varchar(255) NOT NULL,\n" +
-            "    propertyDescription varchar(255) NOT NULL,\n" +
-            "    isAvailable char(1) NOT NULL,\n" +
-            "    isLate char(1), NOT NULL,\n" +
-            "    isEvicted char(1), NOT NULL,\n" +
-            "    isPaid char(1), NOT NULL,\n" +
-            "    leaseTerm INT NOT NULL,\n" +
-            "    rentalFee float(2),\n" +
-            "    moveInDate date,\n" +
-            "    PRIMARY KEY (propertyID)\n" +
-            ");\n" +
-            "\n" +
-            "CREATE TABLE RentedProperties\n" +
-            "(\n" +
-            "    propertyID INT NOT NULL,\n" +
-            "    tenantID INT NOT NULL,\n" +
-            "    FOREIGN KEY (propertyID) REFERENCES Properties (propertyID),\n" +
-            "    FOREIGN KEY (tenantID) REFERENCES Tenants (tenantID)\n" +
-            ");\n" +
-            "\n" +
-            "CREATE TABLE People\n" +
-            "(\n" +
-            "    personID INT NOT NULL,\n" +
-            "    tenantID INT NOT NULL,\n" +
-            "    firstName varchar(50) NOT NULL, \n" +
-            "    lastName varchar(50) NOT NULL,\n" +
-            "    age INT NOT NULL,\n" +
-            "    PRIMARY KEY (personID),\n" +
-            "    FOREIGN KEY (tenantID) REFERENCES Tenants (tenantID)\n" +
+            " CREATE TABLE IF NOT EXISTS Tenants" +
+            "(" +
+            "    tenantID INTEGER NOT NULL, " + 
+	    "    firstName varchar(50) NOT NULL, " + 
+   	    "    lastName varchar(50) NOT NULL," +
+            "    PRIMARY KEY (tenantID)" +
+            ");" +
+		    
+            "CREATE TABLE IF NOT EXISTS Properties" +
+            "(" +
+            "    propertyID varchar(50) NOT NULL," +
+            "    propertyAddress varchar(255) NOT NULL," +
+            "    propertyDescription varchar(255) NOT NULL," +
+            "    isAvailable char(1) NOT NULL," +
+            "    isLate char(1), NOT NULL," +
+            "    isEvicted char(1), NOT NULL," +
+            "    isPaid char(1), NOT NULL," +
+            "    leaseTerm INTEGER NOT NULL," +
+            "    rentalFee float(2)," +
+            "    moveInDate date," +
+            "    PRIMARY KEY (propertyID)" +
+            ");" +
+		    
+            "CREATE TABLE IF NOT EXISTS RentedProperties" +
+            "(" +
+            "    propertyID INTEGER NOT NULL," +
+            "    tenantID INTEGER NOT NULL," +
+            "    FOREIGN KEY (propertyID) REFERENCES Properties (propertyID)," +
+            "    FOREIGN KEY (tenantID) REFERENCES Tenants (tenantID)" +
+            ");" +
+		    
+            "CREATE TABLE IF NOT EXISTS People" +
+            "(" +
+            "    personID INTEGER NOT NULL," +
+            "    tenantID INTEGER NOT NULL," +
+            "    firstName varchar(50) NOT NULL, " +
+            "    lastName varchar(50) NOT NULL," +
+            "    age INTEGER NOT NULL," +
+            "    PRIMARY KEY (personID)," +
+            "    FOREIGN KEY (tenantID) REFERENCES Tenants (tenantID)" +
             ");";
             stmt.executeUpdate(sql);
             stmt.close();
@@ -182,6 +183,7 @@ public class DBManager
         {
             Class.forName("org.sqlite.JDBC");
             c = DriverManager.getConnection("jdbc:sqlite:rentals.db");
+            
             c.setAutoCommit(false);
             System.out.println("Opened database successfully");
 
