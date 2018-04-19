@@ -206,23 +206,14 @@ public class GUI extends JFrame
 		setSize(600,800);
 	}
 
-
-	
-	public static void main(String[] args)
-	{
-		GUI gui = new GUI();
-		gui.setVisible(true);
-	}
-	
-	public static void addTenant()
+	public void addTenant()
 	{
 		//add tenant to db from form
 	}
 	
-	public static void addProperty()
+	public void addProperty()
 	{
 		//add property to db from form
 	}
 	
-
 }
