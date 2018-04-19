@@ -15,6 +15,7 @@ public class Tenant
     private int age;
     private String emailAddress;
     private String billingAddress;
+    private String propertyID; //property ID of the property tenant is renting
     ArrayList<Person> coinhabitants = new ArrayList<Person>();
 
     public Tenant()
@@ -28,7 +29,7 @@ public class Tenant
         this.billingAddress = "";
     }
 
-    public Tenant(String firstName, String lastName, int age, String emailAddress, String billingAddress)
+    public Tenant(String firstName, String lastName, int age, String emailAddress, String billingAddress, String propertyID)
     {
         //set values with overloaded constructor
         this.setFirstName(firstName);
@@ -36,6 +37,7 @@ public class Tenant
         this.setAge(age);
         this.setEmailAddress(emailAddress);
         this.setBillingAddress(billingAddress);
+        this.setPropertyID(propertyID);
     }
 
     public void addPerson(Person person)
@@ -70,6 +72,11 @@ public class Tenant
     {
         this.billingAddress = billingAddress;
     }
+    
+    public void setPropertyID(String propertyID)
+    {
+    	this.propertyID = propertyID;
+    }
 
     public String getFirstName()
     {
@@ -94,5 +101,10 @@ public class Tenant
     public String getBillingAddress()
     {
         return this.billingAddress;
+    }
+    
+    public String getPropertyID()
+    {
+    	return this.propertyID;
     }
 }
