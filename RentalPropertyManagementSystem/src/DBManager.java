@@ -22,6 +22,7 @@ import java.util.Map;
 public class DBManager
 {
     Connection c = null;
+	private String dbPath = "src/rentals.db";
 
 
     public DBManager()
@@ -50,11 +51,11 @@ public class DBManager
 
     }
 
-    public String createDB(String dbName)
+    public String createDB()
     {
         String cmd = "";
 
-        String url = "jdbc:sqlite:" + dbName;
+        String url = "jdbc:sqlite:" + this.dbPath;
 
         try (Connection conn = DriverManager.getConnection(url))
         {
@@ -62,8 +63,10 @@ public class DBManager
             {
                 DatabaseMetaData meta = conn.getMetaData();
                 System.out.println("A new database has been created.");
+				conn.close();
             }
         } catch (SQLException e) {
+			System.out.println("Error SQL Exception");
             System.out.println(e.getMessage());
         }
 
@@ -78,15 +81,15 @@ public class DBManager
         String cmd = "";
         Connection c = null;
         Statement stmt = null;
+        String url = "jdbc:sqlite:" + this.dbPath;
 
-        try
+
+        try(Connection conn = DriverManager.getConnection(url))
         {
             Class.forName("org.sqlite.JDBC");
-            //change db name
-            c = DriverManager.getConnection("jdbc:sqlite:rentals.db");
+
             System.out.println("Opened database successfully");
 
-            stmt = c.createStatement();
 
             String sql =
             " CREATE TABLE IF NOT EXISTS Tenants" +
@@ -130,13 +133,18 @@ public class DBManager
             "    PRIMARY KEY (personID)," +
             "    FOREIGN KEY (tenantID) REFERENCES Tenants (tenantID)" +
             ");";
-            stmt.executeUpdate(sql);
+            stmt = conn.createStatement();
+			System.out.println("After sql command statement");
+            stmt.executeQuery(sql);
+			System.out.println("After stmt.execute(); statement");
             stmt.close();
-            c.close();
+            conn.close();
         } catch ( SQLException e ) {
+			System.out.println("Inside first catch SQL e");
             System.err.println( e.getClass().getName() + ": " + e.getMessage() );
             System.exit(0);
         } catch (ClassNotFoundException e) {
+			System.out.println("Inside second catch CNF e");
             System.err.println( e.getClass().getName() + ": " + e.getMessage() );
             System.exit(0);
         }
