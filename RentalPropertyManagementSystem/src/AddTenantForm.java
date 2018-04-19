@@ -25,6 +25,7 @@ public class AddTenantForm extends JFrame
 	public AddTenantForm()
 	{
 		//constructor for Tenant form
+		
 
 		//set up basic window parameters
 		getContentPane().setBackground(Color.WHITE);
@@ -124,4 +125,11 @@ public class AddTenantForm extends JFrame
 		getContentPane().add(btnSubmit);
 
 	}
+	
+	public Tenant getTenantFromForm()
+	{
+		//needed for client to access the tenant in this class
+		return this.tenant;
+	}
+		
 }
