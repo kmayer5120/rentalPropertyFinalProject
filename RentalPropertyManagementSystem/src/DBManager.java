@@ -13,6 +13,10 @@ package sqlrental;
 
 import java.sql.*;
 import java.util.HashMap;
+import java.lang.StringBuilder;
+import java.util.Set;
+import java.util.Iterator;
+import java.util.Map;
 
 
 public class DBManager
@@ -31,7 +35,7 @@ public class DBManager
 	//connect to DB upon object creation
 	Connection c = null;
 
-	try 
+	try
 	{
 	    Class.forName("org.sqlite.JDBC");
 	    c = DriverManager.getConnection("jdbc:sqlite:rentals.db");
@@ -52,7 +56,7 @@ public class DBManager
 
         String url = "jdbc:sqlite:" + dbName;
 
-        try (Connection conn = DriverManager.getConnection(url)) 
+        try (Connection conn = DriverManager.getConnection(url))
         {
             if (conn != null)
             {
@@ -75,7 +79,7 @@ public class DBManager
         Connection c = null;
         Statement stmt = null;
 
-        try 
+        try
         {
             Class.forName("org.sqlite.JDBC");
             //change db name
@@ -87,12 +91,12 @@ public class DBManager
             String sql =
             " CREATE TABLE IF NOT EXISTS Tenants" +
             "(" +
-            "    tenantID INTEGER NOT NULL, " + 
-	    "    firstName varchar(50) NOT NULL, " + 
+            "    tenantID INTEGER NOT NULL, " +
+	    "    firstName varchar(50) NOT NULL, " +
    	    "    lastName varchar(50) NOT NULL," +
             "    PRIMARY KEY (tenantID)" +
             ");" +
-		    
+
             "CREATE TABLE IF NOT EXISTS Properties" +
             "(" +
             "    propertyID varchar(50) NOT NULL," +
@@ -107,7 +111,7 @@ public class DBManager
             "    moveInDate date," +
             "    PRIMARY KEY (propertyID)" +
             ");" +
-		    
+
             "CREATE TABLE IF NOT EXISTS RentedProperties" +
             "(" +
             "    propertyID INTEGER NOT NULL," +
@@ -115,7 +119,7 @@ public class DBManager
             "    FOREIGN KEY (propertyID) REFERENCES Properties (propertyID)," +
             "    FOREIGN KEY (tenantID) REFERENCES Tenants (tenantID)" +
             ");" +
-		    
+
             "CREATE TABLE IF NOT EXISTS People" +
             "(" +
             "    personID INTEGER NOT NULL," +
@@ -139,11 +143,13 @@ public class DBManager
         return cmd;
     }
 
-    public String insert(String tblName, HashMap<String,String> fields)
+    public static String insert(String tblName, HashMap<String,String> fields)
     {
       String cmd = "";
       Connection c = null;
       Statement stmt = null;
+      Set keyset = fields.entrySet();
+      Iterator i = keyset.iterator();
 
       try
       {
@@ -153,11 +159,35 @@ public class DBManager
         System.out.println("Opened database successfully.");
 
         stmt = c.createStatement();
-        String sql = "";
-        /*String sql = "INSERT INTO COMPANY (ID,NAME,AGE,ADDRESS)" etc
-        Basically String sql is a query, probably want to use
-        StringBuilder to create the sql statement*/
-        stmt.executeUpdate(sql);
+        //Line 160 - 185 creates INSERT query as a StringBuilder
+        StringBuilder sqlKeys = new StringBuilder("INSERT INTO ");
+        StringBuilder sqlValues = new StringBuilder("VALUES (");
+        StringBuilder sqlFinal = new StringBuilder();
+        sqlKeys.append(tblName + " (");
+
+        while (i.hasNext())
+        {
+          Map.Entry current = (Map.Entry)i.next();
+          sqlKeys.append(current.getKey() + ",");
+          if (current.getValue() instanceof String)
+          {
+            sqlValues.append("'" + current.getValue() + "'");
+          }
+          else
+          {
+            sqlValues.append(current.getValue());
+          }
+          sqlValues.append(",");
+        }
+        //Removes commas
+        sqlKeys.setLength(sqlKeys.length() - 1);
+        sqlValues.setLength(sqlValues.length() - 1);
+        //Creates final query
+        sqlFinal.append(sqlKeys + ") " + sqlValues + ");");
+        String query = sqlFinal.toString();
+
+        stmt.executeUpdate(query);
+        System.out.println(query);
 
         stmt.close();
         c.commit();
@@ -172,7 +202,7 @@ public class DBManager
       System.out.println("Records created successfully.");
       return cmd;
     }
-
+    //Hashmap may be unnecessary for this method, TBD
     public String select(String tblName, HashMap<String,String> fields)
     {
         String cmd = "";
@@ -183,7 +213,7 @@ public class DBManager
         {
             Class.forName("org.sqlite.JDBC");
             c = DriverManager.getConnection("jdbc:sqlite:rentals.db");
-            
+
             c.setAutoCommit(false);
             System.out.println("Opened database successfully");
 
@@ -253,10 +283,13 @@ public class DBManager
             System.out.println("Opened database successfully.");
 
             stmt = c.createStatement();
-            String sql = "";
+
+            //Incomplete StringBuilder
+            StringBuilder sql = new StringBuilder("UPDATE " + tblName + "set");
+            String query = "";
             /*Once again, probably want to use StringBuilder to create
             sql query*/
-            stmt.executeUpdate(sql);
+            stmt.executeUpdate(query);
             c.commit();
 
             /*Left out result set stuff, seemed redundant copy and
