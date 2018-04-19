@@ -25,6 +25,8 @@ public class Client
 		//instantiate main gui form
 		GUI mainGui = new GUI();
 		mainGui.setVisible(true);
+		AddTenantForm tenantForm = new AddTenantForm();
+		tenantForm.setVisible(true);
 
 		Client application;
 		if (args.length == 0)
