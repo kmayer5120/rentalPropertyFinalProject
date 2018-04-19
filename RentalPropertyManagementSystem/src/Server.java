@@ -30,7 +30,8 @@ public class Server
         {
           waitForConnection();
           getStreams();
-          getQueries();
+          String query = getQueries();
+          processQueries(query);
         }
         catch(EOFException eofException)
         {
@@ -63,8 +64,25 @@ public class Server
     input = new ObjectInputStream(connection.getInputStream());
   }
 
-  public void getQueries()
+  public String getQueries() throws IOException
   {
+    String query = "";
+    do
+    {
+      try
+      {
+        query = (String) input.readObject();
+      }
+      catch (ClassNotFoundException classNotFoundException)
+      {
+        System.out.println("Unknown object received.");
+      }
+      //Probably change this end message.
+    } while (!query.equals("Exit"));
+    return query;
+  }
+
+  public void processQueries(String query) {
 
   }
   //Closes all streams and sockets
