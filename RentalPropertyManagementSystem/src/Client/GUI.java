@@ -4,12 +4,11 @@ import javax.swing.JButton;
 import javax.swing.JTextField;
 import javax.swing.JTextArea;
 import java.awt.Font;
-import java.awt.Component;
-import javax.swing.Box;
-import javax.swing.JSeparator;
 import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class GUI extends JFrame 
 {
@@ -24,11 +23,14 @@ public class GUI extends JFrame
 	
 	public GUI() 
 	{
+		//set up basic window parameters
 		getContentPane().setBackground(Color.GRAY);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("Rental Database Management System");
 		getContentPane().setLayout(null);
 		
+		
+		//--------labels
 		JLabel lblFirstName = new JLabel("First Name");
 		lblFirstName.setBounds(12, 12, 88, 23);
 		getContentPane().add(lblFirstName);
@@ -36,70 +38,169 @@ public class GUI extends JFrame
 		JLabel lblLastName = new JLabel("Last Name");
 		lblLastName.setBounds(12, 35, 78, 25);
 		getContentPane().add(lblLastName);
-		
+
+		JLabel lblQueryResults = new JLabel("Query Results");
+		lblQueryResults.setBounds(32, 170, 114, 15);
+		lblQueryResults.setFont(new Font("Dialog", Font.BOLD, 14));
+		getContentPane().add(lblQueryResults);	
+
+
+		//-------text fields
 		txtFirstName = new JTextField();
-		txtFirstName.setText("First Name");
 		txtFirstName.setBounds(101, 14, 124, 19);
+		txtFirstName.setText("First Name");
 		getContentPane().add(txtFirstName);
 		txtFirstName.setColumns(10);
 		
 		txtLastName = new JTextField();
-		txtLastName.setText("Last Name");
 		txtLastName.setBounds(101, 38, 124, 19);
+		txtLastName.setText("Last Name");
 		getContentPane().add(txtLastName);
 		txtLastName.setColumns(10);
 		
+		JTextArea txtQueryResults = new JTextArea();
+		txtQueryResults.setBounds(32, 187, 533, 573);
+		txtQueryResults.setFont(new Font("Dialog", Font.PLAIN, 12));
+		getContentPane().add(txtQueryResults);
+
+		
+		//--------buttons and event listeners
+
+		/*
+		 * Button search will extract the first name and last name from 
+		 * the text fields on gui and create an sql query to submit to
+		 * the database. All results will be displayed to text box named
+		 * txtQueryResults.
+		 */
 		btnSearch = new JButton("Search");
-		btnSearch.setBounds(270, 11, 148, 25);
-		getContentPane().add(btnSearch);
+		btnSearch.setBounds(270, 11, 148, 25); //set size
+		
+		//event listener for the search button
+		btnSearch.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//TODO connect query with database
+				//get text from fields on gui and store into String for query building
+				String lastName = txtLastName.getText();
+				String firstName = txtFirstName.getText();
+				String query = "SELECT * FROM Tenants where firstName + lastName LIKE "
+								+ firstName + lastName;
+			}
+		});
+
+		getContentPane().add(btnSearch); //add to window
+		
 		
 		btnAddTenant = new JButton("Add Tenant");
+		btnAddTenant.setBounds(436, 12, 148, 25); //set size
+
+		//event listener for the add tenant button
 		btnAddTenant.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				//give focus to pop up with form to add a tenant to database
 			}
 		});
-		btnAddTenant.setBounds(436, 12, 148, 25);
-		getContentPane().add(btnAddTenant);
+
+		getContentPane().add(btnAddTenant); //add to window
 		
+
 		btnAddProperty = new JButton("Add Property");
+		btnAddProperty.setBounds(436, 49, 148, 25); //set size
+
+		//event listener for add property button
 		btnAddProperty.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				//give focus to pop up with form to add a property to database
 			}
 		});
-		btnAddProperty.setBounds(436, 49, 148, 25);
-		getContentPane().add(btnAddProperty);
+
+		getContentPane().add(btnAddProperty); //add to window
 		
+
+		/*
+		 * Button show available will submit an sql query to the database
+		 * and display all properties that are not currently being leased
+		 * by tenants.
+		 */
 		btnShowAvailable = new JButton("Show Available");
-		btnShowAvailable.setBounds(133, 97, 160, 25);
-		getContentPane().add(btnShowAvailable);
+		btnShowAvailable.setBounds(133, 97, 160, 25); //set size
 		
+		//event listener for show available button
+		btnShowAvailable.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//TODO connect query with database
+
+				//clear results txt area first
+				txtQueryResults.setText("");
+				String query = "SELECT * FROM Properties WHERE isAvailable = T "; 
+				}
+			});
+
+		getContentPane().add(btnShowAvailable);
+
+
+		/*
+		 * Button show late will submit an sql query to the database
+		 * and display all properties that have not been paid on time.
+		 * This will also include tenant info.
+		 */
 		btnShowLate = new JButton("Show Late");
+		btnShowLate.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//TODO connect query with database
+
+				//clear results txt area first
+				txtQueryResults.setText("");
+				String query = "SELECT * FROM Properties WHERE isLate = T "; 
+				}
+			});
 		btnShowLate.setBounds(332, 97, 166, 25);
 		getContentPane().add(btnShowLate);
 		
-		JTextArea txtQueryResults = new JTextArea();
-		txtQueryResults.setFont(new Font("Dialog", Font.PLAIN, 12));
-		txtQueryResults.setBounds(32, 187, 533, 573);
-		getContentPane().add(txtQueryResults);
 		
-		JLabel lblQueryResults = new JLabel("Query Results");
-		lblQueryResults.setFont(new Font("Dialog", Font.BOLD, 14));
-		lblQueryResults.setBounds(32, 170, 114, 15);
-		getContentPane().add(lblQueryResults);
+		/*
+		 * Buttons show vacation homes, apartments, and homes are coarse
+		 * grained controls on the gui just to display every property that
+		 * fits into that category.
+		 */
 		
 		JButton btnShowVacationHomes = new JButton("Show Vacation Homes");
+		btnShowVacationHomes.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//TODO connect query with database
+
+				//clear results txt area first
+				txtQueryResults.setText("");
+				//assuming that vacation family propertyIDs begin with V
+				String query = "SELECT * FROM Properties WHERE propertyID LIKE V% "; 
+			}
+		});
 		btnShowVacationHomes.setBounds(371, 134, 193, 25);
 		getContentPane().add(btnShowVacationHomes);
 		
 		JButton btnShowApartments = new JButton("Show Apartments");
+		btnShowApartments.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//TODO connect query with database
+
+				//clear results txt area first
+				txtQueryResults.setText("");
+				//assuming that apartment propertyIDs begin with A
+				String query = "SELECT * FROM Properties WHERE propertyID LIKE A% "; 
+			}
+		});
 		btnShowApartments.setBounds(32, 134, 193, 25);
 		getContentPane().add(btnShowApartments);
 		
 		JButton btnShowHomes = new JButton("Show Homes");
+		btnShowHomes.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//TODO connect query with database
+				//assuming that single family propertyIDs begin with S
+				String query = "SELECT * FROM Properties WHERE propertyID LIKE S% "; 
+			}
+		});
 		btnShowHomes.setBounds(237, 134, 122, 25);
 		getContentPane().add(btnShowHomes);
 		setSize(600,800);
@@ -112,4 +213,16 @@ public class GUI extends JFrame
 		GUI gui = new GUI();
 		gui.setVisible(true);
 	}
+	
+	public static void addTenant()
+	{
+		//add tenant to db from form
+	}
+	
+	public static void addProperty()
+	{
+		//add property to db from form
+	}
+	
+
 }
