@@ -47,25 +47,40 @@ public class Server
       ioException.printStackTrace();
     }
   }
-  //Throws statement is only temporary
-  public void waitForConnection() throws EOFException
+  //Establishes connection with client
+  private void waitForConnection() throws IOException
   {
-
+    System.out.println("Waiting for connection...");
+    connection = server.accept();
+    System.out.println("Connection received from " +
+                      connection.getInetAddress().getHostName());
   }
-
-  public void getStreams()
+  //Gets input and output streams
+  private void getStreams() throws IOException
   {
-
+    output = new ObjectOutputStream(connection.getOutputStream());
+    output.flush();
+    input = new ObjectInputStream(connection.getInputStream());
   }
 
   public void getQueries()
   {
 
   }
-
-  public void closeConnections()
+  //Closes all streams and sockets
+  private void closeConnections()
   {
-
+    System.out.println("Connections are being terminated...");
+    try
+    {
+      output.close();
+      input.close();
+      connection.close();
+    }
+    catch (IOException ioException)
+    {
+      ioException.printStackTrace();
+    }
   }
 
 }
