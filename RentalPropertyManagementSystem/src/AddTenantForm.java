@@ -121,6 +121,7 @@ public class AddTenantForm extends JFrame
 			}
 		});
 		btnSubmit.setBounds(216, 320, 114, 25);
+		getContentPane().add(btnSubmit);
 
 	}
 }
