@@ -8,8 +8,8 @@ import java.net.InetAddress;
 public class Client
 {
 
-	private ObjectOutputStream output;
-	private ObjectInputStream input;
+	private static ObjectOutputStream output;
+	private static ObjectInputStream input;
 	private String serverIP;
 	private String serverResponse;
 	private Socket connection;
@@ -26,7 +26,8 @@ public class Client
 		GUI mainGui = new GUI();
 		mainGui.setVisible(true);
 		AddTenantForm tenantForm = new AddTenantForm();
-		tenantForm.setVisible(true);
+		//Visible to false for testing
+		tenantForm.setVisible(false);
 
 		Client application;
 		if (args.length == 0)
@@ -90,6 +91,12 @@ public class Client
 				System.out.println("Error reading from server.");
 			}
 		} while (!serverResponse.equals("Exit"));
+	}
+
+	public static void sendData(String query) throws IOException
+	{
+		output.writeObject(query);
+		output.flush();
 	}
 
 	private void closeConnections()
