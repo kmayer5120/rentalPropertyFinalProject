@@ -4,21 +4,23 @@ at the same time lol**
 - Rental Classes & Interface
 - Networking (Client/Server setup)
     - Runnable?
-    
-- GUI 
+
+- GUI
     - Visual layout                                     (Kyle)
     - Tenants tab
     - Properties tab
-    
+
 - SQL Database
     - Figure out which queries are needed to populate Objects/GUI
       and write methods to send queries to DB.
    - Fix driver error with compilation. (Kyle)
     - Populate Database
-   
-    
+
+
  - Multithreading
     - Individual queries?
     - Multiple clients?                               (Daniel)
-    
- 
+
+
+- Add security and damage deposit, elaborate on cleaning
+- Final read through of Project Description to ensure all objectives are met
