@@ -135,7 +135,7 @@ public class DBManager
             ");";
             stmt = conn.createStatement();
 			System.out.println("After sql command statement");
-            stmt.executeQuery(sql);
+            stmt.execute(sql);
 			System.out.println("After stmt.execute(); statement");
             stmt.close();
             conn.close();
