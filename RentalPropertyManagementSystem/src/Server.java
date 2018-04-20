@@ -62,7 +62,7 @@ public class Server
     output.flush();
     input = new ObjectInputStream(connection.getInputStream());
   }
-
+  //Make getTenant and getRental instead
   public void getData() throws IOException
   {
     do
