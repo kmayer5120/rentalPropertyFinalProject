@@ -30,7 +30,7 @@ public class Server
         {
           waitForConnection();
           getStreams();
-          getQueries();
+          getData();
         }
         catch(EOFException eofException)
         {
@@ -63,7 +63,7 @@ public class Server
     input = new ObjectInputStream(connection.getInputStream());
   }
 
-  public void getQueries() throws IOException
+  public void getData() throws IOException
   {
     do
     {
