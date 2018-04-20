@@ -7,8 +7,9 @@
  */
 
 import java.util.ArrayList;
+import java.io.Serializable;
 
-public class Tenant
+public class Tenant implements Serializable
 {
     private String firstName;
     private String lastName;
@@ -72,7 +73,7 @@ public class Tenant
     {
         this.billingAddress = billingAddress;
     }
-    
+
     public void setPropertyID(String propertyID)
     {
     	this.propertyID = propertyID;
@@ -102,7 +103,7 @@ public class Tenant
     {
         return this.billingAddress;
     }
-    
+
     public String getPropertyID()
     {
     	return this.propertyID;

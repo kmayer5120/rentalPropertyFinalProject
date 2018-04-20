@@ -27,7 +27,7 @@ public class Client
 		mainGui.setVisible(true);
 		AddTenantForm tenantForm = new AddTenantForm();
 		//Visible to false for testing
-		tenantForm.setVisible(false);
+		tenantForm.setVisible(true);
 
 		Client application;
 		if (args.length == 0)
@@ -93,9 +93,19 @@ public class Client
 		} while (!serverResponse.equals("Exit"));
 	}
 
-	public static void sendData(String query) throws IOException
+	public static void sendData(Tenant data) throws IOException
 	{
-		output.writeObject(query);
+		output.writeObject(data);
+		output.flush();
+	}
+	public static void sendData(RentalProperty data) throws IOException
+	{
+		output.writeObject(data);
+		output.flush();
+	}
+	public static void sendData(String data) throws IOException
+	{
+		output.writeObject(data);
 		output.flush();
 	}
 
