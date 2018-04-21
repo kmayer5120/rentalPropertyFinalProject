@@ -10,6 +10,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.io.IOException;
+import javax.swing.SwingUtilities;
 
 public class GUI extends JFrame
 {
@@ -21,6 +22,7 @@ public class GUI extends JFrame
 	private JButton btnAddProperty;
 	private JButton btnShowAvailable;
 	private JButton btnShowLate;
+	JTextArea txtQueryResults = new JTextArea();
 
 	public GUI()
 	{
@@ -59,7 +61,6 @@ public class GUI extends JFrame
 		getContentPane().add(txtLastName);
 		txtLastName.setColumns(10);
 
-		JTextArea txtQueryResults = new JTextArea();
 		txtQueryResults.setBounds(32, 187, 533, 573);
 		txtQueryResults.setFont(new Font("Dialog", Font.PLAIN, 12));
 		getContentPane().add(txtQueryResults);
@@ -224,6 +225,18 @@ public class GUI extends JFrame
 	public void addProperty()
 	{
 		//add property to db from form
+	}
+	public void queryDisplay(String query)
+	{
+		SwingUtilities.invokeLater(
+			new Runnable()
+			{
+				public void run()
+				{
+					txtQueryResults.append(query);
+				}
+			}
+		);
 	}
 
 }

@@ -4,6 +4,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.net.InetAddress;
+import javax.swing.SwingUtilities;
 
 public class Client
 {
@@ -13,6 +14,7 @@ public class Client
 	private String serverIP;
 	private String serverResponse;
 	private Socket connection;
+	static GUI mainGui = new GUI();
 
 	public Client(String host)
 	{
@@ -23,13 +25,13 @@ public class Client
 	public static void main(String[] args)
 	{
 		//instantiate main gui form
-		GUI mainGui = new GUI();
+		//GUI mainGui = new GUI();
 		mainGui.setVisible(true);
 		AddTenantForm tenantForm = new AddTenantForm();
 		AddPropertyForm propertyForm = new AddPropertyForm();
 		//Visible to false for testing
 		tenantForm.setVisible(false);
-		propertyForm.setVisible(true);
+		propertyForm.setVisible(false);
 
 		Client application;
 		if (args.length == 0)
@@ -81,8 +83,11 @@ public class Client
 
 	private void readServer() throws IOException
 	{
+
 		do
 		{
+			//Move this to try statement, with readObject
+			mainGui.queryDisplay("Test");
 			try
 			{
 				serverResponse = (String) input.readObject();
