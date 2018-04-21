@@ -132,6 +132,7 @@ public class AddPropertyForm extends JFrame
 			try
 			{
 				Client.sendData(property);
+				setVisible(false);
 			}
 			catch (IOException ioException)
 			{

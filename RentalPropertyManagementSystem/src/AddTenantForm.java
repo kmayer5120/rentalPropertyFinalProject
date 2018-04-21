@@ -123,6 +123,7 @@ public class AddTenantForm extends JFrame
 				try
 				{
 					Client.sendData(tenant);
+					setVisible(false);
 				}
 				catch (IOException ioException)
 				{

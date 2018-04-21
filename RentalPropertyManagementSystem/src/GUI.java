@@ -23,9 +23,13 @@ public class GUI extends JFrame
 	private JButton btnShowAvailable;
 	private JButton btnShowLate;
 	JTextArea txtQueryResults = new JTextArea();
+	AddTenantForm tenantForm = new AddTenantForm();
+	AddPropertyForm propertyForm = new AddPropertyForm();
 
 	public GUI()
 	{
+		//tenantForm.setVisible(false);
+		//propertyForm.setVisible(false);
 		//set up basic window parameters
 		getContentPane().setBackground(Color.GRAY);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -105,9 +109,10 @@ public class GUI extends JFrame
 		btnAddTenant.setBounds(436, 12, 148, 25); //set size
 
 		//event listener for the add tenant button
-		btnAddTenant.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
+		btnAddTenant.addActionListener(new ActionListener() {
+			//@Override
+			public void actionPerformed(ActionEvent e) {
+				tenantForm.setVisible(true);
 				//give focus to pop up with form to add a tenant to database
 			}
 		});
@@ -119,9 +124,10 @@ public class GUI extends JFrame
 		btnAddProperty.setBounds(436, 49, 148, 25); //set size
 
 		//event listener for add property button
-		btnAddProperty.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
+		btnAddProperty.addActionListener(new ActionListener() {
+			//@Override
+			public void actionPerformed(ActionEvent e) {
+				propertyForm.setVisible(true);
 				//give focus to pop up with form to add a property to database
 			}
 		});
