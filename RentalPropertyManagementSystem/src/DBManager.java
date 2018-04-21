@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package sqlrental;
+//package sqlrental;
 
 /*
 * Documentation for db
@@ -211,9 +211,10 @@ public class DBManager
       return cmd;
     }
     //Hashmap may be unnecessary for this method, TBD
-    public String select(String tblName, HashMap<String,String> fields)
+    public static String select(String tblName)
     {
-        String cmd = "";
+        //cmd prints Test to GUI Query Area, need to convert rs to JTable or String
+        String cmd = "Test";
         Connection c = null;
         Statement stmt = null;
 
@@ -231,7 +232,8 @@ public class DBManager
             //Modified from https://www.tutorialspoint.com/sqlite/sqlite_java.htm
             if (tblName.equals("Tenants"))
             {
-                int id = rs.getInt("tenantID");
+                //Commented this out because I was only using first and last to test
+                //int id = rs.getInt("tenantID");
                 String firstName = rs.getString("firstName");
                 String lastName = rs.getString("lastName");
             }
@@ -274,6 +276,7 @@ public class DBManager
             System.exit(0);
         }
         System.out.println("Select successful.");
+        //Probably want to return a JTable instead of cmd = "Test"
         return cmd;
     }
 

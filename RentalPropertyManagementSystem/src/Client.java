@@ -24,12 +24,8 @@ public class Client
 
 	public static void main(String[] args)
 	{
-		//instantiate main gui form
-		//GUI mainGui = new GUI();
+
 		mainGui.setVisible(true);
-		//Visible to false for testing
-		//tenantForm.setVisible(false);
-		//propertyForm.setVisible(false);
 
 		Client application;
 		if (args.length == 0)
@@ -84,11 +80,12 @@ public class Client
 
 		do
 		{
-			//Move this to try statement, with readObject
-			mainGui.queryDisplay("Test");
 			try
 			{
+				//Right now, serverResponse is "Writing..." in Server.java
 				serverResponse = (String) input.readObject();
+				//Need to make this a variable dependent on which display button is clicked
+				mainGui.queryDisplay(DBManager.select("Tenants"));
 				System.out.println(serverResponse);
 			}
 			catch (ClassNotFoundException classNotFoundException)
