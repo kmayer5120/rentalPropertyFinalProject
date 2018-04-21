@@ -144,4 +144,9 @@ public class AddPropertyForm extends JFrame
 
 	}
 
+	public RentalProperty getRentalPropertyFromForm()
+	{
+		return this.property;
+	}
+
 }

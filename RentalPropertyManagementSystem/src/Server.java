@@ -75,9 +75,9 @@ public class Server
         {
           System.out.println("Tenant");
         }
-        else
+        else if (query instanceof RentalProperty)
         {
-          System.out.println("Test");
+          System.out.println("Rental Property");
         }
       }
       catch (ClassNotFoundException classNotFoundException)
