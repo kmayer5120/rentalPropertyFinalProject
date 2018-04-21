@@ -214,7 +214,7 @@ public class DBManager
     public static String select(String tblName)
     {
         //cmd prints Test to GUI Query Area, need to convert rs to JTable or String
-        String cmd = "Test";
+        String cmd = "";
         Connection c = null;
         Statement stmt = null;
 
@@ -236,6 +236,7 @@ public class DBManager
                 //int id = rs.getInt("tenantID");
                 String firstName = rs.getString("firstName");
                 String lastName = rs.getString("lastName");
+                cmd = firstName + " " + lastName;
             }
             else if (tblName.equals("Properties"))
             {
