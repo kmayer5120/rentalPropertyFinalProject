@@ -28,8 +28,10 @@ public class GUI extends JFrame
 
 	public GUI()
 	{
-		//tenantForm.setVisible(false);
-		//propertyForm.setVisible(false);
+		tenantForm.setVisible(true);
+		tenantForm.setVisible(false);
+		propertyForm.setVisible(true);
+		propertyForm.setVisible(false);
 		//set up basic window parameters
 		getContentPane().setBackground(Color.GRAY);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
