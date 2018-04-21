@@ -1,13 +1,16 @@
-public abstract class RentalProperty implements Payable
+import java.io.Serializable;
+
+public class RentalProperty implements Serializable
+// implements Payable
 {
 
-  private String rentalID;
-  private String propertyDescription;
-  private int rentalType;
-  private int moveInDate;
+  private String rentalID; //
+  private String propertyDescription; //
+  private int rentalType; //
+  private int moveInDate; //
   private int lateDate;
   private int secondLateDate;
-  private boolean isAvailable;
+  private boolean isAvailable; //
 
   //Initial constructor
   public RentalProperty()

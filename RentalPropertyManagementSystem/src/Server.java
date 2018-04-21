@@ -70,8 +70,15 @@ public class Server
       try
       {
         //Test value, to be modified
-        Tenant query = (Tenant) input.readObject();
-        System.out.println(query.getFirstName());
+        Object query =  input.readObject();
+        if (query instanceof Tenant)
+        {
+          System.out.println("Tenant");
+        }
+        else
+        {
+          System.out.println("Test");
+        }
       }
       catch (ClassNotFoundException classNotFoundException)
       {

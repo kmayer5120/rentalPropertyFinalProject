@@ -26,8 +26,10 @@ public class Client
 		GUI mainGui = new GUI();
 		mainGui.setVisible(true);
 		AddTenantForm tenantForm = new AddTenantForm();
+		AddPropertyForm propertyForm = new AddPropertyForm();
 		//Visible to false for testing
-		tenantForm.setVisible(true);
+		tenantForm.setVisible(false);
+		propertyForm.setVisible(true);
 
 		Client application;
 		if (args.length == 0)
