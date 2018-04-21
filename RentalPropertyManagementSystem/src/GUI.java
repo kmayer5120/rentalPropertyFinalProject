@@ -12,6 +12,11 @@ import java.awt.event.ActionEvent;
 import java.io.IOException;
 import javax.swing.SwingUtilities;
 
+/*Right now, when the GUI opens, the tenant and property forms open too.
+	This isn't ideal right now but it works. There's probably some window
+	open method or something that we should use instead of setVisible.
+*/
+
 public class GUI extends JFrame
 {
 	private static final long serialVersionUID = 1L;
