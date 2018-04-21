@@ -62,21 +62,22 @@ public class Server
     output.flush();
     input = new ObjectInputStream(connection.getInputStream());
   }
-  //Make getTenant and getRental instead
+
   public void getData() throws IOException
   {
     do
     {
       try
       {
-        //Test value, to be modified
-        Object query =  input.readObject();
-        if (query instanceof Tenant)
+        Object data =  input.readObject();
+        if (data instanceof Tenant)
         {
+          //DBManager.insert(data);
           System.out.println("Tenant");
         }
-        else if (query instanceof RentalProperty)
+        else if (data instanceof RentalProperty)
         {
+          //DBManager.insert(data);
           System.out.println("Rental Property");
         }
       }
@@ -84,9 +85,8 @@ public class Server
       {
         System.out.println("Unknown object received.");
       }
-      //Probably change this end message.
+      //Make it possible to terminate loop
     } while (true);
-    //return query;
   }
 
   //Closes all streams and sockets
