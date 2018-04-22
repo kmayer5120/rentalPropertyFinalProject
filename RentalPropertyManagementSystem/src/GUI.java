@@ -30,6 +30,8 @@ public class GUI extends JFrame
 	private JButton btnShowAvailable;
 	private JButton btnShowLate;
 	private QueryTable queryResults;
+	private JLabel lblConnectionIndicator;
+	private JLabel lblConnectionStatus;
 	JTextArea txtQueryResults = new JTextArea();
 	AddTenantForm tenantForm = new AddTenantForm();
 	AddPropertyForm propertyForm = new AddPropertyForm();
@@ -61,6 +63,16 @@ public class GUI extends JFrame
 		lblQueryResults.setFont(new Font("Dialog", Font.BOLD, 14));
 		getContentPane().add(lblQueryResults);
 
+		lblConnectionStatus = new JLabel("Connection Status: ");
+		lblConnectionStatus.setBounds(34, 745, 148, 15);
+		getContentPane().add(lblConnectionStatus);
+		
+		lblConnectionIndicator = new JLabel("Disconnected");
+		lblConnectionIndicator.setForeground(Color.RED);
+		lblConnectionIndicator.setBounds(175, 745, 107, 15);
+		getContentPane().add(lblConnectionIndicator);
+		setSize(600,800);
+
 
 		//-------text fields
 		txtFirstName = new JTextField();
@@ -83,7 +95,7 @@ public class GUI extends JFrame
 		*/
 		queryResults = new QueryTable();
 		JScrollPane scrollPane = new JScrollPane(queryResults.QueryTable());
-		scrollPane.setBounds(32, 187, 533, 573);
+		scrollPane.setBounds(32, 187, 533, 555);
 		scrollPane.setFont(new Font("Dialog", Font.PLAIN, 12));
 		getContentPane().add(scrollPane);
 
@@ -238,18 +250,25 @@ public class GUI extends JFrame
 		});
 		btnShowHomes.setBounds(237, 134, 122, 25);
 		getContentPane().add(btnShowHomes);
-		setSize(600,800);
-	}
+		
+		}
 
-	public void addTenant()
+	
+	public void setConnectionIndicator(boolean isConnected)
 	{
-		//add tenant to db from form
+		//method used in Client.java to set connection indicator
+		if(isConnected == true)
+		{
+			this.lblConnectionIndicator.setText("Connected");
+			this.lblConnectionIndicator.setForeground(Color.GREEN);
+		}
+		else
+		{
+			this.lblConnectionIndicator = new JLabel("Disconnected");
+			this.lblConnectionIndicator.setForeground(Color.RED);
+		}
 	}
-
-	public void addProperty()
-	{
-		//add property to db from form
-	}
+	
 	public void queryDisplay(String query)
 	{
 		SwingUtilities.invokeLater(
@@ -262,5 +281,4 @@ public class GUI extends JFrame
 			}
 		);
 	}
-
 }
