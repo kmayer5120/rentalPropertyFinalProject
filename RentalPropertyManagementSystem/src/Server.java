@@ -82,7 +82,7 @@ public class Server
           HashMap<String,String> map = SqlRental.createHash((Tenant) data);
           DBManager.insert("Tenants", map);
           //Need to writeObject so GUI updates, should put the JTable in here
-          output.writeObject("Writing...");
+          //output.writeObject("Writing...");
           //Test print to make sure that Server can tell difference between
           //tenant and rental property
           System.out.println("Tenant");

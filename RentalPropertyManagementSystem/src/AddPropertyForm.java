@@ -24,7 +24,6 @@ public class AddPropertyForm extends JFrame
 	private JTextField txtMoveInDate;
 	private JTextField txtIsAvailable;
 	private JTextField txtPropertyID;
-	private RentalProperty property = new RentalProperty();
 
 
 
@@ -120,7 +119,7 @@ public class AddPropertyForm extends JFrame
 		btnSubmit.addActionListener(new ActionListener() {
 			//when submit button is pressed get all property info and put into property object
 			public void actionPerformed(ActionEvent arg0) {
-
+				RentalProperty property = new RentalProperty();
 				property.setRentalID(txtRentalID.getText());
 				property.setPropertyDescription(txtPropertyDescription.getText());
 				property.setRentalType(Integer.parseInt(txtRentalType.getText()));
@@ -143,10 +142,11 @@ public class AddPropertyForm extends JFrame
 		getContentPane().add(btnSubmit);
 
 	}
-
+	/*
 	public RentalProperty getRentalPropertyFromForm()
 	{
 		return this.property;
 	}
+	*/
 
 }

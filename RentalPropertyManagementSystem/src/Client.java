@@ -12,6 +12,7 @@ public class Client
 	private static ObjectOutputStream output;
 	private static ObjectInputStream input;
 	private String serverIP;
+	public static Object clientResponse;
 	public static Object serverResponse;
 	private Socket connection;
 	private static boolean isConnected = false;
