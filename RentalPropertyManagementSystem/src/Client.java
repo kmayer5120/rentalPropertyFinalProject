@@ -12,7 +12,7 @@ public class Client
 	private static ObjectOutputStream output;
 	private static ObjectInputStream input;
 	private String serverIP;
-	private String serverResponse;
+	public static Object serverResponse;
 	private Socket connection;
 	private static boolean isConnected = false;
 	public static GUI mainGui = new GUI();
@@ -82,14 +82,14 @@ public class Client
 		input = new ObjectInputStream(connection.getInputStream());
 	}
 
-	private void readServer() throws IOException
+	public static void readServer() throws IOException
 	{
 		do
 		{
 			try
 			{
 				//Right now, serverResponse is "Writing..." in Server.java
-				serverResponse = (String) input.readObject();
+				serverResponse = input.readObject();
 				//Need to make this a variable dependent on which display button is clicked
 				//mainGui.queryDisplay(DBManager.select("Tenants"));
 				System.out.println(serverResponse);

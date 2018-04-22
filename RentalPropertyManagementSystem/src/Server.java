@@ -93,6 +93,10 @@ public class Server
           //tenant and rental property
           System.out.println("Rental Property");
         }
+        else if (data instanceof String)
+        {
+          output.writeObject(DBManager.select((String) data));
+        }
       }
       catch (ClassNotFoundException classNotFoundException)
       {

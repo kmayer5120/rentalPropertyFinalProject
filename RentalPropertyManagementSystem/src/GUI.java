@@ -13,6 +13,8 @@ import java.io.IOException;
 import javax.swing.SwingUtilities;
 import javax.swing.JTable;
 import javax.swing.JScrollPane;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 /*Right now, when the GUI opens, the tenant and property forms open too.
 	This isn't ideal right now but it works. There's probably some window
@@ -95,11 +97,15 @@ public class GUI extends JFrame
 		*/
 		//This queryResults needs to be within the ActionEvent for the display Buttons
 		//It's here temporarily for testing
-		queryResults = DBManager.select("Tenants");
+		//queryResults = DBManager.select("Tenants");
+
+
 		JScrollPane scrollPane = new JScrollPane(queryResults);
 		scrollPane.setBounds(32, 187, 533, 555);
 		scrollPane.setFont(new Font("Dialog", Font.PLAIN, 12));
 		getContentPane().add(scrollPane);
+
+
 
 
 		//--------buttons and event listeners
@@ -120,12 +126,20 @@ public class GUI extends JFrame
 				//get text from fields on gui and store into String for query building
 				String lastName = txtLastName.getText();
 				String firstName = txtFirstName.getText();
-				String query = "SELECT * FROM Tenants where firstName + lastName LIKE "
-								+ "'" + firstName + "' '" + lastName + "'";
+				String query = "SELECT * FROM Tenants where firstName='" + firstName
+												+ "' AND lastName='" + lastName + "'";
+
 				try
 				{
 					//Need to consider what data is being sent, but this is how it's done
+					//For some reason, search must be clicked twice...
 					Client.sendData(query);
+					queryResults = (JTable) Client.serverResponse;
+
+					JScrollPane scrollPane = new JScrollPane(queryResults);
+					scrollPane.setBounds(32, 187, 533, 555);
+					scrollPane.setFont(new Font("Dialog", Font.PLAIN, 12));
+					getContentPane().add(scrollPane);
 				}
 				catch (IOException ioException)
 				{

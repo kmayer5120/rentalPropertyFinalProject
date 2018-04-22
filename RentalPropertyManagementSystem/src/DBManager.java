@@ -214,7 +214,7 @@ public class DBManager
       return cmd;
     }
     //Hashmap may be unnecessary for this method, TBD
-    public static JTable select(String tblName)
+    public static JTable select(String query)
     {
         //cmd prints Test to GUI Query Area, need to convert rs to JTable or String
         String cmd = "";
@@ -232,7 +232,8 @@ public class DBManager
 
             stmt = c.createStatement();
             /*Replace * with a variable too? */
-            ResultSet rs = stmt.executeQuery("SELECT * FROM " + tblName + ";");
+            ResultSet rs = stmt.executeQuery(query);
+            //ResultSet rs = stmt.executeQuery("SELECT * FROM " + tblName + ";");
             queryTable = new JTable(buildTableModel(rs));
             c.close();
           }
