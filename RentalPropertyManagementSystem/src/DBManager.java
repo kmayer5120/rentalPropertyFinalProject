@@ -234,6 +234,7 @@ public class DBManager
             /*Replace * with a variable too? */
             ResultSet rs = stmt.executeQuery("SELECT * FROM " + tblName + ";");
             queryTable = new JTable(buildTableModel(rs));
+            c.close();
           }
             //Modified from https://www.tutorialspoint.com/sqlite/sqlite_java.htm
             /*
@@ -286,7 +287,6 @@ public class DBManager
                             + e.getMessage());
             System.exit(0);
         }
-
         System.out.println("Select successful.");
         return queryTable;
     }
