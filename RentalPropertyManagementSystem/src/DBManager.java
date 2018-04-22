@@ -17,6 +17,9 @@ import java.lang.StringBuilder;
 import java.util.Set;
 import java.util.Iterator;
 import java.util.Map;
+import javax.swing.JTable;
+import java.util.Vector;
+import javax.swing.table.DefaultTableModel;
 
 
 public class DBManager
@@ -211,12 +214,13 @@ public class DBManager
       return cmd;
     }
     //Hashmap may be unnecessary for this method, TBD
-    public static String select(String tblName)
+    public static JTable select(String tblName)
     {
         //cmd prints Test to GUI Query Area, need to convert rs to JTable or String
         String cmd = "";
         Connection c = null;
         Statement stmt = null;
+        JTable queryTable = new JTable();
 
         try
         {
@@ -229,7 +233,10 @@ public class DBManager
             stmt = c.createStatement();
             /*Replace * with a variable too? */
             ResultSet rs = stmt.executeQuery("SELECT * FROM " + tblName + ";");
+            queryTable = new JTable(buildTableModel(rs));
+          }
             //Modified from https://www.tutorialspoint.com/sqlite/sqlite_java.htm
+            /*
             if (tblName.equals("Tenants"))
             {
                 //Commented this out because I was only using first and last to test
@@ -237,6 +244,7 @@ public class DBManager
                 String firstName = rs.getString("firstName");
                 String lastName = rs.getString("lastName");
                 cmd = firstName + " " + lastName;
+
             }
             else if (tblName.equals("Properties"))
             {
@@ -269,16 +277,18 @@ public class DBManager
             {
               System.out.println("Table not found.");
             }
+
         }
+        */
         catch (Exception e)
         {
             System.err.println(e.getClass().getName() + ": "
                             + e.getMessage());
             System.exit(0);
         }
+
         System.out.println("Select successful.");
-        //Probably want to return a JTable instead of cmd = "Test"
-        return cmd;
+        return queryTable;
     }
 
     public String update(String tblName, HashMap<String,String> fields)
@@ -317,5 +327,30 @@ public class DBManager
         }
         System.out.println("Update successful.");
         return cmd;
+    }
+    //Used to convert the result set into a JTable
+    public static DefaultTableModel buildTableModel(ResultSet rs) throws SQLException
+    {
+      ResultSetMetaData metaData = rs.getMetaData();
+      // names of columns
+      Vector<String> columnNames = new Vector<String>();
+      int columnCount = metaData.getColumnCount();
+      for (int column = 1; column <= columnCount; column++)
+      {
+        columnNames.add(metaData.getColumnName(column));
+      }
+      // data of the table
+      Vector<Vector<Object>> data = new Vector<Vector<Object>>();
+      while (rs.next())
+      {
+        Vector<Object> vector = new Vector<Object>();
+        for (int columnIndex = 1; columnIndex <= columnCount; columnIndex++)
+        {
+          vector.add(rs.getObject(columnIndex));
+        }
+        data.add(vector);
+      }
+
+      return new DefaultTableModel(data, columnNames);
     }
 }
