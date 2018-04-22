@@ -11,6 +11,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.io.IOException;
 import javax.swing.SwingUtilities;
+import javax.swing.JTable;
+import javax.swing.JScrollPane;
 
 /*Right now, when the GUI opens, the tenant and property forms open too.
 	This isn't ideal right now but it works. There's probably some window
@@ -27,6 +29,7 @@ public class GUI extends JFrame
 	private JButton btnAddProperty;
 	private JButton btnShowAvailable;
 	private JButton btnShowLate;
+	private QueryTable queryResults;
 	JTextArea txtQueryResults = new JTextArea();
 	AddTenantForm tenantForm = new AddTenantForm();
 	AddPropertyForm propertyForm = new AddPropertyForm();
@@ -72,9 +75,17 @@ public class GUI extends JFrame
 		getContentPane().add(txtLastName);
 		txtLastName.setColumns(10);
 
+    /*
+		Replaced with JTable, left this here in case we need to revert
 		txtQueryResults.setBounds(32, 187, 533, 573);
 		txtQueryResults.setFont(new Font("Dialog", Font.PLAIN, 12));
 		getContentPane().add(txtQueryResults);
+		*/
+		queryResults = new QueryTable();
+		JScrollPane scrollPane = new JScrollPane(queryResults.QueryTable());
+		scrollPane.setBounds(32, 187, 533, 573);
+		scrollPane.setFont(new Font("Dialog", Font.PLAIN, 12));
+		getContentPane().add(scrollPane);
 
 
 		//--------buttons and event listeners
