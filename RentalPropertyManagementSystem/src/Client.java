@@ -14,7 +14,8 @@ public class Client
 	private String serverIP;
 	private String serverResponse;
 	private Socket connection;
-	static GUI mainGui = new GUI();
+	private static boolean isConnected = false;
+	public static GUI mainGui = new GUI();
 
 	public Client(String host)
 	{
@@ -37,10 +38,11 @@ public class Client
 			application = new Client(args[0]);
 		}
 		application.runClient();
-
 	}
+
 	public void runClient()
 	{
+		System.out.println("In runClient");
 		try
 		{
 			connect();
@@ -49,7 +51,8 @@ public class Client
 		}
 		catch (EOFException eofException)
 		{
-			System.out.println("Connection terminated");
+			System.out.println("Connection terminated by client.");
+
 		}
 		catch (IOException ioException)
 		{
@@ -59,6 +62,7 @@ public class Client
 		{
 			closeConnections();
 		}
+
 	}
 
 	private void connect() throws IOException
@@ -66,6 +70,9 @@ public class Client
 		System.out.println("Trying to connect to server...");
 		connection = new Socket(InetAddress.getByName(serverIP), 12345);
 		System.out.println("Connection successful!");
+		//set indicator on gui
+		isConnected = true;
+		mainGui.setConnectionIndicator(isConnected);
 	}
 
 	private void getStreams() throws IOException
@@ -77,7 +84,6 @@ public class Client
 
 	private void readServer() throws IOException
 	{
-
 		do
 		{
 			try
@@ -92,6 +98,7 @@ public class Client
 			{
 				System.out.println("Error reading from server.");
 			}
+			
 		} while (!serverResponse.equals("Exit"));
 	}
 
