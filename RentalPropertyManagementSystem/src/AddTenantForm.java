@@ -30,7 +30,7 @@ public class AddTenantForm extends JFrame
 		//set up basic window parameters
 		getContentPane().setBackground(Color.WHITE);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setTitle("Rental Database Management System");
+		setTitle("Add Tenant");
 		getContentPane().setLayout(null);
 
 		//------Text boxes/fields
