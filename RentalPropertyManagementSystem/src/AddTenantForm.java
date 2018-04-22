@@ -21,7 +21,6 @@ public class AddTenantForm extends JFrame
 	private JTextField txtEmail;
 	private JTextField txtBillingAddress;
 	private JTextField txtPropertyID;
-	private Tenant tenant = new Tenant();
 
 	public AddTenantForm()
 	{
@@ -113,6 +112,7 @@ public class AddTenantForm extends JFrame
 		btnSubmit.addActionListener(new ActionListener() {
 			//when submit button is pressed get all tenant info and put into tenant object
 			public void actionPerformed(ActionEvent arg0) {
+				Tenant tenant = new Tenant();
 				tenant.setFirstName(txtFirstName.getText());
 				tenant.setLastName(txtLastName.getText());
 				tenant.setAge(Integer.parseInt(txtAge.getText()));
@@ -134,11 +134,12 @@ public class AddTenantForm extends JFrame
 		getContentPane().add(btnSubmit);
 
 	}
-
+	/*
 	public Tenant getTenantFromForm()
 	{
 		//needed for client to access the tenant in this class
 		return this.tenant;
 	}
+	*/
 
 }

@@ -35,13 +35,13 @@ public class GUI extends JFrame
 	private JLabel lblConnectionIndicator;
 	private JLabel lblConnectionStatus;
 	JTextArea txtQueryResults = new JTextArea();
-	AddTenantForm tenantForm = new AddTenantForm();
+	//AddTenantForm tenantForm = new AddTenantForm();
 	AddPropertyForm propertyForm = new AddPropertyForm();
 
 	public GUI()
 	{
-		tenantForm.setVisible(true);
-		tenantForm.setVisible(false);
+		//tenantForm.setVisible(true);
+		//tenantForm.setVisible(false);
 		propertyForm.setVisible(true);
 		propertyForm.setVisible(false);
 		//set up basic window parameters
@@ -158,6 +158,7 @@ public class GUI extends JFrame
 		btnAddTenant.addActionListener(new ActionListener() {
 			//@Override
 			public void actionPerformed(ActionEvent e) {
+				AddTenantForm tenantForm = new AddTenantForm();
 				tenantForm.setVisible(true);
 				//give focus to pop up with form to add a tenant to database
 			}
