@@ -29,7 +29,7 @@ public class GUI extends JFrame
 	private JButton btnAddProperty;
 	private JButton btnShowAvailable;
 	private JButton btnShowLate;
-	private QueryTable queryResults;
+	private JTable queryResults;
 	private JLabel lblConnectionIndicator;
 	private JLabel lblConnectionStatus;
 	JTextArea txtQueryResults = new JTextArea();
@@ -66,7 +66,7 @@ public class GUI extends JFrame
 		lblConnectionStatus = new JLabel("Connection Status: ");
 		lblConnectionStatus.setBounds(34, 745, 148, 15);
 		getContentPane().add(lblConnectionStatus);
-		
+
 		lblConnectionIndicator = new JLabel("Disconnected");
 		lblConnectionIndicator.setForeground(Color.RED);
 		lblConnectionIndicator.setBounds(175, 745, 107, 15);
@@ -93,8 +93,10 @@ public class GUI extends JFrame
 		txtQueryResults.setFont(new Font("Dialog", Font.PLAIN, 12));
 		getContentPane().add(txtQueryResults);
 		*/
-		queryResults = new QueryTable();
-		JScrollPane scrollPane = new JScrollPane(queryResults.QueryTable());
+		//This queryResults needs to be within the ActionEvent for the display Buttons
+		//It's here temporarily for testing
+		queryResults = DBManager.select("Tenants");
+		JScrollPane scrollPane = new JScrollPane(queryResults);
 		scrollPane.setBounds(32, 187, 533, 555);
 		scrollPane.setFont(new Font("Dialog", Font.PLAIN, 12));
 		getContentPane().add(scrollPane);
@@ -250,10 +252,10 @@ public class GUI extends JFrame
 		});
 		btnShowHomes.setBounds(237, 134, 122, 25);
 		getContentPane().add(btnShowHomes);
-		
+
 		}
 
-	
+
 	public void setConnectionIndicator(boolean isConnected)
 	{
 		//method used in Client.java to set connection indicator
@@ -268,7 +270,7 @@ public class GUI extends JFrame
 			this.lblConnectionIndicator.setForeground(Color.RED);
 		}
 	}
-	
+
 	public void queryDisplay(String query)
 	{
 		SwingUtilities.invokeLater(
