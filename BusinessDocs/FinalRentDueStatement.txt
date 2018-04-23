@@ -1,14 +1,14 @@
-Dear, (String firstName) (lastName)
+Dear %s %s,
 
-Subject: Second notification of late payment
+Subject: Final Notice of Rent Past Due
 
-Your rent was due on (int date). The amount due was $(float rentDue).
-Because the payment is late,a late fee of $(float lateFee) has been added.
-As no attempt to pay was made by (int lateDate), if the payment is not received
-by (int secondLateDate), then your lease agreement will be terminated.
+Your rent is far past due. The amount due was $.2f
+Because the payment is late,a late fee of $.2f has been added.
+As no attempt to pay was made since our last letter, if the payment is 
+not in 7 days, then your lease agreement will be terminated.
 
-making the total amount due (float latePaymentDue).
+making the total amount due $.2f.
 
 Thank you,
 
-(String companyName)
+iRental Solutions Inc.

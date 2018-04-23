@@ -1,9 +1,9 @@
-Dear, (String firstName) (lastName)
+Dear %s %s,
 
 Subject: Initial Rental Statement
 
-Your rent will be due on (int date). The amount due is $(float rentDue)
+Your rent will be due on %s. The amount due is $%.2f.
 
 Thank you,
 
-(String companyName)
+iRental Solutions Inc.
