@@ -268,7 +268,7 @@ public class GUI extends JFrame
 				txtQueryResults.setText("");
 				//assuming that vacation family propertyIDs begin with V
 				//TODO May need to adjust query
-				String query = "SELECT * FROM Properties WHERE propertyID='V%'";
+				String query = "SELECT * FROM Properties WHERE propertyID LIKE 'V%'";
 				try
 				{
 					Client.sendData(query);
@@ -296,7 +296,7 @@ public class GUI extends JFrame
 				txtQueryResults.setText("");
 				//assuming that apartment propertyIDs begin with A
 				//TODO verify query is correct
-				String query = "SELECT * FROM Properties WHERE propertyID='A%'";
+				String query = "SELECT * FROM Properties WHERE propertyID LIKE 'A%'";
 				try
 				{
 					Client.sendData(query);
@@ -321,7 +321,7 @@ public class GUI extends JFrame
 				//TODO connect query with database
 				//assuming that single family propertyIDs begin with S
 				//TODO verify query...
-				String query = "SELECT * FROM Properties WHERE propertyID='S%'";
+				String query = "SELECT * FROM Properties WHERE propertyID LIKE 'S%'";
 				try
 				{
 					Client.sendData(query);
