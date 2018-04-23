@@ -338,6 +338,35 @@ public class DBManager
         System.out.println("Update successful.");
         return cmd;
     }
+    
+    public static String delete(String query)
+    {
+    	String cmd = null;
+        Connection c = null;
+        Statement stmt = null;
+
+        try
+        {
+            Class.forName("org.sqlite.JDBC");
+            c = DriverManager.getConnection("jdbc:sqlite:rentals.db");
+
+            c.setAutoCommit(false);
+            System.out.println("Opened database successfully");
+
+            stmt = c.createStatement();
+            stmt.executeQuery(query);
+            c.close();
+          }
+        catch (Exception e)
+        {
+            System.err.println(e.getClass().getName() + ": "
+                            + e.getMessage());
+            System.exit(0);
+        }
+        System.out.println("Delete successful.");
+        return cmd;
+    }
+    
     //Used to convert the result set into a JTable
     public static DefaultTableModel buildTableModel(ResultSet rs) throws SQLException
     {
