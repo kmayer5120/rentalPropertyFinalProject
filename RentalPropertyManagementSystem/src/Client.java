@@ -27,7 +27,9 @@ public class Client
 
 	public static void main(String[] args)
 	{
-
+		//Forces the database to trigger.
+		//May be able to remove. Test this out. Also try removing/renaming db file
+		//To make sure that removing this is okay.
 		DBManager db = new DBManager();
 		db.createDB();
 		db.createTable();

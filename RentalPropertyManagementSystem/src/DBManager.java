@@ -95,7 +95,9 @@ public class DBManager
 
             System.out.println("Opened database successfully");
 
-
+            //Have to trigger each create table separately...
+            //Maybe there's better variable name choices?
+            //Spent 4 hours getting this to just work. Careful!!
             String sql =
             " CREATE TABLE IF NOT EXISTS Tenants" +
             "(" +
