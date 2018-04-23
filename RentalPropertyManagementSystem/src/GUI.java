@@ -76,7 +76,10 @@ public class GUI extends JFrame
 		lblConnectionIndicator.setBounds(462, 3, 107, 15);
 		getContentPane().add(lblConnectionIndicator);
 		setSize(600,800);
-
+		
+		JLabel lblDeleteBy = new JLabel("Delete By:");
+		lblDeleteBy.setBounds(63, 745, 88, 15);
+		getContentPane().add(lblDeleteBy);
 
 		//-------text fields
 		txtFirstName = new JTextField();
@@ -114,10 +117,9 @@ public class GUI extends JFrame
 
 		//--------drop down/combo box
 		JComboBox comboBoxDeleteByID = new JComboBox();
-		String[] deleteByIDs = new String[2];
 	    comboBoxDeleteByID.addItem("Property ID:");
 	    comboBoxDeleteByID.addItem("Tenant ID:");
-	    Object comboBoxSelectedItem = comboBoxDeleteByID.getSelectedItem();
+	    //Object comboBoxSelectedItem = comboBoxDeleteByID.getSelectedItem();
 		comboBoxDeleteByID.setBounds(155, 740, 114, 24);
 		getContentPane().add(comboBoxDeleteByID);
 
@@ -333,9 +335,7 @@ public class GUI extends JFrame
 		JButton btnShowHomes = new JButton("Show Homes");
 		btnShowHomes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//TODO connect query with database
 				//assuming that single family propertyIDs begin with S
-				//TODO verify query...
 				String query = "SELECT * FROM Properties WHERE propertyID LIKE 'S%'";
 				try
 				{
@@ -354,20 +354,45 @@ public class GUI extends JFrame
 		});
 		btnShowHomes.setBounds(237, 135, 122, 25);
 		getContentPane().add(btnShowHomes);
-		
-
+	
 		
 		JButton btnDeleterecord = new JButton("Delete Record");
+		btnDeleterecord.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				//get selection from combo box
+				Object comboBoxSelectedItem = comboBoxDeleteByID.getSelectedItem();
+				//get which type to delete by propertyID or tenantID and put into String
+				String typeToDelete = (String)comboBoxSelectedItem;
+				//get text from txt box. This is the ID chosen for deletion
+				String recordToDelete = txtDeleteByID.getText();
+				String tableToDeleteFrom;
+				String fieldToDelete;
+				if(typeToDelete.equals("PropertyID: "))
+				{
+					tableToDeleteFrom = "PROPERTIES";
+					fieldToDelete = "propertyID";
+				}
+				else
+				{
+					tableToDeleteFrom = "TENANTS"; 
+					fieldToDelete = "tenantID";
+				}
+				
+				String sql = "DELETE FROM " + tableToDeleteFrom + "WHERE " + fieldToDelete + " = '" + recordToDelete + "';";
+				try
+				{
+					Client.sendData(sql);
+				} catch (IOException ioException)
+				{
+					System.out.println("Error: Unable to delete record from database.");
+					ioException.printStackTrace();
+				}
+			}
+		});
 		btnDeleterecord.setBounds(364, 740, 134, 25);
 		getContentPane().add(btnDeleterecord);
-		
 
-		
-		JLabel lblDeleteBy = new JLabel("Delete By:");
-		lblDeleteBy.setBounds(63, 745, 88, 15);
-		getContentPane().add(lblDeleteBy);
-
-		}
+	} //end constructor
 
 
 	public void setConnectionIndicator(boolean isConnected)
