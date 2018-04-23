@@ -11,6 +11,8 @@ public class RentalProperty implements Serializable
   private int lateDate;
   private int secondLateDate;
   private boolean isAvailable;
+  private boolean isEvicted;
+  private boolean isLate;
 
   //Initial constructor
   public RentalProperty()
@@ -19,6 +21,8 @@ public class RentalProperty implements Serializable
       this.propertyDescription = "";
       this.rentalType = 0;
       this.isAvailable = false;
+      this.isEvicted = false;
+      this.isLate = false;
       this.moveInDate = 0;
       this.lateDate = 0;
       this.secondLateDate = 0;
@@ -56,6 +60,16 @@ public class RentalProperty implements Serializable
     this.isAvailable = isAvailable;
   }
 
+  public void setIsEvicted(boolean isEvicted)
+  {
+	  this.isEvicted = isEvicted;
+  }
+
+  public void setIsLate(boolean isLate) 
+  {
+  	this.isLate = isLate;
+  } 
+
   public void setDates(int moveInDate)
   {
     this.moveInDate = moveInDate;
@@ -83,6 +97,17 @@ public class RentalProperty implements Serializable
   {
     return this.isAvailable;
   }
+  
+  public boolean getIsEvicted()
+  {
+	  return this.isEvicted;
+  }
+
+  public boolean getIsLate() 
+  {
+  	return isLate;
+  }
+
 
 
 }
