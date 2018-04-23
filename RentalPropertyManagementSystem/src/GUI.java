@@ -76,7 +76,7 @@ public class GUI extends JFrame
 		lblConnectionIndicator.setBounds(462, 3, 107, 15);
 		getContentPane().add(lblConnectionIndicator);
 		setSize(600,800);
-		
+
 		JLabel lblDeleteBy = new JLabel("Delete By:");
 		lblDeleteBy.setBounds(63, 745, 88, 15);
 		getContentPane().add(lblDeleteBy);
@@ -92,8 +92,8 @@ public class GUI extends JFrame
 		txtLastName.setBounds(101, 57, 124, 19);
 		txtLastName.setText("Last Name");
 		getContentPane().add(txtLastName);
-		txtLastName.setColumns(10);		
-		
+		txtLastName.setColumns(10);
+
 		txtDeleteByID = new JTextField();
 		txtDeleteByID.setBounds(281, 743, 78, 19);
 		getContentPane().add(txtDeleteByID);
@@ -354,8 +354,8 @@ public class GUI extends JFrame
 		});
 		btnShowHomes.setBounds(237, 135, 122, 25);
 		getContentPane().add(btnShowHomes);
-	
-		
+
+
 		JButton btnDeleterecord = new JButton("Delete Record");
 		btnDeleterecord.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -369,16 +369,16 @@ public class GUI extends JFrame
 				String fieldToDelete;
 				if(typeToDelete.equals("PropertyID: "))
 				{
-					tableToDeleteFrom = "PROPERTIES";
+					tableToDeleteFrom = "Properties";
 					fieldToDelete = "propertyID";
 				}
 				else
 				{
-					tableToDeleteFrom = "TENANTS"; 
+					tableToDeleteFrom = "Tenants";
 					fieldToDelete = "tenantID";
 				}
-				
-				String sql = "DELETE FROM " + tableToDeleteFrom + "WHERE " + fieldToDelete + " = '" + recordToDelete + "';";
+
+				String sql = "DELETE FROM " + tableToDeleteFrom + " WHERE " + fieldToDelete + "='" + recordToDelete + "';";
 				try
 				{
 					Client.sendData(sql);

@@ -101,7 +101,7 @@ public class DBManager
             String sql =
             " CREATE TABLE IF NOT EXISTS Tenants" +
             "(" +
-            "    tenantID INTEGER NOT NULL, " +
+            "    tenantID varchar(1) NOT NULL, " +
 	    "    firstName varchar(50) NOT NULL, " +
    	    "    lastName varchar(50) NOT NULL," +
             "    PRIMARY KEY (tenantID)" +
@@ -338,10 +338,10 @@ public class DBManager
         System.out.println("Update successful.");
         return cmd;
     }
-    
+
     public static String delete(String query)
     {
-    	String cmd = null;
+    	  String cmd = "";
         Connection c = null;
         Statement stmt = null;
 
@@ -354,7 +354,8 @@ public class DBManager
             System.out.println("Opened database successfully");
 
             stmt = c.createStatement();
-            stmt.executeQuery(query);
+            stmt.executeUpdate(query);
+            c.commit();
             c.close();
           }
         catch (Exception e)
@@ -366,7 +367,7 @@ public class DBManager
         System.out.println("Delete successful.");
         return cmd;
     }
-    
+
     //Used to convert the result set into a JTable
     public static DefaultTableModel buildTableModel(ResultSet rs) throws SQLException
     {

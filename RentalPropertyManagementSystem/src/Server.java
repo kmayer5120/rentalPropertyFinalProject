@@ -95,13 +95,17 @@ public class Server
           DBManager.insert("Properties", map);
           System.out.println("Rental Property");
         }
-        else if (data instanceof String)
+        else if (data instanceof String && ((String) data).startsWith("S"))
         {
           output.writeObject(DBManager.select((String) data));
         }
         else if (data instanceof String && ((String) data).startsWith("D"))
         {
           output.writeObject(DBManager.delete((String) data));
+        }
+        else
+        {
+          output.writeObject("Error here.");
         }
       }
       catch (ClassNotFoundException classNotFoundException)
