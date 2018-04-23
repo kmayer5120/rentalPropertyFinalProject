@@ -15,6 +15,7 @@ import javax.swing.JTable;
 import javax.swing.JScrollPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
+import javax.swing.JComboBox;
 
 /*Right now, when the GUI opens, the tenant and property forms open too.
 	This isn't ideal right now but it works. There's probably some window
@@ -35,6 +36,7 @@ public class GUI extends JFrame
 	private JLabel lblConnectionIndicator;
 	private JLabel lblConnectionStatus;
 	JTextArea txtQueryResults = new JTextArea();
+	private JTextField txtDeleteByID;
 	//AddTenantForm tenantForm = new AddTenantForm();
 	//AddPropertyForm propertyForm = new AddPropertyForm();
 
@@ -53,41 +55,46 @@ public class GUI extends JFrame
 
 		//--------labels
 		JLabel lblFirstName = new JLabel("First Name");
-		lblFirstName.setBounds(12, 12, 88, 23);
+		lblFirstName.setBounds(12, 31, 88, 23);
 		getContentPane().add(lblFirstName);
 
 		JLabel lblLastName = new JLabel("Last Name");
-		lblLastName.setBounds(12, 35, 78, 25);
+		lblLastName.setBounds(12, 54, 78, 25);
 		getContentPane().add(lblLastName);
 
 		JLabel lblQueryResults = new JLabel("Query Results");
-		lblQueryResults.setBounds(32, 170, 114, 15);
+		lblQueryResults.setBounds(34, 161, 114, 15);
 		lblQueryResults.setFont(new Font("Dialog", Font.BOLD, 14));
 		getContentPane().add(lblQueryResults);
 
 		lblConnectionStatus = new JLabel("Connection Status: ");
-		lblConnectionStatus.setBounds(34, 745, 148, 15);
+		lblConnectionStatus.setBounds(321, 3, 148, 15);
 		getContentPane().add(lblConnectionStatus);
 
 		lblConnectionIndicator = new JLabel("Disconnected");
 		lblConnectionIndicator.setForeground(Color.RED);
-		lblConnectionIndicator.setBounds(175, 745, 107, 15);
+		lblConnectionIndicator.setBounds(462, 3, 107, 15);
 		getContentPane().add(lblConnectionIndicator);
 		setSize(600,800);
 
 
 		//-------text fields
 		txtFirstName = new JTextField();
-		txtFirstName.setBounds(101, 14, 124, 19);
+		txtFirstName.setBounds(101, 33, 124, 19);
 		txtFirstName.setText("First Name");
 		getContentPane().add(txtFirstName);
 		txtFirstName.setColumns(10);
 
 		txtLastName = new JTextField();
-		txtLastName.setBounds(101, 38, 124, 19);
+		txtLastName.setBounds(101, 57, 124, 19);
 		txtLastName.setText("Last Name");
 		getContentPane().add(txtLastName);
-		txtLastName.setColumns(10);
+		txtLastName.setColumns(10);		
+		
+		txtDeleteByID = new JTextField();
+		txtDeleteByID.setBounds(281, 743, 78, 19);
+		getContentPane().add(txtDeleteByID);
+		txtDeleteByID.setColumns(10);
 
     /*
 		Replaced with JTable, left this here in case we need to revert
@@ -101,10 +108,18 @@ public class GUI extends JFrame
 
 
 		JScrollPane scrollPane = new JScrollPane(queryResults);
-		scrollPane.setBounds(32, 187, 533, 555);
+		scrollPane.setBounds(34, 179, 533, 555);
 		scrollPane.setFont(new Font("Dialog", Font.PLAIN, 12));
 		getContentPane().add(scrollPane);
 
+		//--------drop down/combo box
+		JComboBox comboBoxDeleteByID = new JComboBox();
+		String[] deleteByIDs = new String[2];
+	    comboBoxDeleteByID.addItem("Property ID:");
+	    comboBoxDeleteByID.addItem("Tenant ID:");
+	    Object comboBoxSelectedItem = comboBoxDeleteByID.getSelectedItem();
+		comboBoxDeleteByID.setBounds(155, 740, 114, 24);
+		getContentPane().add(comboBoxDeleteByID);
 
 
 
@@ -117,7 +132,7 @@ public class GUI extends JFrame
 		 * txtQueryResults.
 		 */
 		btnSearch = new JButton("Search");
-		btnSearch.setBounds(270, 11, 148, 25); //set size
+		btnSearch.setBounds(270, 30, 148, 25); //set size
 
 		//event listener for the search button
 		btnSearch.addActionListener(new ActionListener() {
@@ -152,7 +167,7 @@ public class GUI extends JFrame
 
 
 		btnAddTenant = new JButton("Add Tenant");
-		btnAddTenant.setBounds(436, 12, 148, 25); //set size
+		btnAddTenant.setBounds(436, 31, 148, 25); //set size
 
 		//event listener for the add tenant button
 		btnAddTenant.addActionListener(new ActionListener() {
@@ -168,7 +183,7 @@ public class GUI extends JFrame
 
 
 		btnAddProperty = new JButton("Add Property");
-		btnAddProperty.setBounds(436, 49, 148, 25); //set size
+		btnAddProperty.setBounds(436, 68, 148, 25); //set size
 
 		//event listener for add property button
 		btnAddProperty.addActionListener(new ActionListener() {
@@ -189,7 +204,7 @@ public class GUI extends JFrame
 		 * by tenants.
 		 */
 		btnShowAvailable = new JButton("Show Available");
-		btnShowAvailable.setBounds(133, 97, 160, 25); //set size
+		btnShowAvailable.setBounds(133, 98, 160, 25); //set size
 
 		//event listener for show available button
 		btnShowAvailable.addActionListener(new ActionListener() {
@@ -249,7 +264,7 @@ public class GUI extends JFrame
 				}
 			}
 		});
-		btnShowLate.setBounds(332, 97, 166, 25);
+		btnShowLate.setBounds(332, 98, 166, 25);
 		getContentPane().add(btnShowLate);
 
 
@@ -284,7 +299,7 @@ public class GUI extends JFrame
 				}
 			}
 		});
-		btnShowVacationHomes.setBounds(371, 134, 193, 25);
+		btnShowVacationHomes.setBounds(371, 135, 193, 25);
 		getContentPane().add(btnShowVacationHomes);
 
 		JButton btnShowApartments = new JButton("Show Apartments");
@@ -312,7 +327,7 @@ public class GUI extends JFrame
 				}
 			}
 		});
-		btnShowApartments.setBounds(32, 134, 193, 25);
+		btnShowApartments.setBounds(32, 135, 193, 25);
 		getContentPane().add(btnShowApartments);
 
 		JButton btnShowHomes = new JButton("Show Homes");
@@ -337,8 +352,20 @@ public class GUI extends JFrame
 				}
 			}
 		});
-		btnShowHomes.setBounds(237, 134, 122, 25);
+		btnShowHomes.setBounds(237, 135, 122, 25);
 		getContentPane().add(btnShowHomes);
+		
+
+		
+		JButton btnDeleterecord = new JButton("Delete Record");
+		btnDeleterecord.setBounds(364, 740, 134, 25);
+		getContentPane().add(btnDeleterecord);
+		
+
+		
+		JLabel lblDeleteBy = new JLabel("Delete By:");
+		lblDeleteBy.setBounds(63, 745, 88, 15);
+		getContentPane().add(lblDeleteBy);
 
 		}
 
