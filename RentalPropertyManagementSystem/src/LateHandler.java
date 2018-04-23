@@ -18,7 +18,7 @@ public class LateHandler
 		this.setProperty(property);
 	}
 	
-	public String generateFirstRentStatement()
+	private void generateFirstRentStatement()
 	{
 		//create formatted String 
 		String formattedString = "Dear %s %s,\n" + 
@@ -33,10 +33,9 @@ public class LateHandler
 		
 		//need to get first name, last name, amount of rent due
 		//firstRentStatement = formattedString.format(tenant.getFirstName(), tenant.getLastName(), 
-		return firstRentStatement; 
 	}
 	
-	public String generateSecondRentStatement()
+	private void generateSecondRentStatement()
 	{
 		String formattedString = "Dear %s %s,\n" + 
 				"\n" + 
@@ -55,10 +54,9 @@ public class LateHandler
 		//secondRentStatement = formattedString.format(tenant.getFirstName(), tenant.getLastName(), 
 		//					property.getRentCost(), property.getLateFee(), (property.getRentCost()+property.getLateFee()));
 				
-		return secondRentStatement;
 	}
 	
-	public String generateFinalRentDueStatement()
+	private void generateFinalRentDueStatement()
 	{
 		String formattedString = "Dear %s %s,\n" + 
 				"\n" + 
@@ -79,10 +77,9 @@ public class LateHandler
 		//finalRentStatement = formattedString.format(tenant.getFirstName(), tenant.getLastName(), property.getRentCost(), 
 		//				property.getLateFee(), (property.getRentCost()+property.getLateFee()));
 		
-		return finalRentStatement;
 	}
 	
-	public String generateActionLetter()
+	private void generateActionLetter()
 	{
 		String formattedString = "Dear %s %s,\n" + 
 				"\n" + 
@@ -102,7 +99,6 @@ public class LateHandler
 		//actionLetter = formattedString.format(tenant.getFirstName(), tenant.getLastName(), property.getRentCost(), 
 		//			property.getLateFee(), (property.getRentCost()+property.getLateFee()));
 		
-		return actionLetter;
 	}
 
 	public void writeLetter()
@@ -116,14 +112,17 @@ public class LateHandler
 			PrintWriter fileOut = new PrintWriter(fileName);
 			if(property.getIsEvicted())
 			{
+				this.generateActionLetter();
 				fileOut.write(actionLetter);
 			}
 			else if(property.getIsLate())
 			{
+				this.generateSecondRentStatement();
 				fileOut.write(secondRentStatement);
 			}
 			else if(property.getIsLateFinal())
 			{
+				this.generateFinalRentDueStatement();
 				fileOut.write(finalRentStatement);
 			}
 			else
