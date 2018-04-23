@@ -99,6 +99,10 @@ public class Server
         {
           output.writeObject(DBManager.select((String) data));
         }
+        else if (data instanceof String && ((String) data).startsWith("D"))
+        {
+          output.writeObject(DBManager.delete((String) data));
+        }
       }
       catch (ClassNotFoundException classNotFoundException)
       {
