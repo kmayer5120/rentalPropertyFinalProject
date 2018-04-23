@@ -230,10 +230,23 @@ public class GUI extends JFrame
 
 				//clear results txt area first
 				txtQueryResults.setText("");
-				String query = "SELECT * FROM Properties WHERE isLate = T ";
+				String query = "SELECT * FROM Properties WHERE isLate='T'";
 				//TODO send letter with LateHandler object
 				//LateHandler lateHandler = new LateHandler(tenant, property);
 				//lateHandler.writeLetter();
+				try
+				{
+					Client.sendData(query);
+					queryResults = (JTable) Client.serverResponse;
+
+					JScrollPane scrollPane = new JScrollPane(queryResults);
+					scrollPane.setBounds(32, 187, 533, 555);
+					scrollPane.setFont(new Font("Dialog", Font.PLAIN, 12));
+					getContentPane().add(scrollPane);
+				} catch (IOException ioException)
+				{
+					ioException.printStackTrace();
+				}
 				}
 			});
 		btnShowLate.setBounds(332, 97, 166, 25);
