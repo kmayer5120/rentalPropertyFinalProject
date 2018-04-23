@@ -90,11 +90,11 @@ public class AddPropertyForm extends JFrame
 		getContentPane().add(lblPropertyDescription);
 
 		JLabel lblRentalType = new JLabel("Rental Type");
-		lblRentalType.setBounds(125, 210, 66, 15);
+		lblRentalType.setBounds(125, 210, 109, 15);
 		getContentPane().add(lblRentalType);
 
 		JLabel lblMoveInDate = new JLabel("Move In Date");
-		lblMoveInDate.setBounds(125, 236, 66, 15);
+		lblMoveInDate.setBounds(125, 236, 109, 15);
 		getContentPane().add(lblMoveInDate);
 
 		JLabel lblIsAvailable = new JLabel("Available?");
