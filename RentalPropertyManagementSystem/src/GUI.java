@@ -198,9 +198,22 @@ public class GUI extends JFrame
 
 				//clear results txt area first
 				txtQueryResults.setText("");
-				String query = "SELECT * FROM Properties WHERE isAvailable = T ";
+				String query = "SELECT * FROM Properties where isAvailable='T'";
+				try
+				{
+					Client.sendData(query);
+					queryResults = (JTable) Client.serverResponse;
+
+					JScrollPane scrollPane = new JScrollPane(queryResults);
+					scrollPane.setBounds(32, 187, 533, 555);
+					scrollPane.setFont(new Font("Dialog", Font.PLAIN, 12));
+					getContentPane().add(scrollPane);
+				} catch (IOException ioException)
+				{
+					ioException.printStackTrace();
 				}
-			});
+			}
+		});
 
 		getContentPane().add(btnShowAvailable);
 

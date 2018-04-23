@@ -4,13 +4,14 @@ public class RentalProperty implements Serializable
 // implements Payable temporarily removed, will be needed for polymorphism
 {
 
+  //Revisit data types, changed to String to mess with DBManager HashMap
   private String rentalID;
   private String propertyDescription;
   private int rentalType;
   private int moveInDate;
   private int lateDate;
   private int secondLateDate;
-  private boolean isAvailable;
+  private String isAvailable;
   private boolean isEvicted;
   private boolean isLate;
   private boolean isLateFinal;
@@ -21,7 +22,7 @@ public class RentalProperty implements Serializable
       this.rentalID = "";
       this.propertyDescription = "";
       this.rentalType = 0;
-      this.isAvailable = false;
+      this.isAvailable = "F";
       this.isEvicted = false;
       this.isLate = false;
       this.moveInDate = 0;
@@ -30,7 +31,7 @@ public class RentalProperty implements Serializable
   }
 
   public RentalProperty(String rentalID, String propertyDescription,
-                        int rentalType, boolean isAvailable)
+                        int rentalType, String isAvailable)
   {
       //set values with overloaded constructor
       this.setRentalID(rentalID);
@@ -56,7 +57,7 @@ public class RentalProperty implements Serializable
     this.rentalType = rentalType;
   }
 
-  public void setIsAvailable (boolean isAvailable)
+  public void setIsAvailable (String isAvailable)
   {
     this.isAvailable = isAvailable;
   }
@@ -66,12 +67,12 @@ public class RentalProperty implements Serializable
 	  this.isEvicted = isEvicted;
   }
 
-  public void setIsLate(boolean isLate) 
+  public void setIsLate(boolean isLate)
   {
   	this.isLate = isLate;
-  } 
+  }
 
-  public void setIsLateFinal(boolean isLateFinal) 
+  public void setIsLateFinal(boolean isLateFinal)
   {
   	this.isLateFinal = isLateFinal;
   }
@@ -99,22 +100,22 @@ public class RentalProperty implements Serializable
     return this.rentalType;
   }
 
-  public boolean getIsAvailable()
+  public String getIsAvailable()
   {
     return this.isAvailable;
   }
-  
+
   public boolean getIsEvicted()
   {
 	  return this.isEvicted;
   }
 
-  public boolean getIsLate() 
+  public boolean getIsLate()
   {
   	return isLate;
   }
 
-  public boolean getIsLateFinal() 
+  public boolean getIsLateFinal()
   {
 	return isLateFinal;
   }

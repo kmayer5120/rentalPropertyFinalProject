@@ -25,7 +25,7 @@ import javax.swing.table.DefaultTableModel;
 public class DBManager
 {
     Connection c = null;
-	private String dbPath = "src/rentals.db";
+	private String dbPath = "rentals.db";
 
 
     public DBManager()
@@ -58,10 +58,11 @@ public class DBManager
     {
         String cmd = "";
 
-        String url = "jdbc:sqlite:" + this.dbPath;
+        String url = "jdbc:sqlite:" + dbPath;
 
-        try (Connection conn = DriverManager.getConnection(url))
+        try
         {
+          Connection conn = DriverManager.getConnection(url);
             if (conn != null)
             {
                 DatabaseMetaData meta = conn.getMetaData();
@@ -84,11 +85,12 @@ public class DBManager
         String cmd = "";
         Connection c = null;
         Statement stmt = null;
-        String url = "jdbc:sqlite:" + this.dbPath;
+        String url = "jdbc:sqlite:" + dbPath;
 
 
-        try(Connection conn = DriverManager.getConnection(url))
+        try
         {
+          Connection conn = DriverManager.getConnection(url);
             Class.forName("org.sqlite.JDBC");
 
             System.out.println("Opened database successfully");
@@ -101,31 +103,37 @@ public class DBManager
 	    "    firstName varchar(50) NOT NULL, " +
    	    "    lastName varchar(50) NOT NULL," +
             "    PRIMARY KEY (tenantID)" +
-            ");" +
-
+            ");";
+            stmt = conn.createStatement();
+            stmt.execute(sql);
+            String sql2 =
             "CREATE TABLE IF NOT EXISTS Properties" +
             "(" +
             "    propertyID varchar(50) NOT NULL," +
             "    propertyAddress varchar(255) NOT NULL," +
             "    propertyDescription varchar(255) NOT NULL," +
             "    isAvailable char(1) NOT NULL," +
-            "    isLate char(1), NOT NULL," +
-            "    isEvicted char(1), NOT NULL," +
-            "    isPaid char(1), NOT NULL," +
-            "    leaseTerm INTEGER NOT NULL," +
-            "    rentalFee float(2)," +
-            "    moveInDate date," +
+            "    isLate char(1) NOT NULL," +
+            "    isEvicted char(1) NOT NULL," +
+            "    isPaid char(1) NOT NULL," +
+            "    leaseTerm char(1) NOT NULL," +
+            "    rentalFee varchar(2) NOT NULL," +
+          //  "    moveInDate date," +
             "    PRIMARY KEY (propertyID)" +
-            ");" +
-
+            ");";
+            stmt = conn.createStatement();
+            stmt.execute(sql2);
+            String sql3 =
             "CREATE TABLE IF NOT EXISTS RentedProperties" +
             "(" +
             "    propertyID INTEGER NOT NULL," +
             "    tenantID INTEGER NOT NULL," +
             "    FOREIGN KEY (propertyID) REFERENCES Properties (propertyID)," +
             "    FOREIGN KEY (tenantID) REFERENCES Tenants (tenantID)" +
-            ");" +
-
+            ");";
+            stmt = conn.createStatement();
+            stmt.execute(sql3);
+            String sql4 =
             "CREATE TABLE IF NOT EXISTS People" +
             "(" +
             "    personID INTEGER NOT NULL," +
@@ -137,8 +145,9 @@ public class DBManager
             "    FOREIGN KEY (tenantID) REFERENCES Tenants (tenantID)" +
             ");";
             stmt = conn.createStatement();
+            stmt.execute(sql4);
 			System.out.println("After sql command statement");
-            stmt.execute(sql);
+          //  stmt.execute(sql);
 			System.out.println("After stmt.execute(); statement");
             stmt.close();
             conn.close();
@@ -246,7 +255,6 @@ public class DBManager
                 String firstName = rs.getString("firstName");
                 String lastName = rs.getString("lastName");
                 cmd = firstName + " " + lastName;
-
             }
             else if (tblName.equals("Properties"))
             {
@@ -279,7 +287,6 @@ public class DBManager
             {
               System.out.println("Table not found.");
             }
-
         }
         */
         catch (Exception e)

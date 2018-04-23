@@ -91,6 +91,8 @@ public class Server
         {
           //Test print to make sure that Server can tell difference between
           //tenant and rental property
+          HashMap<String,String> map = SqlRental.createHash((RentalProperty) data);
+          DBManager.insert("Properties", map);
           System.out.println("Rental Property");
         }
         else if (data instanceof String)

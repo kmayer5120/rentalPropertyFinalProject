@@ -122,9 +122,10 @@ public class AddPropertyForm extends JFrame
 				RentalProperty property = new RentalProperty();
 				property.setRentalID(txtRentalID.getText());
 				property.setPropertyDescription(txtPropertyDescription.getText());
-				property.setRentalType(Integer.parseInt(txtRentalType.getText()));
-				//property.setIsAvailable(txtMoveInDate.getText()); Make boolean
-				property.setDates(Integer.parseInt(txtIsAvailable.getText()));
+				//The code below is probably ideal, modified for testing to String
+				//property.setRentalType(Integer.parseInt(txtRentalType.getText()));
+				property.setIsAvailable(txtIsAvailable.getText());
+				//property.setDates(Integer.parseInt(txtIsAvailable.getText()));
 				//property.setPropertyID(txtPropertyID.getText());
 
 				try

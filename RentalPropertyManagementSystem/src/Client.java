@@ -22,10 +22,15 @@ public class Client
 	{
 		//super("Client");
 		serverIP = host;
+
 	}
 
 	public static void main(String[] args)
 	{
+
+		DBManager db = new DBManager();
+		db.createDB();
+		db.createTable();
 
 		mainGui.setVisible(true);
 
