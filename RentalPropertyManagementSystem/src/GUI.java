@@ -247,8 +247,8 @@ public class GUI extends JFrame
 				{
 					ioException.printStackTrace();
 				}
-				}
-			});
+			}
+		});
 		btnShowLate.setBounds(332, 97, 166, 25);
 		getContentPane().add(btnShowLate);
 
@@ -267,7 +267,21 @@ public class GUI extends JFrame
 				//clear results txt area first
 				txtQueryResults.setText("");
 				//assuming that vacation family propertyIDs begin with V
-				String query = "SELECT * FROM Properties WHERE propertyID LIKE V% ";
+				//TODO May need to adjust query
+				String query = "SELECT * FROM Properties WHERE propertyID='V%'";
+				try
+				{
+					Client.sendData(query);
+					queryResults = (JTable) Client.serverResponse;
+
+					JScrollPane scrollPane = new JScrollPane(queryResults);
+					scrollPane.setBounds(32, 187, 533, 555);
+					scrollPane.setFont(new Font("Dialog", Font.PLAIN, 12));
+					getContentPane().add(scrollPane);
+				} catch (IOException ioException)
+				{
+					ioException.printStackTrace();
+				}
 			}
 		});
 		btnShowVacationHomes.setBounds(371, 134, 193, 25);
@@ -281,7 +295,21 @@ public class GUI extends JFrame
 				//clear results txt area first
 				txtQueryResults.setText("");
 				//assuming that apartment propertyIDs begin with A
-				String query = "SELECT * FROM Properties WHERE propertyID LIKE A% ";
+				//TODO verify query is correct
+				String query = "SELECT * FROM Properties WHERE propertyID='A%'";
+				try
+				{
+					Client.sendData(query);
+					queryResults = (JTable) Client.serverResponse;
+
+					JScrollPane scrollPane = new JScrollPane(queryResults);
+					scrollPane.setBounds(32, 187, 533, 555);
+					scrollPane.setFont(new Font("Dialog", Font.PLAIN, 12));
+					getContentPane().add(scrollPane);
+				} catch (IOException ioException)
+				{
+					ioException.printStackTrace();
+				}
 			}
 		});
 		btnShowApartments.setBounds(32, 134, 193, 25);
@@ -292,7 +320,21 @@ public class GUI extends JFrame
 			public void actionPerformed(ActionEvent e) {
 				//TODO connect query with database
 				//assuming that single family propertyIDs begin with S
-				String query = "SELECT * FROM Properties WHERE propertyID LIKE S% ";
+				//TODO verify query...
+				String query = "SELECT * FROM Properties WHERE propertyID='S%'";
+				try
+				{
+					Client.sendData(query);
+					queryResults = (JTable) Client.serverResponse;
+
+					JScrollPane scrollPane = new JScrollPane(queryResults);
+					scrollPane.setBounds(32, 187, 533, 555);
+					scrollPane.setFont(new Font("Dialog", Font.PLAIN, 12));
+					getContentPane().add(scrollPane);
+				} catch (IOException ioException)
+				{
+					ioException.printStackTrace();
+				}
 			}
 		});
 		btnShowHomes.setBounds(237, 134, 122, 25);
