@@ -13,6 +13,7 @@ public class RentalProperty implements Serializable
   private boolean isAvailable;
   private boolean isEvicted;
   private boolean isLate;
+  private boolean isLateFinal;
 
   //Initial constructor
   public RentalProperty()
@@ -70,6 +71,11 @@ public class RentalProperty implements Serializable
   	this.isLate = isLate;
   } 
 
+  public void setIsLateFinal(boolean isLateFinal) 
+  {
+  	this.isLateFinal = isLateFinal;
+  }
+
   public void setDates(int moveInDate)
   {
     this.moveInDate = moveInDate;
@@ -108,6 +114,9 @@ public class RentalProperty implements Serializable
   	return isLate;
   }
 
-
+  public boolean getIsLateFinal() 
+  {
+	return isLateFinal;
+  }
 
 }
