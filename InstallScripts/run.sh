@@ -1,16 +1,9 @@
 #!/bin/bash
-# Here is the bash script that Chu laid out in class.
-# May be helpful to change it a bit so it can run the
-# server and client.
-# We could just add two lines:
-    # java Server&
-    # java Client
-    # (if our class names were Client and Server)
-
-CLASSPATH=$DERBY_HOME/lib/derby.jar:$(pwd)
-export CLASSPATH
-# run java command. Just like String[] args in java
-java $1 
-# run second java command. Basically args[1]
-# java $2 
+# This bash script runs Server first (in background) and then runs Client
+# Be sure to make this script executable first by running the command:
+    # chmod 774 run.sh
+# Then issue the following command to run the script:
+    # ./run.sh
+java java -classpath ".:sqlite-jdbc-3.21.0.jar" Server&  
+java java -classpath ".:sqlite-jdbc-3.21.0.jar" Client 
 
