@@ -218,6 +218,9 @@ public class GUI extends JFrame
 				//clear results txt area first
 				txtQueryResults.setText("");
 				String query = "SELECT * FROM Properties WHERE isLate = T ";
+				//TODO send letter with LateHandler object
+				//LateHandler lateHandler = new LateHandler(tenant, property);
+				//lateHandler.writeLetter();
 				}
 			});
 		btnShowLate.setBounds(332, 97, 166, 25);
