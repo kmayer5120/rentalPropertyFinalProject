@@ -1,0 +1,13 @@
+Dear %s %s,
+
+Subject: Termination of Lease
+
+Your rent is 3 weeks past due. The amount due was $.2f.
+Because the payment is late, a late fee of $.2f has been added.
+As no attempt to pay was made since our last message one week ago,
+we will be terminating your rental agreement. 
+You must move out within one week.
+
+Regards,
+
+iRental Solutions Inc.

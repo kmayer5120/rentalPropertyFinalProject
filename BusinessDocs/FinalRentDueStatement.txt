@@ -1,0 +1,14 @@
+Dear %s %s,
+
+Subject: Final Notice of Rent Past Due
+
+Your rent is far past due. The amount due was $.2f
+Because the payment is late,a late fee of $.2f has been added.
+As no attempt to pay was made since our last letter, if the payment is 
+not in 7 days, then your lease agreement will be terminated.
+
+making the total amount due $.2f.
+
+Thank you,
+
+iRental Solutions Inc.

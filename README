@@ -1,0 +1,27 @@
+Rental Database Management System
+
+Please refer to the documents in InstallationInstructions if there are any problems
+installing. In that directory are the main installer to clone the software
+repository hosted on Github and some instructions to install and troubleshoot
+the database. 
+
+For either of the install.sh and run.sh to be executed be sure to run the
+following command: chmod 774 install.sh && chmod 774 run.sh
+
+To run the program issue the following command ./run.sh
+
+This program gives property managers the ability to manage a database of
+rental properties and tenants through the use of a user friendly graphical
+user interface. This application allows for simple manipulation of a database
+by way of creating, reading, updating, and deleting records. If a tenant is
+late on a payment action letters for each stage of tenant payment deliquency 
+is automatically filled out with the information corresponding to that tenant. 
+This action letter is saved to a file with the tenant's first name, last name,
+and the property ID. This functionality makes for a fast and simple way to 
+notify tenants that are past due on their rent payments. 
+
+For more information or help with any software related issues call our software
+help desk at 1-800-not-work or email us at helpDesk@itJustWorks.com
+
+Thank you for choosing Rental Database Management System for your property
+management software solution!

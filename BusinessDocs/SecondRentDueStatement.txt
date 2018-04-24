@@ -1,0 +1,11 @@
+Dear %s %s,
+
+Subject: Notification of late payment
+
+Your rent was due on the first of the month. The amount due was $%.2f.
+Because the payment is late, a late fee of $.2f has been added,
+making the total amount due .2f. This is due in 7 days.
+
+Thank you,
+
+iRental Solutions Inc.

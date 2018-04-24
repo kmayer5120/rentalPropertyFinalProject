@@ -1,0 +1,9 @@
+Dear %s %s,
+
+Subject: Initial Rental Statement
+
+Your rent will be due on %s. The amount due is $%.2f.
+
+Thank you,
+
+iRental Solutions Inc.
