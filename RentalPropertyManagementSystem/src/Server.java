@@ -97,11 +97,18 @@ public class Server
         }
         else if (data instanceof String && ((String) data).startsWith("S"))
         {
+          //select from db
           output.writeObject(DBManager.select((String) data));
         }
         else if (data instanceof String && ((String) data).startsWith("D"))
         {
+          //delete from db
           output.writeObject(DBManager.delete((String) data));
+        }
+        else if(data instanceof String && ((String) data).startsWith("U"))
+        {
+          //update db with new values
+          output.writeObject(DBManager.update((String) data));
         }
         else
         {
