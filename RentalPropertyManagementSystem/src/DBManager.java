@@ -301,38 +301,28 @@ public class DBManager
         return queryTable;
     }
 
-    public String update(String tblName, HashMap<String,String> fields)
+    public static String update(String query)
     {
         String cmd = "";
         Connection c = null;
         Statement stmt = null;
-
         try
         {
             Class.forName("org.sqlite.JDBC");
             c = DriverManager.getConnection("jdbc:sqlite:rentals.db");
+
             c.setAutoCommit(false);
-            System.out.println("Opened database successfully.");
+            System.out.println("Opened database successfully");
 
             stmt = c.createStatement();
-
-            //Incomplete StringBuilder
-            StringBuilder sql = new StringBuilder("UPDATE " + tblName + "set");
-            String query = "";
-            /*Once again, probably want to use StringBuilder to create
-            sql query*/
             stmt.executeUpdate(query);
             c.commit();
-
-            /*Left out result set stuff, seemed redundant copy and
-            paste from select method if necessary*/
-            stmt.close();
             c.close();
-        }
+          }
         catch (Exception e)
         {
             System.err.println(e.getClass().getName() + ": "
-                              + e.getMessage());
+                            + e.getMessage());
             System.exit(0);
         }
         System.out.println("Update successful.");
@@ -341,7 +331,7 @@ public class DBManager
 
     public static String delete(String query)
     {
-    	  String cmd = "";
+    	String cmd = "";
         Connection c = null;
         Statement stmt = null;
 
