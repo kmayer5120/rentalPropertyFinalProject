@@ -122,7 +122,7 @@ public class GUI extends JFrame
 		getContentPane().add(scrollPane);
 
 		//--------drop down/combo box
-		JComboBox comboBoxDeleteByID = new JComboBox();
+		JComboBox<String> comboBoxDeleteByID = new JComboBox<String>();
 	    comboBoxDeleteByID.addItem("Property ID:");
 	    comboBoxDeleteByID.addItem("Tenant ID:");
 	    //Object comboBoxSelectedItem = comboBoxDeleteByID.getSelectedItem();
@@ -174,7 +174,7 @@ public class GUI extends JFrame
 
 
 		btnAddTenant = new JButton("Add Tenant");
-		btnAddTenant.setBounds(605, 48, 148, 25); //set size
+		btnAddTenant.setBounds(590, 51, 148, 25); //set size
 
 		//event listener for the add tenant button
 		btnAddTenant.addActionListener(new ActionListener() {
@@ -190,7 +190,7 @@ public class GUI extends JFrame
 
 
 		btnAddProperty = new JButton("Add Property");
-		btnAddProperty.setBounds(767, 48, 148, 25); //set size
+		btnAddProperty.setBounds(760, 51, 148, 25); //set size
 
 		//event listener for add property button
 		btnAddProperty.addActionListener(new ActionListener() {
@@ -396,6 +396,31 @@ public class GUI extends JFrame
 		});
 		btnDeleterecord.setBounds(606, 735, 134, 25);
 		getContentPane().add(btnDeleterecord);
+		
+		//update tenant button
+		JButton btnUpdateTenant = new JButton("Update Tenant");
+		btnUpdateTenant.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				UpdateTenantForm updateTenantForm = new UpdateTenantForm();
+				updateTenantForm.setVisible(true);
+				//give focus to pop up with form to property to database
+			}
+		});
+		btnUpdateTenant.setBounds(590, 90, 148, 25);
+		getContentPane().add(btnUpdateTenant);
+		
+		//update property button
+		JButton btnUpdateProperty = new JButton("Update Property");
+		btnUpdateProperty.setBounds(760, 90, 148, 25);
+		getContentPane().add(btnUpdateProperty);
+
+		btnUpdateProperty.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {				
+				UpdatePropertyForm updatePropertyForm = new UpdatePropertyForm();
+				updatePropertyForm.setVisible(true);
+				//give focus to pop up with form to property to database
+			}
+		});
 		
 
 	} //end constructor
