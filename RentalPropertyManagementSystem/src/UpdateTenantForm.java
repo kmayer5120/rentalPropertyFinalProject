@@ -105,7 +105,7 @@ public class UpdateTenantForm extends JFrame
 		txtPropertyID.setBounds(309, 289, 136, 19);
 		getContentPane().add(txtPropertyID);
 		txtPropertyID.setColumns(10);
-		setSize(600,800);
+		setSize(600,400);
 
 		//-------Buttons and event listeners
 		JButton btnUpdate = new JButton("Update Record");
@@ -135,7 +135,7 @@ public class UpdateTenantForm extends JFrame
 				}
 			}
 		});
-		btnUpdate.setBounds(216, 320, 154, 25);
+		btnUpdate.setBounds(223, 320, 154, 25);
 		getContentPane().add(btnUpdate);
 
 	}
