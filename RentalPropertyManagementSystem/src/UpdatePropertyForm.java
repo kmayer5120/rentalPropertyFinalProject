@@ -98,7 +98,7 @@ public class UpdatePropertyForm extends JFrame
 				property.setRentalID(txtRentalID.getText());
 				property.setPropertyDescription(txtPropertyDescription.getText());
 				property.setIsAvailable(txtIsAvailable.getText());
-				String updateQuery = "UPDATE Properties SET";
+				String updateQuery = "UPDATE Properties SET ";
 				
 				updateQuery += "isAvailable = " + "'" + property.getIsAvailable() + "'";
 				updateQuery += "propertyDescription = " + "'" + property.getPropertyDescription() + "'";
