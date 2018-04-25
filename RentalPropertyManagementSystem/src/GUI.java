@@ -414,7 +414,26 @@ public class GUI extends JFrame
 		btnUpdateProperty.setBounds(760, 90, 148, 25);
 		getContentPane().add(btnUpdateProperty);
 		
+		//show tenants button
 		JButton btnShowTenants = new JButton("Show Tenants");
+		btnShowTenants.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {				
+				String query = "SELECT * FROM Tenants";
+				try
+				{
+					Client.sendData(query);
+					queryResults = (JTable) Client.serverResponse;
+
+					JScrollPane scrollPane = new JScrollPane(queryResults);
+					scrollPane.setBounds(30, 176, 934, 552);
+					scrollPane.setFont(new Font("Dialog", Font.PLAIN, 12));
+					getContentPane().add(scrollPane);
+				} catch (IOException ioException)
+				{
+					ioException.printStackTrace();
+				}
+			}
+		});
 		btnShowTenants.setBounds(302, 127, 134, 25);
 		getContentPane().add(btnShowTenants);
 
