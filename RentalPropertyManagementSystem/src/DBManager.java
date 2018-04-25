@@ -99,14 +99,14 @@ public class DBManager
             //Maybe there's better variable name choices?
             //Spent 4 hours getting this to just work. Careful!!
             String sql =
-            " CREATE TABLE IF NOT EXISTS Tenants" +
+            "CREATE TABLE IF NOT EXISTS Tenants" +
             "(" +
-            "    tenantID varchar(1) NOT NULL, " +
-	    "    firstName varchar(50) NOT NULL, " +
-   	    "    lastName varchar(50) NOT NULL," +
-        "    age varchar(2) NOT NULL," +
-        "    emailAddress varchar(50) NOT NULL," +
-        "    billingAddress varchar(100) NOT NULL," +
+             "   tenantID INTEGER NOT NULL," +
+	           "   firstName varchar(50) NOT NULL," +
+   	         "   lastName varchar(50) NOT NULL," +
+             "    age varchar(2) NOT NULL," +
+             "    emailAddress varchar(50) NOT NULL," +
+             "    billingAddress varchar(100) NOT NULL," +
             "    PRIMARY KEY (tenantID)" +
             ");";
             stmt = conn.createStatement();
