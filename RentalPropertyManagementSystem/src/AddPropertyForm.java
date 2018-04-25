@@ -68,7 +68,7 @@ public class AddPropertyForm extends JFrame
 		txtPropertyID.setBounds(309, 289, 136, 19);
 		getContentPane().add(txtPropertyID);
 		txtPropertyID.setColumns(10);
-		setSize(600,800);
+		setSize(600,390);
 
 		//------Labels
 		JLabel lblAddPropertyForm = new JLabel("Add Property Form");
