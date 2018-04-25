@@ -211,7 +211,7 @@ public class GUI extends JFrame
 		 * by tenants.
 		 */
 		btnShowAvailable = new JButton("Show Available");
-		btnShowAvailable.setBounds(44, 127, 148, 25); //set size
+		btnShowAvailable.setBounds(30, 127, 148, 25); //set size
 
 		//event listener for show available button
 		btnShowAvailable.addActionListener(new ActionListener() {
@@ -271,7 +271,7 @@ public class GUI extends JFrame
 				}
 			}
 		});
-		btnShowLate.setBounds(204, 127, 114, 25);
+		btnShowLate.setBounds(183, 127, 114, 25);
 		getContentPane().add(btnShowLate);
 
 
@@ -334,7 +334,7 @@ public class GUI extends JFrame
 				}
 			}
 		});
-		btnShowApartments.setBounds(422, 127, 156, 25);
+		btnShowApartments.setBounds(438, 127, 156, 25);
 		getContentPane().add(btnShowApartments);
 
 		JButton btnShowHomes = new JButton("Show Homes");
@@ -357,7 +357,7 @@ public class GUI extends JFrame
 				}
 			}
 		});
-		btnShowHomes.setBounds(590, 127, 122, 25);
+		btnShowHomes.setBounds(600, 127, 122, 25);
 		getContentPane().add(btnShowHomes);
 
 
@@ -413,6 +413,10 @@ public class GUI extends JFrame
 		JButton btnUpdateProperty = new JButton("Update Property");
 		btnUpdateProperty.setBounds(760, 90, 148, 25);
 		getContentPane().add(btnUpdateProperty);
+		
+		JButton btnShowTenants = new JButton("Show Tenants");
+		btnShowTenants.setBounds(302, 127, 134, 25);
+		getContentPane().add(btnShowTenants);
 
 		btnUpdateProperty.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {				
