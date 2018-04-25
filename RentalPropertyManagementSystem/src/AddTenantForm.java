@@ -105,7 +105,7 @@ public class AddTenantForm extends JFrame
 		txtPropertyID.setBounds(309, 289, 136, 19);
 		getContentPane().add(txtPropertyID);
 		txtPropertyID.setColumns(10);
-		setSize(600,800);
+		setSize(600,390);
 
 		//-------Buttons and event listeners
 		JButton btnSubmit = new JButton("Submit");
@@ -130,7 +130,7 @@ public class AddTenantForm extends JFrame
 				}
 			}
 		});
-		btnSubmit.setBounds(216, 320, 114, 25);
+		btnSubmit.setBounds(216, 325, 114, 25);
 		getContentPane().add(btnSubmit);
 
 	}
