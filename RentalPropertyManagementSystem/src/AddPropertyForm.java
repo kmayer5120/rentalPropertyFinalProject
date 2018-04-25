@@ -34,7 +34,7 @@ public class AddPropertyForm extends JFrame
 
 		//set up basic window parameters
 		getContentPane().setBackground(Color.WHITE);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		setTitle("Add Property");
 		getContentPane().setLayout(null);
 

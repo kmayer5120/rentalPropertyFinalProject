@@ -28,7 +28,7 @@ public class AddTenantForm extends JFrame
 
 		//set up basic window parameters
 		getContentPane().setBackground(Color.WHITE);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		setTitle("Add Tenant");
 		getContentPane().setLayout(null);
 

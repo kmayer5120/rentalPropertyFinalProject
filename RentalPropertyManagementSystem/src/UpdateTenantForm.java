@@ -28,8 +28,8 @@ public class UpdateTenantForm extends JFrame
 
 		//set up basic window parameters
 		getContentPane().setBackground(Color.WHITE);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("Update Tenant");
+		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		getContentPane().setLayout(null);
 
 		//------Text boxes/fields
