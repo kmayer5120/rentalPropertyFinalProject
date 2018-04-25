@@ -35,6 +35,9 @@ public class SqlRental
       //Need to add ALL fields, not just name
       map.put("firstName", tenant.getFirstName());
       map.put("lastName", tenant.getLastName());
+      map.put("age", tenant.getAge());
+      map.put("emailAddress", tenant.getEmailAddress());
+      map.put("billingAddress", tenant.getBillingAddress());
       return map;
     }
     public static HashMap<String, String> createHash(RentalProperty property)

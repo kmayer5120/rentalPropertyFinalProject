@@ -104,6 +104,9 @@ public class DBManager
             "    tenantID varchar(1) NOT NULL, " +
 	    "    firstName varchar(50) NOT NULL, " +
    	    "    lastName varchar(50) NOT NULL," +
+        "    age varchar(2) NOT NULL," +
+        "    emailAddress varchar(50) NOT NULL," +
+        "    billingAddress varchar(100) NOT NULL," +
             "    PRIMARY KEY (tenantID)" +
             ");";
             stmt = conn.createStatement();

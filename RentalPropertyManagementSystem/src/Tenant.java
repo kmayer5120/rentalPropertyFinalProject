@@ -13,7 +13,7 @@ public class Tenant implements Serializable
 {
     private String firstName;
     private String lastName;
-    private int age;
+    private String age;
     private String emailAddress;
     private String billingAddress;
     private String propertyID; //property ID of the property tenant is renting
@@ -25,12 +25,12 @@ public class Tenant implements Serializable
         //set each variable to a default value
         this.firstName = "";
         this.lastName = "";
-        this.age = 0;
+        this.age = "";
         this.emailAddress = "";
         this.billingAddress = "";
     }
 
-    public Tenant(String firstName, String lastName, int age, String emailAddress, String billingAddress, String propertyID)
+    public Tenant(String firstName, String lastName, String age, String emailAddress, String billingAddress, String propertyID)
     {
         //set values with overloaded constructor
         this.setFirstName(firstName);
@@ -59,7 +59,7 @@ public class Tenant implements Serializable
         this.lastName = lastName;
     }
 
-    public void setAge(int age)
+    public void setAge(String age)
     {
         this.age = age;
     }
@@ -89,7 +89,7 @@ public class Tenant implements Serializable
         return this.lastName;
     }
 
-    public int getAge()
+    public String getAge()
     {
         return this.age;
     }

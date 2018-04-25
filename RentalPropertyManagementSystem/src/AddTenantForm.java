@@ -115,7 +115,7 @@ public class AddTenantForm extends JFrame
 				Tenant tenant = new Tenant();
 				tenant.setFirstName(txtFirstName.getText());
 				tenant.setLastName(txtLastName.getText());
-				tenant.setAge(Integer.parseInt(txtAge.getText()));
+				tenant.setAge(txtAge.getText());
 				tenant.setEmailAddress(txtEmail.getText());
 				tenant.setBillingAddress(txtBillingAddress.getText());
 				tenant.setPropertyID(txtPropertyID.getText());

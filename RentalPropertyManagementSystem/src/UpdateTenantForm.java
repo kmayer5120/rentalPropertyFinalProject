@@ -115,14 +115,14 @@ public class UpdateTenantForm extends JFrame
 				Tenant tenant = new Tenant();
 				tenant.setFirstName(txtFirstName.getText());
 				tenant.setLastName(txtLastName.getText());
-				tenant.setAge(Integer.parseInt(txtAge.getText()));
+				tenant.setAge(txtAge.getText());
 				tenant.setEmailAddress(txtEmail.getText());
 				tenant.setBillingAddress(txtBillingAddress.getText());
 				tenant.setPropertyID(txtPropertyID.getText());
 				//TODO tenants need to be updated to have email address/prop id/billing address/email/etc.
-				String updateQuery = "UPDATE TABLE tenants SET "; 
+				String updateQuery = "UPDATE TABLE tenants SET ";
 				//TODO build update query with gets from Tenant object
-				
+
 				try
 				{
 					//send String updateQuery with Client to Server
@@ -139,5 +139,5 @@ public class UpdateTenantForm extends JFrame
 		getContentPane().add(btnUpdate);
 
 	}
-	
+
 }
