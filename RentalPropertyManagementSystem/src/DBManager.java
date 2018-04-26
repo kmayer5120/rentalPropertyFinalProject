@@ -122,7 +122,7 @@ public class DBManager
             "    isEvicted char(1) NOT NULL," +
             "    isPaid char(1) NOT NULL," +
             "    leaseTerm char(1) NOT NULL," +
-            "    rentalFee varchar(2) NOT NULL," +
+            "    rentalFee varchar(4) NOT NULL," +
           //  "    moveInDate date," +
             "    PRIMARY KEY (propertyID)" +
             ");";

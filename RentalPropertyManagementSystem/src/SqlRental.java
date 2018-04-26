@@ -48,12 +48,12 @@ public class SqlRental
       map.put("propertyDescription", property.getPropertyDescription());
       map.put("isAvailable", property.getIsAvailable());
       //Below are test values. Otherwise NOT NULL triggers
-      map.put("propertyAddress", "1234 Test");
+      map.put("propertyAddress", property.getPropertyAddress());
       map.put("isLate", "1");
       map.put("isEvicted", "1");
       map.put("isPaid", "1");
       map.put("leaseTerm", "1");
-      map.put("rentalFee", "23");
+      map.put("rentalFee", property.getRentCost());
       return map;
     }
 }
