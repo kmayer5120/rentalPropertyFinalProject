@@ -5,11 +5,37 @@ installing. In that directory are the main installer to clone the software
 repository hosted on Github and some instructions to install and troubleshoot
 the database. 
 
-For either of the install.sh and run.sh to be executed be sure to run the
-following command: chmod 774 install.sh && chmod 774 run.sh
+------------Installation
+For either of the install.sh and run.sh/runServer.sh/runClient.sh to be executed be 
+sure to run the following commands: 
 
-To run the program issue the following command ./run.sh
+    chmod 774 install.sh && chmod 774 run.sh
+    chmod 774 runClient.sh && chmod 775 runServer.sh
 
+To install run the following command:
+
+
+------------Running Application
+The application can be ran in two different configurations. 
+    1.To run both Server and Client issue the following command from within the
+      InstallationInstructions directory:
+
+        ./run.sh
+
+      This will run Server in the background and then Client as the foreground
+      process.
+    
+    2. To run just Server or just Client there are scripts that can be run to
+       start the Server first and then open another terminal to start the
+       Client. This can be useful for troubleshooting.To run in this
+       configuration just issue these commands from the InstallInstructions
+       directory:
+
+       ./runServer.sh
+
+       ./runClient.sh
+
+-----------Purpose
 This program gives property managers the ability to manage a database of
 rental properties and tenants through the use of a user friendly graphical
 user interface. This application allows for simple manipulation of a database
@@ -20,6 +46,7 @@ This action letter is saved to a file with the tenant's first name, last name,
 and the property ID. This functionality makes for a fast and simple way to 
 notify tenants that are past due on their rent payments. 
 
+---------Other Notes
 Please note: when creating the Property ID, the ID must be created in this way:
 The first character is either A, S, or V. This will indicate whether the property
 is an apartment, single family home, or vacation home rental (respectively).
@@ -28,6 +55,7 @@ and 3 will be 3.
 The rest of the characters can be whatever identification method that your company
 would like to implement.
 
+--------Troubleshooting
 For more information or help with any software related issues call our software
 help desk at 1-800-not-work or email us at helpDesk@itJustWorks.com
 
