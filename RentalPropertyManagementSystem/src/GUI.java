@@ -145,7 +145,7 @@ public class GUI extends JFrame
 		//event listener for the search button
 		btnSearch.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//TODO connect query with database
+				//------SEARCH
 				//get text from fields on gui and store into String for query building
 				String lastName = txtLastName.getText();
 				String firstName = txtFirstName.getText();
@@ -169,7 +169,6 @@ public class GUI extends JFrame
 				}
 			}
 		});
-
 		getContentPane().add(btnSearch); //add to window
 
 
@@ -178,8 +177,8 @@ public class GUI extends JFrame
 
 		//event listener for the add tenant button
 		btnAddTenant.addActionListener(new ActionListener() {
-			//@Override
 			public void actionPerformed(ActionEvent e) {
+				//----ADD TENANT
 				AddTenantForm tenantForm = new AddTenantForm();
 				tenantForm.setVisible(true);
 				//give focus to pop up with form to add a tenant to database
@@ -194,8 +193,8 @@ public class GUI extends JFrame
 
 		//event listener for add property button
 		btnAddProperty.addActionListener(new ActionListener() {
-			//@Override
 			public void actionPerformed(ActionEvent e) {
+				//-----ADD PROPERTY
 				AddPropertyForm propertyForm = new AddPropertyForm();
 				propertyForm.setVisible(true);
 				//give focus to pop up with form to add a property to database
@@ -216,8 +215,7 @@ public class GUI extends JFrame
 		//event listener for show available button
 		btnShowAvailable.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//TODO connect query with database
-
+				//----SHOW AVAILABLE
 				//clear results txt area first
 				txtQueryResults.setText("");
 				String query = "SELECT * FROM Properties where isAvailable='T'";
@@ -248,8 +246,7 @@ public class GUI extends JFrame
 		btnShowLate = new JButton("Show Late");
 		btnShowLate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//TODO connect query with database
-
+				//----SHOW LATE
 				//clear results txt area first
 				txtQueryResults.setText("");
 				String query = "SELECT * FROM Properties WHERE isLate='T'";
@@ -284,12 +281,10 @@ public class GUI extends JFrame
 		JButton btnShowVacationHomes = new JButton("Show Vacation Homes");
 		btnShowVacationHomes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//TODO connect query with database
-
+				//----SHOW VACATION HOMES
 				//clear results txt area first
 				txtQueryResults.setText("");
 				//assuming that vacation family propertyIDs begin with V
-				//TODO May need to adjust query
 				String query = "SELECT * FROM Properties WHERE propertyID LIKE 'V%'";
 				try
 				{
@@ -312,8 +307,7 @@ public class GUI extends JFrame
 		JButton btnShowApartments = new JButton("Show Apartments");
 		btnShowApartments.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//TODO connect query with database
-
+				//----SHOW APARTMENTS
 				//clear results txt area first
 				txtQueryResults.setText("");
 				//assuming that apartment propertyIDs begin with A
@@ -340,6 +334,7 @@ public class GUI extends JFrame
 		JButton btnShowHomes = new JButton("Show Homes");
 		btnShowHomes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				//----SHOW HOMES
 				//assuming that single family propertyIDs begin with S
 				String query = "SELECT * FROM Properties WHERE propertyID LIKE 'S%'";
 				try
@@ -364,6 +359,7 @@ public class GUI extends JFrame
 		JButton btnDeleterecord = new JButton("Delete Record");
 		btnDeleterecord.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				//----DELETE
 				//get selection from combo box
 				Object comboBoxSelectedItem = comboBoxDeleteByID.getSelectedItem();
 				//get which type to delete by propertyID or tenantID and put into String
@@ -375,7 +371,7 @@ public class GUI extends JFrame
 				if(typeToDelete.equals("PropertyID: "))
 				{
 					tableToDeleteFrom = "Properties";
-					fieldToDelete = "propertyID";
+					fieldToDelete = "rentalID";
 				}
 				else
 				{
