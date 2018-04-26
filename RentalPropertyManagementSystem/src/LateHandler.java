@@ -1,7 +1,7 @@
 import java.io.PrintWriter;
 import java.io.FileNotFoundException;
 
-public class LateHandler 
+public class LateHandler
 {
 	//Late handler has Tenant and RentalProperty objects and uses them for processing
 	private Tenant tenant = new Tenant();
@@ -11,94 +11,94 @@ public class LateHandler
 	private String finalRentStatement;
 	private String actionLetter;
 
-	//overloaded constructor 
+	//overloaded constructor
 	public LateHandler(Tenant tenant, RentalProperty property)
 	{
 		this.setTenant(tenant);
 		this.setProperty(property);
 	}
-	
+
 	private void generateFirstRentStatement()
 	{
-		//create formatted String 
-		String formattedString = "Dear %s %s,\n" + 
-				"\n" + 
-				"Subject: Initial Rental Statement\n" + 
-				"\n" + 
-				"\tYour rent will be due on the first of next month. The amount due is $%.2f.\n" + 
-				"\n" + 
-				"Thank you,\n" + 
-				"\n" + 
+		//create formatted String
+		String formattedString = "Dear %s %s,\n" +
+				"\n" +
+				"Subject: Initial Rental Statement\n" +
+				"\n" +
+				"\tYour rent will be due on the first of next month. The amount due is $%.2f.\n" +
+				"\n" +
+				"Thank you,\n" +
+				"\n" +
 				"iRental Solutions Inc.\n";
-		
+
 		//need to get first name, last name, amount of rent due
-		//firstRentStatement = formattedString.format(tenant.getFirstName(), tenant.getLastName(), 
+		//firstRentStatement = formattedString.format(tenant.getFirstName(), tenant.getLastName(),
 	}
-	
+
 	private void generateSecondRentStatement()
 	{
-		String formattedString = "Dear %s %s,\n" + 
-				"\n" + 
-				"Subject: Notification of late payment\n" + 
-				"\n" + 
-				"Your rent was due on the first of the month. The amount due was $%.2f.\n" + 
-				"Because the payment is late, a late fee of $.2f has been added,\n" + 
-				"making the total amount due %.2f. This is due in 7 days.\n" + 
-				"\n" + 
-				"Thank you,\n" + 
-				"\n" + 
+		String formattedString = "Dear %s %s,\n" +
+				"\n" +
+				"Subject: Notification of late payment\n" +
+				"\n" +
+				"Your rent was due on the first of the month. The amount due was $%.2f.\n" +
+				"Because the payment is late, a late fee of $.2f has been added,\n" +
+				"making the total amount due %.2f. This is due in 7 days.\n" +
+				"\n" +
+				"Thank you,\n" +
+				"\n" +
 				"iRental Solutions Inc.\n";
-	
+
 		//need to get first name, last name, rent cost, late fee, and then add rentCost+lateFee together
 		//formats String to add in all values needed for secondRentStatement
-		//secondRentStatement = formattedString.format(tenant.getFirstName(), tenant.getLastName(), 
+		//secondRentStatement = formattedString.format(tenant.getFirstName(), tenant.getLastName(),
 		//					property.getRentCost(), property.getLateFee(), (property.getRentCost()+property.getLateFee()));
-				
+
 	}
-	
+
 	private void generateFinalRentDueStatement()
 	{
-		String formattedString = "Dear %s %s,\n" + 
-				"\n" + 
-				"Subject: Final Notice of Rent Past Due\n" + 
-				"\n" + 
-				"Your rent is far past due. The amount due was $.2f\n" + 
-				"Because the payment is late,a late fee of $.2f has been added.\n" + 
-				"As no attempt to pay was made since our last letter, if the payment is \n" + 
-				"not in 7 days, then your lease agreement will be terminated.\n" + 
-				"\n" + 
-				"making the total amount due $.2f.\n" + 
-				"\n" + 
-				"Thank you,\n" + 
-				"\n" + 
+		String formattedString = "Dear %s %s,\n" +
+				"\n" +
+				"Subject: Final Notice of Rent Past Due\n" +
+				"\n" +
+				"Your rent is far past due. The amount due was $.2f\n" +
+				"Because the payment is late,a late fee of $.2f has been added.\n" +
+				"As no attempt to pay was made since our last letter, if the payment is \n" +
+				"not in 7 days, then your lease agreement will be terminated.\n" +
+				"\n" +
+				"making the total amount due $.2f.\n" +
+				"\n" +
+				"Thank you,\n" +
+				"\n" +
 				"iRental Solutions Inc.\n";
-		
+
 		//need to get first name, last name, rent cost, late fee, and then add rentCost+lateFee together
-		//finalRentStatement = formattedString.format(tenant.getFirstName(), tenant.getLastName(), property.getRentCost(), 
+		//finalRentStatement = formattedString.format(tenant.getFirstName(), tenant.getLastName(), property.getRentCost(),
 		//				property.getLateFee(), (property.getRentCost()+property.getLateFee()));
-		
+
 	}
-	
+
 	private void generateActionLetter()
 	{
-		String formattedString = "Dear %s %s,\n" + 
-				"\n" + 
-				"Subject: Termination of Lease\n" + 
-				"\n" + 
-				"Your rent is 3 weeks past due. The amount due was $.2f.\n" + 
-				"Because the payment is late, a late fee of $.2f has been added.\n" + 
-				"As no attempt to pay was made since our last message one week ago,\n" + 
-				"we will be terminating your rental agreement. \n" + 
-				"You must move out within one week.\n" + 
-				"\n" + 
-				"Regards,\n" + 
-				"\n" + 
+		String formattedString = "Dear %s %s,\n" +
+				"\n" +
+				"Subject: Termination of Lease\n" +
+				"\n" +
+				"Your rent is 3 weeks past due. The amount due was $.2f.\n" +
+				"Because the payment is late, a late fee of $.2f has been added.\n" +
+				"As no attempt to pay was made since our last message one week ago,\n" +
+				"we will be terminating your rental agreement. \n" +
+				"You must move out within one week.\n" +
+				"\n" +
+				"Regards,\n" +
+				"\n" +
 				"iRental Solutions Inc.\n";
-		
+
 		//need to get first name, last name, rent cost, late fee, and then add rentCost+lateFee together
-		//actionLetter = formattedString.format(tenant.getFirstName(), tenant.getLastName(), property.getRentCost(), 
+		//actionLetter = formattedString.format(tenant.getFirstName(), tenant.getLastName(), property.getRentCost(),
 		//			property.getLateFee(), (property.getRentCost()+property.getLateFee()));
-		
+
 	}
 
 	public void writeLetter()
@@ -110,17 +110,17 @@ public class LateHandler
 		try
 		{
 			PrintWriter fileOut = new PrintWriter(fileName);
-			if(property.getIsEvicted())
+			if(property.getIsEvicted().equals("T"))
 			{
 				this.generateActionLetter();
 				fileOut.write(actionLetter);
 			}
-			else if(property.getIsLate())
+			else if(property.getIsLate().equals("T"))
 			{
 				this.generateSecondRentStatement();
 				fileOut.write(secondRentStatement);
 			}
-			else if(property.getIsLateFinal())
+			else if(property.getIsLateFinal().equals("T"))
 			{
 				this.generateFinalRentDueStatement();
 				fileOut.write(finalRentStatement);
@@ -135,14 +135,14 @@ public class LateHandler
 			System.out.println("An error occurred while writing to the file " + fileName);
 			e.printStackTrace();
 		}
-		
+
 	}
-	
+
 	public void setProperty(RentalProperty property)
 	{
 		this.property = property;
 	}
-	
+
 	public void setTenant(Tenant tenant)
 	{
 		this.tenant = tenant;

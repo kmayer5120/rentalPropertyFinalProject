@@ -15,17 +15,19 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import java.io.IOException;
 
-public class AddPropertyForm extends JFrame
+public class UpdatePropertyForm extends JFrame
 {
 	private static final long serialVersionUID = 1L;
 	private JTextField txtRentalID;
 	private JTextField txtPropertyDescription;
+	private JTextField txtRentalType;
 	private JTextField txtMoveInDate;
 	private JTextField txtIsAvailable;
+	private JTextField txtPropertyID;
 
 
 
-	public AddPropertyForm()
+	public UpdatePropertyForm()
 	{
 
 		//constructor for Property form
@@ -33,7 +35,7 @@ public class AddPropertyForm extends JFrame
 		//set up basic window parameters
 		getContentPane().setBackground(Color.WHITE);
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-		setTitle("Add Property");
+		setTitle("Update Property");
 		getContentPane().setLayout(null);
 
 		//------Text boxes/fields
@@ -47,22 +49,17 @@ public class AddPropertyForm extends JFrame
 		getContentPane().add(txtPropertyDescription);
 		txtPropertyDescription.setColumns(10);
 
-		txtMoveInDate = new JTextField();
-		txtMoveInDate.setBounds(309, 210, 136, 19);
-		getContentPane().add(txtMoveInDate);
-		txtMoveInDate.setColumns(10);
-
 		txtIsAvailable = new JTextField();
-		txtIsAvailable.setBounds(309, 237, 136, 19);
+		txtIsAvailable.setBounds(309, 208, 136, 19);
 		getContentPane().add(txtIsAvailable);
 		txtIsAvailable.setColumns(10);
-		setSize(600,370);
+
 
 		//------Labels
-		JLabel lblAddPropertyForm = new JLabel("Add Property Form");
-		lblAddPropertyForm.setFont(new Font("Dialog", Font.BOLD, 18));
-		lblAddPropertyForm.setBounds(186, 12, 240, 30);
-		getContentPane().add(lblAddPropertyForm);
+		JLabel lblUpdatePropertyForm = new JLabel("Update Property Form");
+		lblUpdatePropertyForm.setFont(new Font("Dialog", Font.BOLD, 18));
+		lblUpdatePropertyForm.setBounds(186, 12, 240, 30);
+		getContentPane().add(lblUpdatePropertyForm);
 
 		JLabel lblFields = new JLabel("Fields");
 		lblFields.setFont(new Font("Dialog", Font.BOLD, 14));
@@ -77,36 +74,40 @@ public class AddPropertyForm extends JFrame
 		lblPropertyDescription.setBounds(125, 183, 103, 15);
 		getContentPane().add(lblPropertyDescription);
 
-		JLabel lblMoveInDate = new JLabel("Move In Date");
-		lblMoveInDate.setBounds(125, 214, 109, 15);
-		getContentPane().add(lblMoveInDate);
-
 		JLabel lblIsAvailable = new JLabel("Available? (T or F)");
-		lblIsAvailable.setBounds(125, 241, 136, 15);
+		lblIsAvailable.setBounds(125, 210, 144, 15);
 		getContentPane().add(lblIsAvailable);
 
-		JLabel lblDirections = new JLabel("Please fill in all fields of form before clicking submit.");
+		JLabel lblDirections = new JLabel("Please fill in all fields of form before clicking update.\n");
 		lblDirections.setBounds(104, 72, 375, 27);
 		getContentPane().add(lblDirections);
 
 		JLabel lblDescriptionslinetwo = new JLabel("All fields are required for record keeping purposes.");
 		lblDescriptionslinetwo.setBounds(114, 98, 360, 15);
 		getContentPane().add(lblDescriptionslinetwo);
+		
+		setSize(600,339);
 
 
 		//-------Buttons and event listeners
-		JButton btnSubmit = new JButton("Submit");
-		btnSubmit.addActionListener(new ActionListener() {
+		JButton btnUpdate = new JButton("Update Record");
+		btnUpdate.addActionListener(new ActionListener() {
 			//when submit button is pressed get all property info and put into property object
 			public void actionPerformed(ActionEvent arg0) {
 				RentalProperty property = new RentalProperty();
 				property.setRentalID(txtRentalID.getText());
 				property.setPropertyDescription(txtPropertyDescription.getText());
 				property.setIsAvailable(txtIsAvailable.getText());
+				String updateQuery = "UPDATE Properties SET ";
+				
+				updateQuery += "isAvailable = " + "'" + property.getIsAvailable() + "',";
+				updateQuery += "propertyDescription = " + "'" + property.getPropertyDescription() + "' ";
+				updateQuery += "WHERE propertyID = '" + property.getRentalID() + "'";
 
 				try
 				{
-					Client.sendData(property);
+					//send String updateQuery with Client to Server
+					Client.sendData(updateQuery);
 					setVisible(false);
 				}
 				catch (IOException ioException)
@@ -115,8 +116,8 @@ public class AddPropertyForm extends JFrame
 				}
 			}
 		});
-		btnSubmit.setBounds(222, 290, 114, 25);
-		getContentPane().add(btnSubmit);
+		btnUpdate.setBounds(220, 257, 144, 25);
+		getContentPane().add(btnUpdate);
 
 	}
 	/*

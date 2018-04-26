@@ -12,7 +12,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import java.io.IOException;
 
-public class AddTenantForm extends JFrame
+public class UpdateTenantForm extends JFrame
 {
 	private static final long serialVersionUID = 1L;
 	private JTextField txtFirstName;
@@ -22,14 +22,14 @@ public class AddTenantForm extends JFrame
 	private JTextField txtBillingAddress;
 	private JTextField txtPropertyID;
 
-	public AddTenantForm()
+	public UpdateTenantForm()
 	{
-		//constructor for Tenant form
+		//constructor
 
 		//set up basic window parameters
 		getContentPane().setBackground(Color.WHITE);
+		setTitle("Update Tenant");
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-		setTitle("Add Tenant");
 		getContentPane().setLayout(null);
 
 		//------Text boxes/fields
@@ -59,10 +59,10 @@ public class AddTenantForm extends JFrame
 		txtBillingAddress.setColumns(10);
 
 		//------Labels
-		JLabel lblAddTenantForm = new JLabel("Add Tenant Form");
-		lblAddTenantForm.setFont(new Font("Dialog", Font.BOLD, 18));
-		lblAddTenantForm.setBounds(186, 12, 240, 30);
-		getContentPane().add(lblAddTenantForm);
+		JLabel lblUpdateTenantForm = new JLabel("Update Tenant Form");
+		lblUpdateTenantForm.setFont(new Font("Dialog", Font.BOLD, 18));
+		lblUpdateTenantForm.setBounds(186, 12, 240, 30);
+		getContentPane().add(lblUpdateTenantForm);
 
 		JLabel lblFields = new JLabel("Fields");
 		lblFields.setFont(new Font("Dialog", Font.BOLD, 14));
@@ -89,7 +89,7 @@ public class AddTenantForm extends JFrame
 		lblBillingAddress.setBounds(125, 263, 103, 15);
 		getContentPane().add(lblBillingAddress);
 
-		JLabel lblDirections = new JLabel("Please fill in all fields of form before clicking submit.");
+		JLabel lblDirections = new JLabel("Please fill in all fields of form before clicking update.");
 		lblDirections.setBounds(104, 72, 375, 27);
 		getContentPane().add(lblDirections);
 
@@ -105,11 +105,11 @@ public class AddTenantForm extends JFrame
 		txtPropertyID.setBounds(309, 289, 136, 19);
 		getContentPane().add(txtPropertyID);
 		txtPropertyID.setColumns(10);
-		setSize(600,390);
+		setSize(600,400);
 
 		//-------Buttons and event listeners
-		JButton btnSubmit = new JButton("Submit");
-		btnSubmit.addActionListener(new ActionListener() {
+		JButton btnUpdate = new JButton("Update Record");
+		btnUpdate.addActionListener(new ActionListener() {
 			//when submit button is pressed get all tenant info and put into tenant object
 			public void actionPerformed(ActionEvent arg0) {
 				Tenant tenant = new Tenant();
@@ -119,9 +119,14 @@ public class AddTenantForm extends JFrame
 				tenant.setEmailAddress(txtEmail.getText());
 				tenant.setBillingAddress(txtBillingAddress.getText());
 				tenant.setPropertyID(txtPropertyID.getText());
+				//TODO tenants need to be updated to have email address/prop id/billing address/email/etc.
+				String updateQuery = "UPDATE TABLE tenants SET ";
+				//TODO build update query with gets from Tenant object
+
 				try
 				{
-					Client.sendData(tenant);
+					//send String updateQuery with Client to Server
+					Client.sendData(updateQuery);
 					setVisible(false);
 				}
 				catch (IOException ioException)
@@ -130,16 +135,9 @@ public class AddTenantForm extends JFrame
 				}
 			}
 		});
-		btnSubmit.setBounds(216, 325, 114, 25);
-		getContentPane().add(btnSubmit);
+		btnUpdate.setBounds(223, 320, 154, 25);
+		getContentPane().add(btnUpdate);
 
 	}
-	/*
-	public Tenant getTenantFromForm()
-	{
-		//needed for client to access the tenant in this class
-		return this.tenant;
-	}
-	*/
 
 }

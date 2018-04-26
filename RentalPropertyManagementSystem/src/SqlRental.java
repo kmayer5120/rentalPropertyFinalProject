@@ -35,6 +35,9 @@ public class SqlRental
       //Need to add ALL fields, not just name
       map.put("firstName", tenant.getFirstName());
       map.put("lastName", tenant.getLastName());
+      map.put("age", tenant.getAge());
+      map.put("emailAddress", tenant.getEmailAddress());
+      map.put("billingAddress", tenant.getBillingAddress());
       return map;
     }
     public static HashMap<String, String> createHash(RentalProperty property)
@@ -45,12 +48,12 @@ public class SqlRental
       map.put("propertyDescription", property.getPropertyDescription());
       map.put("isAvailable", property.getIsAvailable());
       //Below are test values. Otherwise NOT NULL triggers
-      map.put("propertyAddress", "1234 Test");
+      map.put("propertyAddress", property.getPropertyAddress());
       map.put("isLate", "1");
       map.put("isEvicted", "1");
       map.put("isPaid", "1");
       map.put("leaseTerm", "1");
-      map.put("rentalFee", "23");
+      map.put("rentalFee", property.getRentCost());
       return map;
     }
 }

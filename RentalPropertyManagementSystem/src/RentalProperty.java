@@ -5,37 +5,42 @@ public class RentalProperty implements Serializable
 {
 
   //Revisit data types, changed to String to mess with DBManager HashMap
-  private String rentalID;
-  private String propertyDescription;
-  private int rentalType;
-  private int moveInDate;
-  private int lateDate;
-  private int secondLateDate;
-  private String isAvailable;
-  private boolean isEvicted;
-  private boolean isLate;
-  private boolean isLateFinal;
+  protected String rentalID;
+  protected String propertyDescription;
+  protected String propertyAddress;
+  protected int rentalType;
+  protected int moveInDate;
+  protected int lateDate;
+  protected int secondLateDate;
+  protected String isAvailable;
+  protected String isEvicted;
+  protected String isLate;
+  protected String isLateFinal;
+  protected String rentCost;
 
   //Initial constructor
   public RentalProperty()
   {
       this.rentalID = "";
       this.propertyDescription = "";
+      this.propertyAddress = "";
       this.rentalType = 0;
       this.isAvailable = "F";
-      this.isEvicted = false;
-      this.isLate = false;
+      this.isEvicted = "";
+      this.isLate = "";
       this.moveInDate = 0;
       this.lateDate = 0;
       this.secondLateDate = 0;
+      this.rentCost = "";
   }
 
   public RentalProperty(String rentalID, String propertyDescription,
-                        int rentalType, String isAvailable)
+  String propertyAddress, int rentalType, String isAvailable)
   {
       //set values with overloaded constructor
       this.setRentalID(rentalID);
       this.setPropertyDescription(propertyDescription);
+      this.setPropertyAddress(propertyAddress);
       this.setRentalType(rentalType);
       this.setIsAvailable(isAvailable);
       this.setDates(moveInDate);
@@ -52,6 +57,11 @@ public class RentalProperty implements Serializable
     this.propertyDescription = propertyDescription;
   }
 
+  public void setPropertyAddress (String propertyAddress)
+  {
+    this.propertyAddress = propertyAddress;
+  }
+
   public void setRentalType (int rentalType)
   {
     this.rentalType = rentalType;
@@ -62,17 +72,17 @@ public class RentalProperty implements Serializable
     this.isAvailable = isAvailable;
   }
 
-  public void setIsEvicted(boolean isEvicted)
+  public void setIsEvicted(String isEvicted)
   {
 	  this.isEvicted = isEvicted;
   }
 
-  public void setIsLate(boolean isLate)
+  public void setIsLate(String isLate)
   {
   	this.isLate = isLate;
   }
 
-  public void setIsLateFinal(boolean isLateFinal)
+  public void setIsLateFinal(String isLateFinal)
   {
   	this.isLateFinal = isLateFinal;
   }
@@ -82,6 +92,18 @@ public class RentalProperty implements Serializable
     this.moveInDate = moveInDate;
     this.lateDate = moveInDate + 7;
     this.secondLateDate = moveInDate + 14;
+  }
+
+  public void setRentCost (String rentCost)
+  {
+    String rent = "";
+    switch (rentalID.substring(1)) {
+      case "1": rent = "$500";
+      break;
+      case "2": rent = "$800";
+      break;
+    }
+    this.rentCost = rent;
   }
 
   //Variable get methods
@@ -95,6 +117,11 @@ public class RentalProperty implements Serializable
     return this.propertyDescription;
   }
 
+  public String getPropertyAddress()
+  {
+    return this.propertyAddress;
+  }
+
   public int getRentalType()
   {
     return this.rentalType;
@@ -105,19 +132,23 @@ public class RentalProperty implements Serializable
     return this.isAvailable;
   }
 
-  public boolean getIsEvicted()
+  public String getIsEvicted()
   {
 	  return this.isEvicted;
   }
 
-  public boolean getIsLate()
+  public String getIsLate()
   {
   	return isLate;
   }
 
-  public boolean getIsLateFinal()
+  public String getIsLateFinal()
   {
 	return isLateFinal;
+  }
+
+  public String getRentCost() {
+    return rentCost;
   }
 
 }

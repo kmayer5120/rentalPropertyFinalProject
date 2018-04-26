@@ -99,11 +99,14 @@ public class DBManager
             //Maybe there's better variable name choices?
             //Spent 4 hours getting this to just work. Careful!!
             String sql =
-            " CREATE TABLE IF NOT EXISTS Tenants" +
+            "CREATE TABLE IF NOT EXISTS Tenants" +
             "(" +
-            "    tenantID varchar(1) NOT NULL, " +
-	    "    firstName varchar(50) NOT NULL, " +
-   	    "    lastName varchar(50) NOT NULL," +
+             "   tenantID INTEGER NOT NULL," +
+	           "   firstName varchar(50) NOT NULL," +
+   	         "   lastName varchar(50) NOT NULL," +
+             "    age varchar(2) NOT NULL," +
+             "    emailAddress varchar(50) NOT NULL," +
+             "    billingAddress varchar(100) NOT NULL," +
             "    PRIMARY KEY (tenantID)" +
             ");";
             stmt = conn.createStatement();
@@ -119,7 +122,7 @@ public class DBManager
             "    isEvicted char(1) NOT NULL," +
             "    isPaid char(1) NOT NULL," +
             "    leaseTerm char(1) NOT NULL," +
-            "    rentalFee varchar(2) NOT NULL," +
+            "    rentalFee varchar(4) NOT NULL," +
           //  "    moveInDate date," +
             "    PRIMARY KEY (propertyID)" +
             ");";
@@ -301,38 +304,28 @@ public class DBManager
         return queryTable;
     }
 
-    public String update(String tblName, HashMap<String,String> fields)
+    public static String update(String query)
     {
         String cmd = "";
         Connection c = null;
         Statement stmt = null;
-
         try
         {
             Class.forName("org.sqlite.JDBC");
             c = DriverManager.getConnection("jdbc:sqlite:rentals.db");
+
             c.setAutoCommit(false);
-            System.out.println("Opened database successfully.");
+            System.out.println("Opened database successfully");
 
             stmt = c.createStatement();
-
-            //Incomplete StringBuilder
-            StringBuilder sql = new StringBuilder("UPDATE " + tblName + "set");
-            String query = "";
-            /*Once again, probably want to use StringBuilder to create
-            sql query*/
             stmt.executeUpdate(query);
             c.commit();
-
-            /*Left out result set stuff, seemed redundant copy and
-            paste from select method if necessary*/
-            stmt.close();
             c.close();
-        }
+          }
         catch (Exception e)
         {
             System.err.println(e.getClass().getName() + ": "
-                              + e.getMessage());
+                            + e.getMessage());
             System.exit(0);
         }
         System.out.println("Update successful.");
@@ -341,7 +334,7 @@ public class DBManager
 
     public static String delete(String query)
     {
-    	  String cmd = "";
+    	String cmd = "";
         Connection c = null;
         Statement stmt = null;
 

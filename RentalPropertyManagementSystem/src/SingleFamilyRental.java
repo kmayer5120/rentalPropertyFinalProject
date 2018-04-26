@@ -1,19 +1,19 @@
 public class SingleFamilyRental extends RentalProperty
 {
 
-  private float rentCost;
+  private String rentCost;
   private int dueDate;
   private float lateFee;
 
   //Initial constructor
   public SingleFamilyRental()
   {
-      this.rentCost = 0;
+      this.rentCost = "";
       this.dueDate = 0;
       this.lateFee = 0;
   }
 
-  public SingleFamilyRental(float rentCost, int dueDate, float lateFee)
+  public SingleFamilyRental(String rentCost, int dueDate, float lateFee)
   {
       //set values with overloaded constructor
       this.setRentCost(rentCost);
@@ -22,7 +22,7 @@ public class SingleFamilyRental extends RentalProperty
   }
 
   //Variable set methods
-  public void setRentCost (float rentCost)
+  public void setRentCost (String rentCost)
   {
     this.rentCost = rentCost;
   }
@@ -38,7 +38,7 @@ public class SingleFamilyRental extends RentalProperty
   }
 
   //Variable get methods
-  public float getRentCost()
+  public String getRentCost()
   {
     return this.rentCost;
   }
