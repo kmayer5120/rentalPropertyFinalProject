@@ -76,6 +76,9 @@ The second character is the number of bedrooms. 1 will be 1 bedroom, 2 will be 2
 and 3 will be 3.
 The rest of the characters can be whatever identification method that your company
 would like to implement.
+When doing queries (i.e. clicking the show, search etc buttons), the buttons must
+be clicked twice. We are aware of this issue, and will send a patch for it within
+a week from today.
 
 
 --------Troubleshooting
