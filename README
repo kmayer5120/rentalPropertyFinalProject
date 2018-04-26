@@ -14,7 +14,10 @@ sure to run the following commands:
     chmod 774 install.sh && chmod 774 run.sh
     chmod 774 runClient.sh && chmod 775 runServer.sh
 
-To install run the following command:
+To install run the following command from the InstallationInstructions
+directory:
+      
+      ./install.sh
     
 NOTE: It is important to compile the Java source code before running it!
       In the directory RentalPropertyManagementSystem/src issue the
