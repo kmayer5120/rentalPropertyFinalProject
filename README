@@ -1,9 +1,11 @@
 Rental Database Management System
+---------------------------------
 
 Please refer to the documents in InstallationInstructions if there are any problems
 installing. In that directory are the main installer to clone the software
 repository hosted on Github and some instructions to install and troubleshoot
 the database. 
+
 
 ------------Installation
 For either of the install.sh and run.sh/runServer.sh/runClient.sh to be executed be 
@@ -13,6 +15,13 @@ sure to run the following commands:
     chmod 774 runClient.sh && chmod 775 runServer.sh
 
 To install run the following command:
+    
+NOTE: It is important to compile the Java source code before running it!
+      In the directory RentalPropertyManagementSystem/src issue the
+      following command. This compiles all Java source code in the
+      directory.
+
+       javac *.java
 
 
 ------------Running Application
@@ -20,7 +29,7 @@ The application can be ran in two different configurations.
     1.To run both Server and Client issue the following command from within the
       InstallationInstructions directory:
 
-        ./run.sh
+       ./run.sh
 
       This will run Server in the background and then Client as the foreground
       process.
@@ -35,6 +44,8 @@ The application can be ran in two different configurations.
 
        ./runClient.sh
 
+
+
 -----------Purpose
 This program gives property managers the ability to manage a database of
 rental properties and tenants through the use of a user friendly graphical
@@ -46,6 +57,7 @@ This action letter is saved to a file with the tenant's first name, last name,
 and the property ID. This functionality makes for a fast and simple way to 
 notify tenants that are past due on their rent payments. 
 
+
 ---------Other Notes
 Please note: when creating the Property ID, the ID must be created in this way:
 The first character is either A, S, or V. This will indicate whether the property
@@ -54,6 +66,7 @@ The second character is the number of bedrooms. 1 will be 1 bedroom, 2 will be 2
 and 3 will be 3.
 The rest of the characters can be whatever identification method that your company
 would like to implement.
+
 
 --------Troubleshooting
 For more information or help with any software related issues call our software
