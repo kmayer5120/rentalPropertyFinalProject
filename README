@@ -20,6 +20,14 @@ This action letter is saved to a file with the tenant's first name, last name,
 and the property ID. This functionality makes for a fast and simple way to 
 notify tenants that are past due on their rent payments. 
 
+Please note: when creating the Property ID, the ID must be created in this way:
+The first character is either A, S, or V. This will indicate whether the property
+is an apartment, single family home, or vacation home rental (respectively).
+The second character is the number of bedrooms. 1 will be 1 bedroom, 2 will be 2,
+and 3 will be 3.
+The rest of the characters can be whatever identification method that your company
+would like to implement.
+
 For more information or help with any software related issues call our software
 help desk at 1-800-not-work or email us at helpDesk@itJustWorks.com
 
