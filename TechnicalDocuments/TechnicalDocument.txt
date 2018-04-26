@@ -57,9 +57,17 @@ terminate the connection.
 
 ** The GUI **
 
+The GUI is centered around a table which displays queries.
+
 ** The Database **
 
-//SQL Lite 
+This project implements a SQLite database. The reason we opted to use this database
+type was to benefit the user experience. This way, users only need to add a class
+path to their command prompt, and the database is generated automatically within
+the DBManager class (as opposed to using the Derby way).
+
+DBManager has a String of sql commands, and executes them as queries. There are
+commands for creating tables, inserting, updating, deleting, and selecting results.
 
 ** Classes **
 
