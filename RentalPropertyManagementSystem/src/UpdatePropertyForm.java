@@ -100,8 +100,8 @@ public class UpdatePropertyForm extends JFrame
 				property.setIsAvailable(txtIsAvailable.getText());
 				String updateQuery = "UPDATE Properties SET ";
 				
-				updateQuery += "isAvailable = " + "'" + property.getIsAvailable() + "'";
-				updateQuery += "propertyDescription = " + "'" + property.getPropertyDescription() + "'";
+				updateQuery += "isAvailable = " + "'" + property.getIsAvailable() + "',";
+				updateQuery += "propertyDescription = " + "'" + property.getPropertyDescription() + "' ";
 				updateQuery += "WHERE propertyID = '" + property.getRentalID() + "'";
 
 				try
