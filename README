@@ -27,8 +27,8 @@ NOTE: It is important to compile the Java source code before running it!
        javac *.java
 
 
-------------Running Application
-The application can be ran in two different configurations. 
+------------Running The Application
+The application can be ran in three different configurations. 
     1.To run both Server and Client issue the following command from within the
       InstallationInstructions directory:
 
@@ -46,6 +46,13 @@ The application can be ran in two different configurations.
        ./runServer.sh
 
        ./runClient.sh
+       
+       3. To run directly from source code. Issue the following command froms within 
+          the directory RentalPropertyManagementSystem/src
+          
+          java -classpath ".:sqlite-jdbc-3.21.0.jar" Server 
+          (Open a new terminal.)
+          java -classpath ".:sqlite-jdbc-3.21.0.jar" Client 
 
 
 
