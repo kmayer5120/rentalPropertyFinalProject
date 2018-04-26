@@ -20,10 +20,8 @@ public class AddPropertyForm extends JFrame
 	private static final long serialVersionUID = 1L;
 	private JTextField txtRentalID;
 	private JTextField txtPropertyDescription;
-	private JTextField txtRentalType;
 	private JTextField txtMoveInDate;
 	private JTextField txtIsAvailable;
-	private JTextField txtPropertyID;
 
 
 
@@ -49,26 +47,16 @@ public class AddPropertyForm extends JFrame
 		getContentPane().add(txtPropertyDescription);
 		txtPropertyDescription.setColumns(10);
 
-		txtRentalType = new JTextField();
-		txtRentalType.setBounds(309, 206, 136, 19);
-		getContentPane().add(txtRentalType);
-		txtRentalType.setColumns(10);
-
 		txtMoveInDate = new JTextField();
-		txtMoveInDate.setBounds(309, 232, 136, 19);
+		txtMoveInDate.setBounds(309, 210, 136, 19);
 		getContentPane().add(txtMoveInDate);
 		txtMoveInDate.setColumns(10);
 
 		txtIsAvailable = new JTextField();
-		txtIsAvailable.setBounds(309, 259, 136, 19);
+		txtIsAvailable.setBounds(309, 237, 136, 19);
 		getContentPane().add(txtIsAvailable);
 		txtIsAvailable.setColumns(10);
-
-		txtPropertyID = new JTextField();
-		txtPropertyID.setBounds(309, 289, 136, 19);
-		getContentPane().add(txtPropertyID);
-		txtPropertyID.setColumns(10);
-		setSize(600,390);
+		setSize(600,370);
 
 		//------Labels
 		JLabel lblAddPropertyForm = new JLabel("Add Property Form");
@@ -89,16 +77,12 @@ public class AddPropertyForm extends JFrame
 		lblPropertyDescription.setBounds(125, 183, 103, 15);
 		getContentPane().add(lblPropertyDescription);
 
-		JLabel lblRentalType = new JLabel("Rental Type");
-		lblRentalType.setBounds(125, 210, 109, 15);
-		getContentPane().add(lblRentalType);
-
 		JLabel lblMoveInDate = new JLabel("Move In Date");
-		lblMoveInDate.setBounds(125, 236, 109, 15);
+		lblMoveInDate.setBounds(125, 214, 109, 15);
 		getContentPane().add(lblMoveInDate);
 
-		JLabel lblIsAvailable = new JLabel("Available?");
-		lblIsAvailable.setBounds(125, 263, 103, 15);
+		JLabel lblIsAvailable = new JLabel("Available? (T or F)");
+		lblIsAvailable.setBounds(125, 241, 136, 15);
 		getContentPane().add(lblIsAvailable);
 
 		JLabel lblDirections = new JLabel("Please fill in all fields of form before clicking submit.");
@@ -109,10 +93,6 @@ public class AddPropertyForm extends JFrame
 		lblDescriptionslinetwo.setBounds(114, 98, 360, 15);
 		getContentPane().add(lblDescriptionslinetwo);
 
-		JLabel lblPropertyID = new JLabel("Property ID");
-		lblPropertyID.setBounds(125, 290, 87, 15);
-		getContentPane().add(lblPropertyID);
-
 
 		//-------Buttons and event listeners
 		JButton btnSubmit = new JButton("Submit");
@@ -122,11 +102,7 @@ public class AddPropertyForm extends JFrame
 				RentalProperty property = new RentalProperty();
 				property.setRentalID(txtRentalID.getText());
 				property.setPropertyDescription(txtPropertyDescription.getText());
-				//The code below is probably ideal, modified for testing to String
-				//property.setRentalType(Integer.parseInt(txtRentalType.getText()));
 				property.setIsAvailable(txtIsAvailable.getText());
-				//property.setDates(Integer.parseInt(txtIsAvailable.getText()));
-				//property.setPropertyID(txtPropertyID.getText());
 
 				try
 				{
@@ -139,7 +115,7 @@ public class AddPropertyForm extends JFrame
 				}
 			}
 		});
-		btnSubmit.setBounds(216, 320, 114, 25);
+		btnSubmit.setBounds(222, 290, 114, 25);
 		getContentPane().add(btnSubmit);
 
 	}
