@@ -78,22 +78,13 @@ public class Server
         Object data =  input.readObject();
         if (data instanceof Tenant)
         {
-          //Copy this stuff for data instanceof RentalProperty
           HashMap<String,String> map = SqlRental.createHash((Tenant) data);
           DBManager.insert("Tenants", map);
-          //Need to writeObject so GUI updates, should put the JTable in here
-          //output.writeObject("Writing...");
-          //Test print to make sure that Server can tell difference between
-          //tenant and rental property
-          System.out.println("Tenant");
         }
         else if (data instanceof RentalProperty)
         {
-          //Test print to make sure that Server can tell difference between
-          //tenant and rental property
           HashMap<String,String> map = SqlRental.createHash((RentalProperty) data);
           DBManager.insert("Properties", map);
-          System.out.println("Rental Property");
         }
         else if (data instanceof String && ((String) data).startsWith("S"))
         {
@@ -119,7 +110,6 @@ public class Server
       {
         System.out.println("Unknown object received.");
       }
-      //Make it possible to terminate loop
     } while (true);
   }
 

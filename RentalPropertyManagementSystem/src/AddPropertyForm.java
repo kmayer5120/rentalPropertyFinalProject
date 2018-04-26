@@ -27,9 +27,6 @@ public class AddPropertyForm extends JFrame
 
 	public AddPropertyForm()
 	{
-
-		//constructor for Property form
-
 		//set up basic window parameters
 		getContentPane().setBackground(Color.WHITE);
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
@@ -119,11 +116,5 @@ public class AddPropertyForm extends JFrame
 		getContentPane().add(btnSubmit);
 
 	}
-	/*
-	public RentalProperty getRentalPropertyFromForm()
-	{
-		return this.property;
-	}
-	*/
 
 }

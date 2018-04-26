@@ -102,6 +102,18 @@ public class RentalProperty implements Serializable
       break;
       case "2": rent = "$800";
       break;
+      case "3": rent = "$1000";
+      break;
+    }
+    if (rentalID.substring(0).equals("V")) {
+      switch (rentalID.substring(1)) {
+        case "1": rent = "$50";
+        break;
+        case "2": rent = "$100";
+        break;
+        case "3": rent = "$150";
+        break;
+      }
     }
     this.rentCost = rent;
   }

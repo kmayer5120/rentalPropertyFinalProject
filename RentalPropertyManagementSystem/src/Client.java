@@ -20,16 +20,11 @@ public class Client
 
 	public Client(String host)
 	{
-		//super("Client");
 		serverIP = host;
-
 	}
 
 	public static void main(String[] args)
 	{
-		//Forces the database to trigger.
-		//May be able to remove. Test this out. Also try removing/renaming db file
-		//To make sure that removing this is okay.
 		DBManager db = new DBManager();
 		db.createDB();
 		db.createTable();
@@ -96,11 +91,7 @@ public class Client
 		{
 			try
 			{
-				//Right now, serverResponse is "Writing..." in Server.java
 				serverResponse = input.readObject();
-				//Need to make this a variable dependent on which display button is clicked
-				//mainGui.queryDisplay(DBManager.select("Tenants"));
-				//System.out.println(serverResponse);
 			}
 			catch (ClassNotFoundException classNotFoundException)
 			{

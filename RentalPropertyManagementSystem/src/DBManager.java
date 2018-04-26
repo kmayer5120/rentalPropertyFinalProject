@@ -1,16 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-//package sqlrental;
-
-/*
-* Documentation for db
-* Data types: https://www.tutorialspoint.com/sqlite/sqlite_data_types.htm
-* https://www.tutorialspoint.com/sqlite/sqlite_java.htm
-*/
-
 import java.sql.*;
 import java.util.HashMap;
 import java.lang.StringBuilder;
@@ -54,7 +41,7 @@ public class DBManager
 
     }
 
-    public String createDB()
+    public void createDB()
     {
         String cmd = "";
 
@@ -73,16 +60,10 @@ public class DBManager
 			System.out.println("Error SQL Exception");
             System.out.println(e.getMessage());
         }
-
-        return cmd;
     }
 
-    public String createTable()
+    public void createTable()
     {
-        //original method signature. We may not need to pass strings if
-        //these tables are just going to be created with hardcoding
-        //public String createTable(String tblName, HashMap<String,String> fields)
-        String cmd = "";
         Connection c = null;
         Statement stmt = null;
         String url = "jdbc:sqlite:" + dbPath;
@@ -95,9 +76,6 @@ public class DBManager
 
             System.out.println("Opened database successfully");
 
-            //Have to trigger each create table separately...
-            //Maybe there's better variable name choices?
-            //Spent 4 hours getting this to just work. Careful!!
             String sql =
             "CREATE TABLE IF NOT EXISTS Tenants" +
             "(" +
@@ -123,7 +101,6 @@ public class DBManager
             "    isPaid char(1) NOT NULL," +
             "    leaseTerm char(1) NOT NULL," +
             "    rentalFee varchar(4) NOT NULL," +
-          //  "    moveInDate date," +
             "    PRIMARY KEY (propertyID)" +
             ");";
             stmt = conn.createStatement();
@@ -151,21 +128,15 @@ public class DBManager
             ");";
             stmt = conn.createStatement();
             stmt.execute(sql4);
-			System.out.println("After sql command statement");
-          //  stmt.execute(sql);
-			System.out.println("After stmt.execute(); statement");
             stmt.close();
             conn.close();
         } catch ( SQLException e ) {
-			System.out.println("Inside first catch SQL e");
             System.err.println( e.getClass().getName() + ": " + e.getMessage() );
             System.exit(0);
         } catch (ClassNotFoundException e) {
-			System.out.println("Inside second catch CNF e");
             System.err.println( e.getClass().getName() + ": " + e.getMessage() );
             System.exit(0);
         }
-        return cmd;
     }
 
     public static String insert(String tblName, HashMap<String,String> fields)
@@ -184,7 +155,6 @@ public class DBManager
         System.out.println("Opened database successfully.");
 
         stmt = c.createStatement();
-        //Line 160 - 185 creates INSERT query as a StringBuilder
         StringBuilder sqlKeys = new StringBuilder("INSERT INTO ");
         StringBuilder sqlValues = new StringBuilder("VALUES (");
         StringBuilder sqlFinal = new StringBuilder();
@@ -227,11 +197,8 @@ public class DBManager
       System.out.println("Records created successfully.");
       return cmd;
     }
-    //Hashmap may be unnecessary for this method, TBD
     public static JTable select(String query)
     {
-        //cmd prints Test to GUI Query Area, need to convert rs to JTable or String
-        String cmd = "";
         Connection c = null;
         Statement stmt = null;
         JTable queryTable = new JTable();
@@ -245,55 +212,11 @@ public class DBManager
             System.out.println("Opened database successfully");
 
             stmt = c.createStatement();
-            /*Replace * with a variable too? */
             ResultSet rs = stmt.executeQuery(query);
-            //ResultSet rs = stmt.executeQuery("SELECT * FROM " + tblName + ";");
             queryTable = new JTable(buildTableModel(rs));
             c.close();
           }
-            //Modified from https://www.tutorialspoint.com/sqlite/sqlite_java.htm
-            /*
-            if (tblName.equals("Tenants"))
-            {
-                //Commented this out because I was only using first and last to test
-                //int id = rs.getInt("tenantID");
-                String firstName = rs.getString("firstName");
-                String lastName = rs.getString("lastName");
-                cmd = firstName + " " + lastName;
-            }
-            else if (tblName.equals("Properties"))
-            {
-                int id = rs.getInt("propertyID");
-                String address = rs.getString("propertyAddress");
-                String propertyDescription = rs.getString("propertyDescription");
-                int isAvailable = rs.getInt("isAvailable");
-                int isLate = rs.getInt("isLate");
-                int isEvicted = rs.getInt("isEvicted");
-                int isPaid = rs.getInt("isPaid");
-                int leaseTerm = rs.getInt("leaseTerm");
-                float rentalFee = rs.getFloat("rentalFee");
-                //Not sure which type for date, will come back to this
-                //date moveInDate = rs.getDate("moveInDate");
-            }
-            else if (tblName.equals("RentedProperties"))
-            {
-              int propertyID = rs.getInt("propertyID");
-              int tenantID = rs.getInt("tenantID");
-            }
-            else if (tblName.equals("People"))
-            {
-              int personID = rs.getInt("personID");
-              int tenantID = rs.getInt("tenantID");
-              String firstName = rs.getString("firstName");
-              String lastName = rs.getString("lastName");
-              int age = rs.getInt("age");
-            }
-            else
-            {
-              System.out.println("Table not found.");
-            }
-        }
-        */
+
         catch (Exception e)
         {
             System.err.println(e.getClass().getName() + ": "

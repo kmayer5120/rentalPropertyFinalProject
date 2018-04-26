@@ -1,4 +1,3 @@
-
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -24,8 +23,6 @@ public class AddTenantForm extends JFrame
 
 	public AddTenantForm()
 	{
-		//constructor for Tenant form
-
 		//set up basic window parameters
 		getContentPane().setBackground(Color.WHITE);
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
@@ -132,14 +129,5 @@ public class AddTenantForm extends JFrame
 		});
 		btnSubmit.setBounds(216, 325, 114, 25);
 		getContentPane().add(btnSubmit);
-
 	}
-	/*
-	public Tenant getTenantFromForm()
-	{
-		//needed for client to access the tenant in this class
-		return this.tenant;
-	}
-	*/
-
 }

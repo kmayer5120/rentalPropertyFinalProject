@@ -119,9 +119,7 @@ public class UpdateTenantForm extends JFrame
 				tenant.setEmailAddress(txtEmail.getText());
 				tenant.setBillingAddress(txtBillingAddress.getText());
 				tenant.setPropertyID(txtPropertyID.getText());
-				//TODO tenants need to be updated to have email address/prop id/billing address/email/etc.
 				String updateQuery = "UPDATE TABLE tenants SET ";
-				//TODO build update query with gets from Tenant object
 
 				try
 				{

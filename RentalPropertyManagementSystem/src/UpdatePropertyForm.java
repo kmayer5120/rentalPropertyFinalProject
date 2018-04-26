@@ -1,9 +1,3 @@
-/*
- * All of this needs to be changed to work with properties
- * 		- Polymorphism of properties once Submit button is clicked.
- * 		- Change all field names/etc
- */
-
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -85,7 +79,7 @@ public class UpdatePropertyForm extends JFrame
 		JLabel lblDescriptionslinetwo = new JLabel("All fields are required for record keeping purposes.");
 		lblDescriptionslinetwo.setBounds(114, 98, 360, 15);
 		getContentPane().add(lblDescriptionslinetwo);
-		
+
 		setSize(600,339);
 
 
@@ -99,7 +93,7 @@ public class UpdatePropertyForm extends JFrame
 				property.setPropertyDescription(txtPropertyDescription.getText());
 				property.setIsAvailable(txtIsAvailable.getText());
 				String updateQuery = "UPDATE Properties SET ";
-				
+
 				updateQuery += "isAvailable = " + "'" + property.getIsAvailable() + "',";
 				updateQuery += "propertyDescription = " + "'" + property.getPropertyDescription() + "' ";
 				updateQuery += "WHERE propertyID = '" + property.getRentalID() + "'";
@@ -120,11 +114,5 @@ public class UpdatePropertyForm extends JFrame
 		getContentPane().add(btnUpdate);
 
 	}
-	/*
-	public RentalProperty getRentalPropertyFromForm()
-	{
-		return this.property;
-	}
-	*/
 
 }

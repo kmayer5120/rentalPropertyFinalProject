@@ -18,10 +18,6 @@ import javax.swing.table.TableModel;
 import javax.swing.JComboBox;
 import javax.swing.border.BevelBorder;
 
-/*Right now, when the GUI opens, the tenant and property forms open too.
-	This isn't ideal right now but it works. There's probably some window
-	open method or something that we should use instead of setVisible.
-*/
 
 public class GUI extends JFrame
 {
@@ -38,15 +34,9 @@ public class GUI extends JFrame
 	private JLabel lblConnectionStatus;
 	JTextArea txtQueryResults = new JTextArea();
 	private JTextField txtDeleteByID;
-	//AddTenantForm tenantForm = new AddTenantForm();
-	//AddPropertyForm propertyForm = new AddPropertyForm();
 
 	public GUI()
 	{
-		//tenantForm.setVisible(true);
-		//tenantForm.setVisible(false);
-		//propertyForm.setVisible(true);
-		//propertyForm.setVisible(false);
 		//set up basic window parameters
 		getContentPane().setBackground(Color.LIGHT_GRAY);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -104,16 +94,6 @@ public class GUI extends JFrame
 		lblSearchBy.setBounds(56, 12, 88, 15);
 		getContentPane().add(lblSearchBy);
 
-    /*
-		Replaced with JTable, left this here in case we need to revert
-		txtQueryResults.setBounds(32, 187, 533, 573);
-		txtQueryResults.setFont(new Font("Dialog", Font.PLAIN, 12));
-		getContentPane().add(txtQueryResults);
-		*/
-		//This queryResults needs to be within the ActionEvent for the display Buttons
-		//It's here temporarily for testing
-		//queryResults = DBManager.select("Tenants");
-
 
 		JScrollPane scrollPane = new JScrollPane(queryResults);
 		scrollPane.setViewportBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
@@ -125,7 +105,6 @@ public class GUI extends JFrame
 		JComboBox<String> comboBoxDeleteByID = new JComboBox<String>();
 	    comboBoxDeleteByID.addItem("Property ID:");
 	    comboBoxDeleteByID.addItem("Tenant ID:");
-	    //Object comboBoxSelectedItem = comboBoxDeleteByID.getSelectedItem();
 		comboBoxDeleteByID.setBounds(390, 735, 114, 24);
 		getContentPane().add(comboBoxDeleteByID);
 
@@ -133,12 +112,6 @@ public class GUI extends JFrame
 
 		//--------buttons and event listeners
 
-		/*
-		 * Button search will extract the first name and last name from
-		 * the text fields on gui and create an sql query to submit to
-		 * the database. All results will be displayed to text box named
-		 * txtQueryResults.
-		 */
 		btnSearch = new JButton("Search");
 		btnSearch.setBounds(162, 78, 124, 25); //set size
 
@@ -154,8 +127,6 @@ public class GUI extends JFrame
 
 				try
 				{
-					//Need to consider what data is being sent, but this is how it's done
-					//For some reason, search must be clicked twice...
 					Client.sendData(query);
 					queryResults = (JTable) Client.serverResponse;
 
@@ -311,7 +282,6 @@ public class GUI extends JFrame
 				//clear results txt area first
 				txtQueryResults.setText("");
 				//assuming that apartment propertyIDs begin with A
-				//TODO verify query is correct
 				String query = "SELECT * FROM Properties WHERE propertyID LIKE 'A%'";
 				try
 				{
@@ -392,7 +362,7 @@ public class GUI extends JFrame
 		});
 		btnDeleterecord.setBounds(606, 735, 134, 25);
 		getContentPane().add(btnDeleterecord);
-		
+
 		//update tenant button
 		JButton btnUpdateTenant = new JButton("Update Tenant");
 		btnUpdateTenant.addActionListener(new ActionListener() {
@@ -404,16 +374,16 @@ public class GUI extends JFrame
 		});
 		btnUpdateTenant.setBounds(590, 90, 148, 25);
 		getContentPane().add(btnUpdateTenant);
-		
+
 		//update property button
 		JButton btnUpdateProperty = new JButton("Update Property");
 		btnUpdateProperty.setBounds(760, 90, 148, 25);
 		getContentPane().add(btnUpdateProperty);
-		
+
 		//show tenants button
 		JButton btnShowTenants = new JButton("Show Tenants");
 		btnShowTenants.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {				
+			public void actionPerformed(ActionEvent arg0) {
 				String query = "SELECT * FROM Tenants";
 				try
 				{
@@ -434,13 +404,13 @@ public class GUI extends JFrame
 		getContentPane().add(btnShowTenants);
 
 		btnUpdateProperty.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {				
+			public void actionPerformed(ActionEvent arg0) {
 				UpdatePropertyForm updatePropertyForm = new UpdatePropertyForm();
 				updatePropertyForm.setVisible(true);
 				//give focus to pop up with form to property to database
 			}
 		});
-		
+
 
 	} //end constructor
 

@@ -1,11 +1,3 @@
- /*
-  * Author: Kyle Mayer
-  * Email:  kmayer1@cnm.edu
-  * File:   Tenant.java
-  * Date:   4/5/2018
-  * Course: CSCI2251 Sec 101
- */
-
 import java.util.ArrayList;
 import java.io.Serializable;
 
